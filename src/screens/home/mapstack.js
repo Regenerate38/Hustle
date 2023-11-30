@@ -20,4 +20,3 @@ const MapStack = () => {
 
 export default MapStack
 
-const styles = StyleSheet.create({})

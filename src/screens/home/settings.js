@@ -1,38 +1,46 @@
 import {StyleSheet, Text, View, Dimensions} from 'react-native';
 import React from 'react';
 import {COLORS} from '../../constants';
-import {Image} from 'react-native-elements';
+import {Icon, Image} from 'react-native-elements';
 import ProgressBar from 'react-native-progress/Bar';
 import styles from '../../Styles_holder';
 import { TouchableOpacity } from 'react-native-ui-lib';
+import { TextInput } from 'react-native';
 
 
 const { width, height } = Dimensions.get("window");
 
-const Profile = ({navigation}) => {
-
+const Settings =({navigation}) => {
   return (
     <View style={styles.PostDetailPage}>
       <View id={'imagecontainer'} style={styles.ProfilePage_coverimage_container}>
           <Image source={require('../../../src/assets/coverpic.jpg')} style={styles.ProfilePage_image}/>
           <View style={styles.ProfilePage_image_cover}/>
       </View> 
-
-    <TouchableOpacity onPress={() => navigation.navigate('Settings')} >    
+        
     <View style={styles.PostDetailPage_back_container}>     
-        <Image  source ={require('../../assets/icons/settings.png')}
+        <TouchableOpacity>
+            <Image  source ={require('../../assets/edit.png')}
                 style = {styles.ProfilePage_settings_icon}/>
+        </TouchableOpacity>
     </View>
-    </TouchableOpacity>
+
+    <View style={styles.PostDetailPage_back_container}>
+      <Image source ={require('../../assets/icons/back.png')}
+              style = {styles.PostDetailPage_back} onPress={() => navigation.goBack()}/>
+    </View>
 
     <View style={styles.ProfilePage_info_container}>
 
       <View style={ styles.ProfilePage_info_container_layer1}>
+            <View>
+                <Image source={require('../../../src/assets/fakeoda.png')} style={styles.ProfilePage_pfp}/>
+                <Icon name="md-edit" 
+                    style={{position: 'absolute', right: 5,top: 5, zIndex:20,}} />
+            </View>
 
-          <Image source={require('../../../src/assets/fakeoda.png')} style={styles.ProfilePage_pfp}/>
-
-          <Text style={styles.ProfilePage_Username}>John Doe</Text>
-          <Text style={styles.ProfilePage_location}>Sanepa</Text>  
+          <TextInput editable multiline={false} style={styles.ProfilePage_Username}>John Doe</TextInput>
+          <TextInput editable multiline={false} style={styles.ProfilePage_location}>Sanepa</TextInput>  
     </View>
 
     <View style={styles.ProfilePage_targetcp_container}>
@@ -56,35 +64,9 @@ const Profile = ({navigation}) => {
     </View>        
     
 
-  <View style={styles.ProfilePage_milestone_rectangle}>
-
-        <View style={styles.ProfilePage_milestone_container}>
-        <Text style={styles.ProfilePage_milestone_heading}>Milestones </Text>
-            
-        <View style={styles.ProfilePage_milestone_item}>
-            <Text style={styles.ProfilePage_milestone_item_label}>
-              Volunteer in 10 Community Works </Text>
-            <Text style={styles.ProfilePage_milestone_item_value}>  5/10 </Text>
-        </View>
-
-        <View style={styles.ProfilePage_milestone_item}>
-            <Text style={styles.ProfilePage_milestone_item_label}>
-            Participate in 15 Personal Works </Text>
-            <Text style={styles.ProfilePage_milestone_item_value}>  3/15 </Text>
-        </View>
-
-        <View style={styles.ProfilePage_milestone_item}>
-            <Text style={styles.ProfilePage_milestone_item_label}>
-            Volunteer in 5 Environmental Projects </Text>
-            <Text style={styles.ProfilePage_milestone_item_value}>  2/5 </Text>
-        </View>
-    
-  </View> 
-  
-  </View>        
-</View>
+ </View>
   );
 };
 
-export default Profile;
+export default Settings;
 

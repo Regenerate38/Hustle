@@ -87,7 +87,7 @@ Signup_button: {
     position: 'relative',
     justifyContent: 'center',
     alignItems: 'center',
-    top: verticalScale(55),
+    top: verticalScale(60),
     borderRadius: moderateScale(50),
 },
 
@@ -899,7 +899,60 @@ BottomTabBar:{
 },
 
 
+
 /**Bottom Tab Navigator End */
+
+/**Organization Posts Page Start */
+
+Organization__flatlist_container:{
+    marginTop: verticalScale(40),
+    height: 0.90*height - moderateScale(60),  
+
+},
+
+flatlist_heading:{
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: moderateScale(24),
+    marginLeft: horizontalScale(30),
+    marginBottom: verticalScale(2),
+},
+
+OrgProfilePage_milestone_rectangle:{
+    backgroundColor:'#34363A',
+    flexDirection: 'column',
+    alignItems:'flex-start',
+    opacity: 0.96,
+    zIndex:4,
+    alignSelf: 'center',
+    width: 0.84*width,
+    // position: 'absolute',
+    paddingBottom: 50,
+    marginTop: 0.75*width,
+    borderRadius: 24,
+},
+
+OrgProfilePage_history_item_label:{
+    color:'#ffffff',
+    textAlign: 'left',
+    width: 0.5*width,
+    marginTop: verticalScale(50),
+    marginLeft: horizontalScale(20),
+    paddingTop: verticalScale(25),
+    fontSize: moderateScale(15),
+},
+
+OrgProfilePage_history_item_value:{
+    color:'#7DAD2F',
+    textAlign: 'right',
+    
+    marginTop: verticalScale(52),
+    paddingTop: verticalScale(20),
+    fontSize: moderateScale(16),
+    marginLeft: horizontalScale(15),
+},
+
+/**Organization Posts Page End */
 
 });
 
