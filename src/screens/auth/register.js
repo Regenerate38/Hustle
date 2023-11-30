@@ -1,5 +1,5 @@
 import React from 'react';
-import { View,ImageBackground, Text, Dimensions, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native';
+import { View,ImageBackground, Text, Dimensions, StyleSheet, StatusBar, SafeAreaView, TextInput, TouchableOpacity, Image } from 'react-native';
 import Login_screen from './login';
 import styles from '../../Styles_holder';
 const screenHeight = Dimensions.get('window').height;
@@ -16,13 +16,13 @@ function Signup_Screen(props) {
         </Text>
         <View style={styles.Align_boxes_signup} >
             <View style={styles.Email} >
-                <TextInput style={styles.Placeholder} placeholder='Enter Email' keyboardType='default'></TextInput>
+                <TextInput style={styles.Placeholder} placeholder='Enter Email' placeholderTextColor="#808080" keyboardType='default'></TextInput>
             </View>
             <View style={styles.Username_signup} >
-                <TextInput style={styles.Placeholder} placeholder='Enter Username' keyboardType='default'></TextInput>
+                <TextInput style={styles.Placeholder} placeholder='Enter Username' placeholderTextColor="#808080" keyboardType='default'></TextInput>
             </View>
             <View style={styles.Password_signup} >
-                <TextInput style={styles.Placeholder} placeholder='Enter Password' keyboardType='default'></TextInput>
+                <TextInput style={styles.Placeholder} secureTextEntry={true} placeholder='Enter Password' placeholderTextColor="#808080" keyboardType='default'></TextInput>
             </View>
 
         </View>
@@ -51,11 +51,12 @@ function Signup_Screen(props) {
 
 function Signup_page(props){
   return (
-    <View>
-    <TouchableOpacity style={styles.Back_button} onPress={()=>navigation.navigate.back()}>
-    
+    <SafeAreaView>
 
-    <Image  source={require('../../assets/icons/back.png')} />
+    <StatusBar barStyle="dark-content" translucent={true} backgroundColor="#fef9e3" />
+    <TouchableOpacity style={styles.Back_button} onPress={()=>navigation.navigate.back()}>  
+
+    <Image  style={styles.Back_button} source={require('../../assets/icons/back.png')} />
     </TouchableOpacity>
 <ImageBackground 
      resizeMode='center'
@@ -66,7 +67,7 @@ function Signup_page(props){
 
     </ImageBackground>
     <Signup_Screen />
-</View>
+</SafeAreaView>
   );
 }
 export default Signup_page;

@@ -1,10 +1,10 @@
-import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import Postdetail from './postdetail';
 import MoreCategories from './MoreCategories';
 import Volunteers from './volunteers';
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
+import styles from '../../Styles_holder';
 
 const VolunteersStackBar = createStackNavigator()
 
@@ -14,15 +14,7 @@ const VolunteersStack = ({ navigation, route }) => {
         if (routeName === "VPostDetail"){
             navigation.setOptions({tabBarStyle: { display: 'none' }});
         }else {
-            navigation.setOptions({tabBarStyle: {
-            position: 'absolute',
-            bottom: 8,
-            left: 20,
-            right: 20,
-            backgroundColor: '#34363A',
-            borderRadius: 64,
-            height: 60,
-        }});
+            navigation.setOptions({tabBarStyle: styles.BottomTabBar});
         }
     }, [navigation, route]);
   return (
@@ -35,4 +27,3 @@ const VolunteersStack = ({ navigation, route }) => {
 
 export default VolunteersStack
 
-const styles = StyleSheet.create({})

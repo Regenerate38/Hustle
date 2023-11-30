@@ -4,7 +4,7 @@ const screenHeight = Dimensions.get('window').height;
 const screenWidth = Dimensions.get('window').width;
 import { useNavigation } from '@react-navigation/native';
 import styles from '../../Styles_holder';
- 
+
 function Login_screen(props) {
     const navigation = useNavigation();
 
@@ -21,10 +21,10 @@ function Login_screen(props) {
             </Text>
             <View style={styles.Align_boxes}> 
             <View style={styles.Username} >
-                <TextInput style={styles.Placeholder} placeholder='Enter Username' keyboardType='default'></TextInput>
+                <TextInput style={styles.Placeholder} placeholder='Enter Username' placeholderTextColor="#808080" keyboardType='default'></TextInput>
             </View>
             <View style={styles.Password} >
-                <TextInput style={styles.Placeholder} placeholder='Enter Password' keyboardType='default'></TextInput>
+                <TextInput style={styles.Placeholder} placeholder='Enter Password' placeholderTextColor="#808080" keyboardType='default'></TextInput>
             </View>
             </View>
             
@@ -53,12 +53,15 @@ function Login_screen(props) {
 
 function Login_page(props){
   return (
-    <View>
     
+    <SafeAreaView style={{
+        flex: 1,
+    }}>
+    <StatusBar barStyle="dark-content" translucent={true} backgroundColor="#fef9e3" />
     <TouchableOpacity style={styles.Back_button} onPress={()=>navigation.back()}>
     
 
-    <Image  source={require('../../assets/icons/back.png')} />
+    <Image style={styles.Back_button} source={require('../../assets/icons/back.png')} />
     </TouchableOpacity>
 
           <ImageBackground 
@@ -71,7 +74,7 @@ function Login_page(props){
 
     </ImageBackground>
     <Login_screen />
-    </View>
+    </SafeAreaView>
 
    
   

@@ -1,11 +1,9 @@
-import {StyleSheet, Text, View, FlatList, Dimensions, TouchableOpacity, ScrollView} from 'react-native';
+import {StyleSheet, Text, View, FlatList, Dimensions, TouchableOpacity, StatusBar,ScrollView} from 'react-native';
 import React from 'react';
 import {COLORS} from '../../constants';
 import { Image, SearchBar } from 'react-native-elements';
-
-
-
-
+import { SafeAreaView } from 'react-native';
+import styles from '../../Styles_holder';
 
 
 const { width} = Dimensions.get("window");
@@ -14,8 +12,6 @@ const POST_WIDTH = width * 0.825;
 const POST_HEIGHT = 0.5*width; 
 
 const Paid = ({navigation}) => {
-
-
 
   const postData = [
     {
@@ -77,58 +73,28 @@ const Paid = ({navigation}) => {
 const PostItem = ({title, image, location}) => (
   <TouchableOpacity onPress={() => navigation.navigate('PostDetail')} >
   <View
-  style={{
-    position: "relative",
-    width: POST_WIDTH,
-    height: 0.95*POST_HEIGHT,
-    marginTop: 10,
-    marginBottom: 2,
-    marginHorizontal: width * 0.05,
-    backgroundColor: '#333333',
-    borderRadius: 25
-  }}> 
+  style={styles.PostDetail_main_view}> 
     <View style={{
       height: 0.57 * POST_HEIGHT,
-
     }}>
-       <Image source={image} style={{
-        height: 0.58*POST_HEIGHT,
-        borderRadius: 25,
-        margin: 12,
-        aspectRatio: 'auto',
-  }}/>
+       <Image source={image} style={styles.PostDetail_image}/>
     </View>
   <View style={{
     marginTop: 0.082*POST_HEIGHT,
     flexDirection: 'column',
   }}>
-  <Text style={{ 
-      fontWeight: '600',
-      fontSize: 19.2,
-      fontWeight: 'bold',
-      marginLeft: 13,
-      color: '#fff'
-     }}>{title}</Text>
+
+  <Text style={styles.PostDetail_title_text}>{title}</Text>
+
   <View style={{
     display:'flex',
     flexDirection: 'row',
   }}>
-  <Text style={{ 
-      fontWeight: '600',
-      fontSize: 12.2,
-      fontWeight: '100',
-      marginLeft: 13,
-      color: '#fff'
-     }}>{location}</Text>
- <Image 
-        source ={require('../../assets/icons/location.png')}
+  <Text style={styles.PostDetail_location_text}>{location}</Text>
+
+ <Image source ={require('../../assets/icons/location.png')}
         resizeMode = 'contain'
-        style = {{
-          width: 12,
-          height: 12,
-          marginTop: 3, 
-          marginLeft: 1.5,
- }}/>
+        style = {styles.PostDetail_location_icon}/>
   </View>
 
   </View>
@@ -145,130 +111,53 @@ postgaps  = () => {
    }}/>
   }
 
-
   return (
-    <View
-      style={{
-        flex: 1,
-        
-        alignItems: 'center',
-        backgroundColor: COLORS.bgColor,
-      }}>
-
-        
-        <View style={{
-          marginTop: 20,
-          width: 356,
-       
-          position: 'fixed',
-          left: 3,
-          
-        
-        }}>
-          
-          <SearchBar
-           
-           placeholder="Search..  "
-           inputStyle={{
-            backgroundColor: '#34363A',
-          }}
-          inputContainerStyle ={{
-            height: 38,
-          }}
-           bgColor ={'#34363A'}    
-           containerStyle ={{
-            backgroundColor: '#34363A' ,
-            borderRadius: 20,
-            borderBottomColor: 'transparent',
-            borderTopColor: 'transparent'
-           
-           }} 
-           searchIcon = {null}
-  
-           round
+    <SafeAreaView style={styles.inner_page_parent_container}>
+      <StatusBar barStyle="dark-content" translucent={true} backgroundColor={COLORS.bgColor} barStyle = "light-content"  />
+      
+      
+      <View style={styles.search_bar_container}>
+        <SearchBar 
+            placeholder="Search..  "
+            inputStyle={{ backgroundColor: '#34363A',}}
+            inputContainerStyle ={{height: 38, }}
+            bgColor ={'#34363A'}    
+            containerStyle ={styles.search_bar} 
+            searchIcon = {null}
+            round
            />
-        </View>
-        <View style={{
-          flexDirection: 'row',
-        }}>
-          <TouchableOpacity onPress={() => navigation.navigate('CreatePost')}>
-                  <View
-                                style={{
-                                position: "relative",
-                                width: 157,
-                                height: 48,
-                                // marginVertical: 10,
-                                marginHorizontal: 10,
-                                backgroundColor: '#BBB049',
-                                borderRadius: 23,
-                                marginTop: 22,
-                                justifyContent:'center',
-                                alignItems: 'center',
-                              }}
-                              > 
-
-                            
-                              <Text style={{
-                                color:'#fff',
-                                fontSize: 17,
-                                textAlign: 'center',
-                                fontWeight: 'bold',
-                                alignContent: 'center',
-                                paddingLeft:13,
-                                paddingRight:13,
-
-                              }}>{'Post a Task'}</Text>
-                 </View>
-                 </TouchableOpacity>
-
-                  <View
-                      style={{
-                      position: "relative",
-                      width: 157,
-                      height: 48,
-                      marginHorizontal: 10,
-                      backgroundColor: '#BBB049',
-                      borderRadius: 23,
-                      marginTop: 22,
-                      justifyContent:'center',
-                      alignItems: 'center',
-                    }}
-                    > 
-
-                   
-                    <Text style={{
-                      color:'#fff',
-                      fontSize: 17,
-                      textAlign: 'center',
-                      fontWeight: 'bold',
-                      alignContent: 'center',
-                      paddingLeft:13,
-                      paddingRight:13,
-
-                    }}>{'Placeholder'}</Text>
-                  </View>
-        
-                  </View>
+      </View>
        
-        <Text style= {{
-          marginTop: 20,
-          color: '#fff',
-          marginLeft: -0.56* width,
-          fontSize: 15,
-          fontWeight: '900',
-        }}>Type of Tasks</Text>
+       
+       
+      <View style={{ 
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+     }}>
+
+          <TouchableOpacity onPress={() => navigation.navigate('CreatePost')}>
+              <View style={styles.paidpage_button}> 
+                <Text style={styles.paidpage_button_text}>{'Post a Task'}</Text>
+              </View>
+          </TouchableOpacity>
+              <View style={styles.paidpage_button}> 
+                <Text style={styles.paidpage_button_text}>{'Placeholder'}</Text>
+              </View>       
+      
+      </View>
+       
+      <Text style= {styles.scrollview_heading}>Type of Tasks</Text>
      
-          <View style={{
-              flexDirection: 'row',
-              marginBottom: 8,}}> 
-              
+
+      <View style={{
+          flexDirection: 'row',
+          marginBottom: 8,}}> 
                <ScrollView
                   horizontal={true}
                   alwaysBounceHorizontal={true}
                   style={{
                   marginHorizontal: 20,
-                  flex: 1,
-                  
+                  flex: 1, 
                   }}>
 
                   <View
@@ -458,41 +347,26 @@ postgaps  = () => {
                   
 
               </ScrollView>
-              </View>
+      </View>
 
-        <View style={{
+      <View style={{
           marginTop: 5,
           height: width *1.05,
-        }}>
-          <Text style = {{
-              color: '#fff',
-              fontWeight: 'bold',
-              fontSize: 16,
-              marginLeft: 32,
-              marginBottom: 2,
-          }}>Posts</Text>
+      }}>
+
+          <Text style = {styles.flatlist_heading}>Posts</Text>
           <FlatList
                 data={postData}
                         renderItem={({item}) => <PostItem title={item.title} image={item.image} location={item.location} />}
                         keyExtractor={item => item.id}
                 ListEmptyComponent = {<Text>This is where post regarding various volunteering opportunities are kept</Text>} 
-                ItemSeperatorComponent = {postgaps}
-                
-             />
+                ItemSeperatorComponent = {postgaps}    
+          />
          
-       
         </View>
-        
-       
-    </View>
+    </SafeAreaView>
     
   );
 };
 
 export default Paid;
-
-const styles = StyleSheet.create({
-  featured: {
-  
-  },
-});

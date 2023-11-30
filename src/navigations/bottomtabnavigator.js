@@ -6,49 +6,39 @@ import PaidStack from '../screens/home/paidstack';
 import MapStack from '../screens/home/mapstack';
 import ProfileStack from '../screens/home/profilestack';
 import VolunteersStack from '../screens/home/volunteersstack';
+import styles from '../Styles_holder';
 
 const Tab = createBottomTabNavigator();
 
 const Bottomtabnagivator =  () => {
   return (
     <Tab.Navigator 
-    screenOptions={{
-      headershown: false,
-      // tabBarItemStyle: {width: "auto", minWidth: "100", height: 70, maxHeight: 70},
+      screenOptions={{
+
       shifting : 'true',
-      tabBarStyle : {
-        position: 'absolute',
-        bottom: 8,
-        left: 20,
-        right: 20,
-        backgroundColor: '#34363A',
-        borderRadius: 64,
-        height: 70,
-      }
-    }} >
-     <Tab.Screen name='Maps' component={MapStack} options={{
-        headerShown:  false, 
-        tabBarLabel: ({ focused }) => {
-          return <Text style={{fontSize: 16, fontWeight: '600', color: "#fff", paddingLeft: 40}}>{focused ? 'Map' : ""}</Text>
-        },
-        tabBarActiveBackgroundColor: '#F55943',
-         tabBarItemStyle: {  
-         borderRadius: 32,
-         borderWidth: 5,
-         borderColor: '#34363A'
-        },
-        tabBarLabelPosition: 'beside-icon',
-        tabBarIcon: ({focused}) => (
-          <View>
-            <Image 
-            source ={require('../assets/icons/maps.png')}
-            resizeMode = 'contain'
-            style = {{
-              width: 32,
-              height: 32,
-              marginLeft: 50,
-              marginRight: 20,
-              tintColor : focused ? '#ffffff' :  '#F55943'
+      tabBarStyle : styles.BottomTabBar,
+     }} >
+        <Tab.Screen name='Maps' component={MapStack} options={{
+                headerShown:  false, 
+                tabBarShowLabel: false,
+               tabBarLabel: ({ focused }) => {
+                  return <Text style={{fontSize: 15, fontWeight: '600', color: "#fff", paddingLeft: 28}}>{focused ? 'Map' : ""}</Text>
+                 },
+                tabBarActiveBackgroundColor: '#F55943',
+                tabBarItemStyle: {  
+                    borderRadius: 32,
+                    borderWidth: 6  ,
+                    borderColor: '#34363A'
+                  },
+                //tabBarLabelPosition: 'beside-icon',
+                tabBarIcon: ({focused}) => (
+                <View>
+                     <Image 
+                      source ={require('../assets/icons/maps.png')}
+                      resizeMode = 'contain'
+                    style = {{
+                     
+                      tintColor : focused ? '#ffffff' :  '#F55943'
             }}/>
           </View >
 
@@ -56,6 +46,7 @@ const Bottomtabnagivator =  () => {
          }}/>
       <Tab.Screen name="Paid" component={PaidStack} options={{
         headerShown:  false,
+        tabBarShowLabel: false,
         tabBarLabel: ({ focused }) => {
           return <Text style={{fontSize: 16, fontWeight: '600', color: "#fff", marginLeft: 25}}>{focused ? 'Paid' : ""}</Text>
         },
@@ -73,9 +64,7 @@ const Bottomtabnagivator =  () => {
             source ={require('../assets/icons/paid.png')}
             resizeMode = 'contain'
             style = {{
-              width: 32,
-              marginLeft: 10,
-              height: 32,
+              
               tintColor : focused ? '#ffffff' :  '#ADA82F'
             }}/>
           </View >
@@ -84,6 +73,7 @@ const Bottomtabnagivator =  () => {
          }}/>
       <Tab.Screen name="Volunteers" component={VolunteersStack} options={{
         headerShown:  false,
+        tabBarShowLabel: false,
         tabBarLabel: ({ focused }) => {
           return <Text style={{fontSize: 16, fontWeight: '600', color: "#fff", marginLeft: 15, textAlign: 'center'}}>{focused ? 'Volunteers' : ""}</Text>
         },
@@ -110,6 +100,7 @@ const Bottomtabnagivator =  () => {
          }}/>
                <Tab.Screen name="Profile" component={ProfileStack} options={{
         headerShown:  false,
+        tabBarShowLabel: false,
         tabBarLabel: ({ focused }) => {
           return <Text style={{fontSize: 16, fontWeight: '600', color: "#fff", marginLeft: 15}}>{focused ? 'Profile' : ""}</Text>
         },
@@ -140,5 +131,3 @@ const Bottomtabnagivator =  () => {
 }
 
 export default Bottomtabnagivator;
-
-const styles = StyleSheet.create({});

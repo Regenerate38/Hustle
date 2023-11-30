@@ -1,4 +1,3 @@
-import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack';
 import Paid from './paid';
@@ -6,7 +5,7 @@ import Postdetail from './postdetail';
 import MoreCategories from './MoreCategories';
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import CreatePost from './CreatePost';
-
+import styles from '../../Styles_holder';
 
 
 const PaidStackBar = createStackNavigator()
@@ -17,14 +16,7 @@ const PaidStack = ({ navigation, route }) => {
         if (routeName === "PostDetail" || routeName === "MoreCategories" || routeName ==="CreatePost" ){
             navigation.setOptions({tabBarStyle: { display: 'none' }});
         }else {
-            navigation.setOptions({tabBarStyle: {
-            position: 'absolute',
-            bottom: 8,
-            left: 20,
-            right: 20,
-            backgroundColor: '#34363A',
-            borderRadius: 64,
-            height: 60,}});
+            navigation.setOptions({tabBarStyle: styles.BottomTabBar});
         }
     }, [navigation, route]);
   return (
@@ -39,5 +31,3 @@ const PaidStack = ({ navigation, route }) => {
 }
 
 export default PaidStack
-
-const styles = StyleSheet.create({})

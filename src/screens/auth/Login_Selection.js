@@ -12,8 +12,7 @@ function Login_selection(props){
     return(
         <View style={styles.Message}>
         
-            <Image style={styles.Logo} source={require("../../assets/icon.png")} />
-            <Text style={styles.Title}>कर्म</Text>
+            <Image style={styles.Logo} source={require("../../assets/logo.png")} />
             <Text style={styles.Title_text}>
             {'\n'}{'\n'}{'\n'}{'\n'}{'\n'}
 
@@ -47,8 +46,11 @@ function Login_selection(props){
 
 function Login_screen2(props){
   return (
-    <View>
-    
+    <SafeAreaView style={{
+        flex: 1,
+        justifyContent: 'flex-start',
+    }}>
+    <StatusBar barStyle="dark-content" translucent={true} backgroundColor="#fef9e3" /> 
 
           <ImageBackground 
      resizeMode='center'
@@ -60,7 +62,7 @@ function Login_screen2(props){
 
     </ImageBackground>
     <Login_selection />
-    </View>
+    </SafeAreaView>
 
    
   
