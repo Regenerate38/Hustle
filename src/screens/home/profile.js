@@ -5,6 +5,7 @@ import {Image} from 'react-native-elements';
 import ProgressBar from 'react-native-progress/Bar';
 import styles from '../../Styles_holder';
 import { TouchableOpacity } from 'react-native-ui-lib';
+import { ScrollView } from 'react-native';
 
 
 const { width, height } = Dimensions.get("window");
@@ -18,12 +19,14 @@ const Profile = ({navigation}) => {
           <View style={styles.ProfilePage_image_cover}/>
       </View> 
 
-    <TouchableOpacity onPress={() => navigation.navigate('Settings')} >    
+       
     <View style={styles.PostDetailPage_back_container}>     
+    <TouchableOpacity onPress={() => navigation.navigate('Settings')} > 
         <Image  source ={require('../../assets/icons/settings.png')}
                 style = {styles.ProfilePage_settings_icon}/>
-    </View>
     </TouchableOpacity>
+    </View>
+ 
 
     <View style={styles.ProfilePage_info_container}>
 
@@ -55,7 +58,39 @@ const Profile = ({navigation}) => {
       </View>
     </View>        
     
+  <ScrollView style={styles.ProfilePage_info_rectangle}>
+    <View style = {{marginBottom: 70}}>
+  <View style={styles.ProfilePage_milestone_rectangle}>
 
+        <View style={styles.ProfilePage_milestone_container}>
+        <Text style={styles.ProfilePage_milestone_heading}>Participating tasks </Text>
+            
+        <View style={styles.ProfilePage_milestone_item}>
+            <Text style={styles.ProfilePage_milestone_item_label}>
+              Participate in Bagmati Cleaning Campaign </Text>
+            <View style={{flexDirection: 'row', display: 'inline',}}>
+                  <Text style={styles.ProfilePage_location_value}>Sanepa</Text>
+                  <Image source ={require('../../assets/icons/location.png')}
+                        resizeMode = 'contain'
+                        style = {styles.OrgProfilePage_location_icon}/>
+            </View>
+        </View>
+
+        <View style={styles.ProfilePage_milestone_item}>
+            <Text style={styles.ProfilePage_milestone_item_label}>
+              Participate in Patan Forestation </Text>
+            <Text style={styles.ProfilePage_location_value}>Patan</Text>
+        </View>
+
+        <View style={styles.ProfilePage_milestone_item}>
+            <Text style={styles.ProfilePage_milestone_item_label}>
+              Staying in Line for Mr Sharma </Text>
+            <Text style={styles.ProfilePage_location_value}>Kupondole</Text>
+        </View>
+    
+  </View> 
+  
+  </View>  
   <View style={styles.ProfilePage_milestone_rectangle}>
 
         <View style={styles.ProfilePage_milestone_container}>
@@ -82,6 +117,8 @@ const Profile = ({navigation}) => {
   </View> 
   
   </View>        
+  </View>
+  </ScrollView>
 </View>
   );
 };

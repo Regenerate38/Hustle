@@ -71,12 +71,12 @@ function Signup_Screen(props) {
 }
 
 
-function Signup_page(props){
+const Signup_page = ({navigation}) => {
   return (
     <SafeAreaView>
 
     <StatusBar barStyle="dark-content" translucent={true} backgroundColor="#fef9e3" />
-    <TouchableOpacity style={styles.Back_button} onPress={()=>navigation.navigate.back()}>  
+    <TouchableOpacity style={styles.Back_button} onPress={() => navigation.goBack()}>  
 
     <Image  style={styles.Back_button} source={require('../../assets/icons/back.png')} />
     </TouchableOpacity>

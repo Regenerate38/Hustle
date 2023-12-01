@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View, FlatList, Dimensions, TouchableOpacity, StatusBar,ScrollView} from 'react-native';
 import React from 'react';
 import {COLORS} from '../../constants';
-import { Image, SearchBar } from 'react-native-elements';
+import { Image, SearchBar, FAB } from 'react-native-elements';
 import { SafeAreaView } from 'react-native';
 import styles from '../../Styles_holder';
 
@@ -96,6 +96,8 @@ const PostItem = ({title, image, location}) => (
  <Image source ={require('../../assets/icons/location.png')}
         resizeMode = 'contain'
         style = {styles.PostDetail_location_icon}/>
+
+<Text style={styles.PostDetail_price_text}>Rs 100</Text>
   </View>
 
   </View>
@@ -129,26 +131,22 @@ postgaps  = () => {
            />
       </View>
        
-       
-       
-      <View style={{ 
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-     }}>
+      <FAB
+        placement='right'
+        size='large'
+        icon={{ name: 'add', color: 'white' }}
+        color="green"
+        style={{
+            marginBottom: 90,
+            zIndex: 20,
+        }}
+        onPress={() => navigation.navigate('CreatePost')}
+        buttonStyle={{borderRadius:1000,}}
+      />
 
-          <TouchableOpacity onPress={() => navigation.navigate('CreatePost')}>
-              <View style={styles.paidpage_button}> 
-                <Text style={styles.paidpage_button_text}>{'Post a Task'}</Text>
-              </View>
-          </TouchableOpacity>
-              <View style={styles.paidpage_button}> 
-                <Text style={styles.paidpage_button_text}>{'Placeholder'}</Text>
-              </View>       
-      
-      </View>
-       
       <Text style= {styles.scrollview_heading}>Type of Tasks</Text>
-     
+
+ 
 
       <View style={{
           flexDirection: 'row',
@@ -352,7 +350,7 @@ postgaps  = () => {
 
       <View style={{
           marginTop: 5,
-          height: width *1.05,
+          height: width *1.18,
       }}>
 
           <Text style = {styles.flatlist_heading}>Posts</Text>

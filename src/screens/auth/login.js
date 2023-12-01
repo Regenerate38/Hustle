@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react';
 
 import { ImageBackground, Image, StyleSheet, Text, View, Platform ,StatusBar, Dimensions,TouchableOpacity, SafeAreaView, TextInput } from 'react-native';
 import axios from 'axios';
-import { useNavigation } from '@react-navigation/native'
 import styles from '../../Styles_holder';
-import {setToken} from "../../components/asyncStorage"
 
 
-function Login_screen(props) {
-    const navigation = useNavigation();
+
+
+
+
+const Login_page = ({navigation}) => {
+
 
     const [user, setUser] = useState({})
     const [email, setEmail] = useState('')
@@ -36,8 +38,30 @@ function Login_screen(props) {
     }
 
 
-    return(
-        <View style={styles.Message}>
+  return (
+    
+    <SafeAreaView style={{
+        flex: 1,
+    }}>
+    <StatusBar barStyle="dark-content" translucent={true} backgroundColor="#fef9e3" />
+    <TouchableOpacity style={styles.Back_button} onPress={() => navigation.goBack()}>
+    
+
+    <Image style={styles.Back_button} source={require('../../assets/icons/back.png')} />
+    </TouchableOpacity>
+
+          <ImageBackground 
+     resizeMode='contain'
+    style={(styles.Bg_img)}
+    fadeDuration={1000}
+    source={require('../../assets/Landing_Page_Background.jpg')} >
+
+    
+
+    </ImageBackground>
+  
+
+  <View style={styles.Message}>
 
             <Text style={styles.Login_screen_text1} >
                 Hello Again{'\n'}{'\n'}
@@ -75,33 +99,6 @@ function Login_screen(props) {
             </TouchableOpacity>
             </View>
         </View>
-    );
-}
-
-
-function Login_page(props){
-  return (
-    
-    <SafeAreaView style={{
-        flex: 1,
-    }}>
-    <StatusBar barStyle="dark-content" translucent={true} backgroundColor="#fef9e3" />
-    <TouchableOpacity style={styles.Back_button} onPress={()=>navigation.back()}>
-    
-
-    <Image style={styles.Back_button} source={require('../../assets/icons/back.png')} />
-    </TouchableOpacity>
-
-          <ImageBackground 
-     resizeMode='contain'
-    style={(styles.Bg_img)}
-    fadeDuration={1000}
-    source={require('../../assets/Landing_Page_Background.jpg')} >
-
-    
-
-    </ImageBackground>
-    <Login_screen />
     </SafeAreaView>
 
    
