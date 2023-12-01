@@ -988,6 +988,15 @@ OrgProfilePage_location_icon:{
     position: 'absolute',
     tintColor: '#fff',
 },
+imageContainer: {
+    borderRadius: 28,
+    overflow: 'hidden',
+},
+image: {
+    width: '100%',
+    height: undefined,
+    aspectRatio: 277/193,
+},
 /**Organization Posts Page End */
 
 });
