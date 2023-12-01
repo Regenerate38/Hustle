@@ -6,6 +6,7 @@ import { SafeAreaView } from 'react-native';
 import styles from '../../Styles_holder';
 
 
+
 const { width} = Dimensions.get("window");
 
 const POST_WIDTH = width * 0.825;

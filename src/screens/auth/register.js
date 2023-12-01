@@ -1,13 +1,35 @@
-import React from 'react';
+import React, {useState, useEFfect} from 'react';
 import { View,ImageBackground, Text, Dimensions, StyleSheet, StatusBar, SafeAreaView, TextInput, TouchableOpacity, Image } from 'react-native';
 import Login_screen from './login';
 import styles from '../../Styles_holder';
-const screenHeight = Dimensions.get('window').height;
+import axios from 'axios'
 import { useNavigation } from '@react-navigation/native';
-const screenWidth = Dimensions.get('window').width;
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function Signup_Screen(props) {
     const navigation = useNavigation();
+
+    const [user, setUser] = useState({})
+    const [email, setEmail] = useState('')
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+
+    const handleEmail =(text)=>{
+        setEmail(text);
+    }
+    const handleUsername =(text)=>{
+        setUsername(text);
+    }
+    const handlePassword =(text)=>{
+        setPassword(text);
+    }
+    const handleSubmit = async ()=>{
+        setUser({email, name:username, password, isOrg:false})
+        console.log(user)
+        const res =await axios.post("http://10.0.2.2:5000/auth/register", user )
+        console.log(res.data)
+    }
+   
 
     return(
         <View style={styles.Message}>
@@ -16,17 +38,17 @@ function Signup_Screen(props) {
         </Text>
         <View style={styles.Align_boxes_signup} >
             <View style={styles.Email} >
-                <TextInput style={styles.Placeholder} placeholder='Enter Email' placeholderTextColor="#808080" keyboardType='default'></TextInput>
+                <TextInput style={styles.Placeholder} placeholder='Enter Email' value={email} onChangeText={handleEmail} placeholderTextColor="#808080" keyboardType='default'></TextInput>
             </View>
             <View style={styles.Username_signup} >
-                <TextInput style={styles.Placeholder} placeholder='Enter Username' placeholderTextColor="#808080" keyboardType='default'></TextInput>
+                <TextInput style={styles.Placeholder} placeholder='Enter Username'  value={username} onChangeText={handleUsername} placeholderTextColor="#808080" keyboardType='default'></TextInput>
             </View>
             <View style={styles.Password_signup} >
-                <TextInput style={styles.Placeholder} secureTextEntry={true} placeholder='Enter Password' placeholderTextColor="#808080" keyboardType='default'></TextInput>
+                <TextInput style={styles.Placeholder} secureTextEntry={true} placeholder='Enter Password'  value={password} onChangeText={handlePassword} placeholderTextColor="#808080" keyboardType='default'></TextInput>
             </View>
 
         </View>
-         <TouchableOpacity onPress={()=>navigation.navigate('Home')}>
+         <TouchableOpacity onPress={handleSubmit}>
             <View style={styles.Signup_button_signup}>
                 <Text style={styles.Button_text}>Sign Up</Text>
             </View>
