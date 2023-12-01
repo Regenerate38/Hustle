@@ -3,8 +3,6 @@ import React from 'react';
 import { COLORS } from '../../constants';
 import { Image } from 'react-native-elements';
 import { SearchBar } from 'react-native-elements';
-import MapView from 'react-native-maps-osmdroid';
-
 
 
 const { width, height } = Dimensions.get("window");
@@ -15,7 +13,7 @@ const Maps = () => {
   style={{
     flex: 1
   }}>
-        <MapView
+        {/* <MapView
          style={styles.map}
     initialRegion={{
       latitude: 37.78825,
@@ -23,7 +21,7 @@ const Maps = () => {
       latitudeDelta: 0.0922,
       longitudeDelta: 0.0421,
     }}
-  />
+  /> */}
   </View> 
   );
 };

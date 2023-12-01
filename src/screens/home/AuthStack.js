@@ -7,17 +7,18 @@ import Login_page from '../auth/login';
 import BottomTabLoader from './BottomTabLoader';
 import Background_Img from '../auth/Landingpage';
 import Login_screen2 from '../auth/Login_Selection';
-import OrgNavBar from '../../navigations/orgnavbar';
+import Profile from './profile';
 
 const AuthStackBar = createStackNavigator()
 
-const AuthStack = ({ navigation, route }) => {
+const AuthStack = ({ navigation }) => {
   return (
     <AuthStackBar.Navigator>
     <AuthStackBar.Screen name="Landing" component={Login_screen2} options={{headerShown:  false}} />             
     <AuthStackBar.Screen name="Login" component={Login_page} options={{headerShown:  false}} />             
     <AuthStackBar.Screen name="SignUp" component={Signup_page} options={{headerShown:  false}} />       
-    <AuthStackBar.Screen name="Home" component={BottomTabLoader} options={{headerShown:  false}} />             
+    <AuthStackBar.Screen name="Home" component={BottomTabLoader} options={{headerShown:  false}} />     
+    <AuthStackBar.Screen name="Profile" component={Profile} options={{headerShown:  false}} />             
    </AuthStackBar.Navigator>
   )
 }

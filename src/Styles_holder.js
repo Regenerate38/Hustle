@@ -83,12 +83,12 @@ Signup_button: {
     width: screenWidth/1.73,
     backgroundColor: "#7dad2f",
     height: verticalScale(55),
-    alignSelf:'center',
-    position: 'relative',
-    justifyContent: 'center',
-    alignItems: 'center',
-    top: verticalScale(60),
+    top: verticalScale(55),
     borderRadius: moderateScale(50),
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 10
 },
 
 Button_text: {
@@ -285,12 +285,11 @@ Signup_with: {
 
 },
 Logo1_signup: { 
-    height: horizontalScale(screenHeight/16),
-    width: horizontalScale(screenWidth/10),
-    position: 'absolute',
-    right: horizontalScale(30), 
-    top: verticalScale(50)
-    
+    height: horizontalScale(screenHeight/32),
+    width: horizontalScale(screenWidth/16),   
+    padding: 15,
+    backgroundColor: "white",   
+    borderRadius: horizontalScale(screenWidth/32)
 },
 Logo2_signup: { 
     height: horizontalScale(screenHeight/16),
@@ -835,7 +834,7 @@ ProfilePage_milestone_rectangle:{
     alignSelf: 'center',
     width: 0.84*width,
     // position: 'absolute',
-    paddingBottom: 50,
+    paddingBottom: 40,
     marginTop: 0.715*width,
     borderRadius: 24,
 },
@@ -899,60 +898,7 @@ BottomTabBar:{
 },
 
 
-
 /**Bottom Tab Navigator End */
-
-/**Organization Posts Page Start */
-
-Organization__flatlist_container:{
-    marginTop: verticalScale(40),
-    height: 0.90*height - moderateScale(60),  
-
-},
-
-flatlist_heading:{
-    color: '#fff',
-    fontWeight: 'bold',
-    fontSize: moderateScale(24),
-    marginLeft: horizontalScale(30),
-    marginBottom: verticalScale(2),
-},
-
-OrgProfilePage_milestone_rectangle:{
-    backgroundColor:'#34363A',
-    flexDirection: 'column',
-    alignItems:'flex-start',
-    opacity: 0.96,
-    zIndex:4,
-    alignSelf: 'center',
-    width: 0.84*width,
-    // position: 'absolute',
-    paddingBottom: 50,
-    marginTop: 0.75*width,
-    borderRadius: 24,
-},
-
-OrgProfilePage_history_item_label:{
-    color:'#ffffff',
-    textAlign: 'left',
-    width: 0.5*width,
-    marginTop: verticalScale(50),
-    marginLeft: horizontalScale(20),
-    paddingTop: verticalScale(25),
-    fontSize: moderateScale(15),
-},
-
-OrgProfilePage_history_item_value:{
-    color:'#7DAD2F',
-    textAlign: 'right',
-    
-    marginTop: verticalScale(52),
-    paddingTop: verticalScale(20),
-    fontSize: moderateScale(16),
-    marginLeft: horizontalScale(15),
-},
-
-/**Organization Posts Page End */
 
 });
 

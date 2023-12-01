@@ -1,40 +1,12 @@
-import React, { useEffect, useState } from 'react';
-
+import React, { cloneElement } from 'react';
 import { ImageBackground, Image, StyleSheet, Text, View, Platform ,StatusBar, Dimensions,TouchableOpacity, SafeAreaView, TextInput } from 'react-native';
-import axios from 'axios';
-import { useNavigation } from '@react-navigation/native'
+const screenHeight = Dimensions.get('window').height;
+const screenWidth = Dimensions.get('window').width;
+import { useNavigation } from '@react-navigation/native';
 import styles from '../../Styles_holder';
-import {setToken} from "../../components/asyncStorage"
-
 
 function Login_screen(props) {
     const navigation = useNavigation();
-
-    const [user, setUser] = useState({})
-    const [email, setEmail] = useState('')
-    
-    const [password, setPassword] = useState('')
-
-    const handleEmail =(text)=>{
-        setEmail(text);
-       
-    }
-
-    const handlePassword =(text)=>{
-        setPassword(text);
-       
-    }
-    const handleSubmit = async ()=>{
-        console.log(email, password)
-        setUser({email, password})
-        console.log(user)
-        const res =await axios.post("http://10.0.2.2:5000/auth/login", user )
-        console.log(res.data)
-        // setToken(res.data.token)
-        navigation.navigate('Home')
-
-    }
-
 
     return(
         <View style={styles.Message}>
@@ -49,16 +21,16 @@ function Login_screen(props) {
             </Text>
             <View style={styles.Align_boxes}> 
             <View style={styles.Username} >
-                <TextInput style={styles.Placeholder} placeholder='Enter Email' value={email} onChangeText={handleEmail} placeholderTextColor="#808080" keyboardType='default'></TextInput>
+                <TextInput style={styles.Placeholder} placeholder='Enter Username' placeholderTextColor="#808080" keyboardType='default'></TextInput>
             </View>
             <View style={styles.Password} >
-                <TextInput style={styles.Placeholder} placeholder='Enter Password' secureTextEntry={true} value={password} onChangeText={handlePassword} placeholderTextColor="#808080" keyboardType='default'></TextInput>
+                <TextInput style={styles.Placeholder} placeholder='Enter Password' placeholderTextColor="#808080" keyboardType='default'></TextInput>
             </View>
             </View>
             
            
             <Text style={styles.Forgot_password} onPress={()=>console.log("Forgot Password")} >Forgot Password?</Text>
-            <TouchableOpacity onPress={handleSubmit} >
+            <TouchableOpacity onPress={() => navigation.navigate('Home')} >
             <View style={styles.Login_Button}>
                 <Text style={styles.Button_text}>Login</Text>
             </View>
