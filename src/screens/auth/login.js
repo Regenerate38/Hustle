@@ -4,13 +4,14 @@ import { ImageBackground, Image, StyleSheet, Text, View, Platform ,StatusBar, Di
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native'
 import styles from '../../Styles_holder';
-import {setToken} from "../../components/asyncStorage"
+import {saveToken} from "../../components/asyncStorage"
+import {saveUser} from "../../components/asyncStorage"
 
 
 function Login_screen(props) {
     const navigation = useNavigation();
 
-    const [user, setUser] = useState({})
+   
     const [email, setEmail] = useState('')
     
     const [password, setPassword] = useState('')
@@ -26,11 +27,11 @@ function Login_screen(props) {
     }
     const handleSubmit = async ()=>{
         console.log(email, password)
-        setUser({email, password})
-        console.log(user)
-        const res =await axios.post("http://10.0.2.2:5000/auth/login", user )
+        
+        const res =await axios.post("http://10.0.2.2:5000/auth/login", {email, password} )
         console.log(res.data)
-        // setToken(res.data.token)
+        saveToken(res.data.token)
+        saveUser(res.data)
         navigation.navigate('Home')
 
     }
