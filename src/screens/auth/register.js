@@ -4,7 +4,10 @@ import Login_screen from './login';
 import styles from '../../Styles_holder';
 import axios from 'axios'
 import { register } from '../../apiCalls';
+
+
 import { useNavigation } from '@react-navigation/native';
+import { Checkbox } from 'react-native-ui-lib';
 
 function Signup_Screen(props) {
 
@@ -12,6 +15,8 @@ function Signup_Screen(props) {
     const [email, setEmail] = useState('')
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [isSelected, setSelection] = useState(false);
+
 
     const handleEmail =(text)=>{
         setEmail(text);
@@ -45,7 +50,15 @@ function Signup_Screen(props) {
             <View style={styles.Password_signup} >
                 <TextInput style={styles.Placeholder} secureTextEntry={true} placeholder='Enter Password'  value={password} onChangeText={handlePassword} placeholderTextColor="#808080" keyboardType='default'></TextInput>
             </View>
-
+            <View style = {styles.checkboxContainer}>
+                <Checkbox
+                    value={isSelected}
+                    color='#7dad2f'
+                    onValueChange={()=>setSelection(!isSelected)}
+                    style={styles.checkbox}
+                />
+                 <Text style={styles.label}>Are you an Organization?</Text>
+                </View>
         </View>
          <TouchableOpacity onPress={handleSubmit}>
             <View style={styles.Signup_button_signup}>
