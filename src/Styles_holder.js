@@ -237,9 +237,35 @@ Login_Button: {
 
 /** Signup Screen Start */
 Align_boxes_signup: {
-    alignItems: 'center',
+    alignItems: 'flex-start',
     position: 'absolute',
-    top: verticalScale(98)
+    top: verticalScale(198)
+},
+
+SignupPage_stats_container:{
+    flexDirection: 'row',
+    alignSelf: 'flex-start',
+    alignItems: 'flex-start',
+    position: 'relative',
+    marginLeft: horizontalScale(35),
+    borderRadius: moderateScale(24),
+},
+
+SignupPage_psp_label:{
+    color:'#ffffff',
+    textAlign: 'left',
+    marginLeft: horizontalScale(20),
+    top: verticalScale(60),
+    fontSize: moderateScale(12),
+},
+
+SignupPage_pfp:{
+    height: 0.295*width,
+    width: 0.297*width,
+    borderRadius: moderateScale(2000),
+   
+    
+    top: verticalScale(68)
 },
 
 Email: {

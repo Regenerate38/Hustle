@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Dimensions, TouchableOpacity } from 'react-native';
-import React, {  } from 'react';
+import React, { useContext } from 'react';
 import { COLORS } from '../../constants';
 import { Image } from 'react-native-elements';
 import ProgressBar from 'react-native-progress/Bar';
