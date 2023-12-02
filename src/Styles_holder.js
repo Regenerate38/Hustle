@@ -93,14 +93,16 @@ Login_button: {
     justifyContent:'center',
     borderRadius: moderateScale(50),
     position: 'relative',
-    top: verticalScale(40),
+    marginTop: verticalScale(10),
  },
+
+
 
 Signup_button: {
     width: screenWidth/1.73,
     backgroundColor: "#7dad2f",
     height: verticalScale(55),
-    top: verticalScale(55),
+    marginTop: verticalScale(25),
     borderRadius: moderateScale(50),
     flexDirection: "row",
     alignItems: "center",
