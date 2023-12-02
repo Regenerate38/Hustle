@@ -3,12 +3,10 @@ import { View,ImageBackground, Text, Dimensions, StyleSheet, StatusBar, SafeArea
 import Login_screen from './login';
 import styles from '../../Styles_holder';
 import axios from 'axios'
-import {setToken} from "../../components/asyncStorage"
-import {setUser} from "../../components/asyncStorage"
+import { register } from '../../apiCalls';
 import { useNavigation } from '@react-navigation/native';
 
 function Signup_Screen(props) {
-    const navigation = useNavigation();
 
     const [user, setUser] = useState({})
     const [email, setEmail] = useState('')
@@ -26,6 +24,7 @@ function Signup_Screen(props) {
     }
     const handleSubmit = async ()=>{
        await register({email, password, username, isOrg: false})
+       
        
        
     }

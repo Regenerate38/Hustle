@@ -23,7 +23,7 @@ const getCommunityJob = async (id) => {
 };
 const login = async (email) => {
     try{
-        const res =await axios.post("http://10.0.2.2:5000/auth/login", {email, password} )
+        const res =await axios.post(`${baseUrl}/auth/login`, {email, password} )
         console.log(res.data)
        await saveToken(res.data.token)
        await saveUser(res.data)
@@ -31,11 +31,13 @@ const login = async (email) => {
     }catch(err){console.log(err)}
 };
 const register = async ({email, name, phone, isOrg}) => {
- 
-        const res =await axios.post("http://10.0.2.2:5000/auth/register", {email, name:username, password, isOrg:false} )
-        console.log(res.data)
-        await setUser(res.data)
-        await setToken(res.data.token)
+        try{
+
+            const res =await axios.post(`${baseUrl}/auth/register`, {email, name:username, password, isOrg:false} )
+            console.log(res.data)
+            await setUser(res.data)
+            await saveToken(res.data.token)
+        }catch(err){console.log(err)}
 
 }
 
