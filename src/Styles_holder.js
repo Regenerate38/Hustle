@@ -209,7 +209,7 @@ Continue_with: {
 
 Username: {
     width: horizontalScale(310),
-    height: verticalScale(60),
+    height: verticalScale(75),
     justifyContent: 'center',
     backgroundColor: "#34363AFA",
     borderRadius: moderateScale(15),
@@ -217,7 +217,7 @@ Username: {
 },
 Password: {
     width: horizontalScale(310),
-    height: verticalScale(60),
+    height: verticalScale(75),
     justifyContent: 'center',
     backgroundColor: "#34363AFA",
     borderRadius: moderateScale(15),
@@ -248,7 +248,7 @@ Login_Button: {
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: moderateScale(15),
-    top: verticalScale(360),
+    top: verticalScale(390),
 },
 /** Login Screen start */
 

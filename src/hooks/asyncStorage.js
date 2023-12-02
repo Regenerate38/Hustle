@@ -16,6 +16,17 @@ const getToken =async ()=>{
         return null
     }
 }
+
+const deleteToken =async ()=>{
+    try{
+        const token=await AsyncStorage.removeItem("jwt")
+        return token;
+    }catch(err){
+        console.log(err)
+        return null
+    }
+};
+
 const saveUser=async(user)=>{
     try{
         await AsyncStorage.setItem("user", user)
