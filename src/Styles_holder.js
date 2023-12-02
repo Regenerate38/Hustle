@@ -697,6 +697,14 @@ ProfilePage_settings_icon:{
     tintColor: '#fff'
 },
 
+ProfilePage_profile_edit__icon:{
+    width: moderateScale(38),
+    height: moderateScale(38),
+    marginTop: verticalScale(100),
+    marginLeft: 0.85*width,
+    tintColor: '#fff'
+},
+
 ProfilePage_info_container:{
     backgroundColor:'#34363A',
     opacity: 0.96,
@@ -953,6 +961,10 @@ OrgProfilePage_history_item_value:{
 },
 
 /**Organization Posts Page End */
+
+  map: {
+    ...StyleSheet.absoluteFillObject,
+  },
 
 });
 

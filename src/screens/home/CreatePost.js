@@ -2,12 +2,44 @@ import {StyleSheet, Text, View, Dimensions, ScrollView, TouchableOpacity, Switch
 import React from 'react';
 import {COLORS} from '../../constants';
 import {Image} from 'react-native-elements';
-
+import * as ImagePicker from 'expo-image-picker';
+import { useState } from 'react';
+import placeholder1 from "../../assets/img/recyclerview/placeholder.jpg";
+import Maps from './maps';
 
 
 const { width, height } = Dimensions.get("window");
 
+
 const CreatePost = ({navigation}) => {
+  
+
+
+const [elementVisible, setElementVisible] = useState(true);
+
+const [image, setImage] = useState("../../assets/img/recyclerview/placeholder.jpg");
+
+const imagePicker = async () =>{
+
+  try{
+  await ImagePicker.requestMediaLibraryPermissionsAsync();  
+  result = await ImagePicker.launchImageLibraryAsync({mediaTypes:ImagePicker.MediaTypeOptions.Images,
+    allowsEditing:true,
+    aspect:[4,3],
+    quality: 1,
+  });
+}
+
+catch(error){}
+
+  console.log(result);
+  setImage(result.assets[0].uri);
+       };
+
+      const openMap = () => {
+// return Maps;
+console.log("display map")
+      }
   return (
     <View
     style={{
@@ -23,10 +55,12 @@ const CreatePost = ({navigation}) => {
         height: 0.5825*width,
         backgroundColor: '#34363A', 
        }}>
-        <Image source={require('../../../src/assets/img/recyclerview/placeholder.jpg')} style={{
+    
+    
+       { image && < Image source={{uri:image}?{uri : image}: placeholder1} style={{
           height: 0.5825*width,
           objectFit: 'cover',
-        }}/>
+        }}/>}
           <View style={{
         width: width,
         position: 'absolute',
@@ -84,6 +118,8 @@ const CreatePost = ({navigation}) => {
 
   
 
+       {
+        elementVisible? (
      <TouchableOpacity style={{
          zIndex: 52,
           paddingHorizontal: 15,
@@ -100,7 +136,12 @@ const CreatePost = ({navigation}) => {
           height: 0.11*width,
           width: 0.7435*width,
           textAlign: 'center',
-        }} >
+        }} 
+       onPress = { () => {
+        imagePicker();
+        setElementVisible(!elementVisible);
+       }}
+       >
           <Text style={{
               alignSelf: 'center',
               fontSize: 17,
@@ -109,6 +150,40 @@ const CreatePost = ({navigation}) => {
               color: '#fff',
           }}>Upload Display Image</Text>
         </TouchableOpacity>     
+          
+          ) : 
+           (<TouchableOpacity style={{
+         zIndex: 52,
+          paddingHorizontal: 15,
+          paddingVertical: 6,
+          borderRadius: 33,
+          borderColor: '#fff',
+          borderWidth: 2,
+          alignSelf: 'center',
+          marginHorizontal: '1%',
+          marginBottom: 6,
+          justifyContent: 'center',
+          marginLeft: 14, 
+          marginTop: -120,
+          height: 0.11*width,
+          width: 0.7435*width,
+          textAlign: 'center',
+        }} 
+       onPress = { () => {
+        imagePicker();
+       }}
+       >
+          <Text style={{
+              alignSelf: 'center',
+              fontSize: 17,
+              fontWeight: 'bold',
+              fontWeight: '500',
+              color: '#fff',
+          }}>Change Display Image</Text>
+        </TouchableOpacity> ) 
+       }
+          
+          
     
         <View style={{
       backgroundColor:'#34363A',
@@ -174,6 +249,8 @@ const CreatePost = ({navigation}) => {
      
       marginTop: -60,
       borderRadius: 24,}}>
+<TouchableOpacity onPress={() => navigation.navigate('LocationPicker')}>
+
     <Text style={{
         color:'#b4b4b4',
         textAlign: 'left',
@@ -195,6 +272,7 @@ const CreatePost = ({navigation}) => {
               tintColor: '#b4b4b4'
               
             }}/>
+</TouchableOpacity>
       </View>
 
       <View style={{

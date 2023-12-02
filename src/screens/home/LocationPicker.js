@@ -5,37 +5,49 @@ import { Image } from 'react-native-elements';
 import { SearchBar } from 'react-native-elements';
 // import MapView from 'react-native-maps-osmdroid';
 import MapView, { Marker, Region } from 'react-native-maps';
+import styles from '../../Styles_holder';
 
 
 const { width, height } = Dimensions.get("window");
 
 
-const Maps = () => {
+
+const LocationPicker = ({navigation}) => {
+    const [coordinate, setCoordinate]=useState({})
   
   const onRegionChange = (region ) =>{
-    console.log(region)
+    // console.log(region)
   }
 
   const[DraggableMarkerCoordinates,setDraggableMarkerCoordinates ] = useState({
     // latitude:27.43303,
     // longitude: 85.19217,
-    latitude: 27.7215,
-      longitude: 85.3201,
+    latitude: 27.700769,
+      longitude: 85.300140,
   });
 
-  const onMarkerPressed = (ev) =>{
-    console.log(ev);
+  const onMarkerPressed = (marker) =>{
+  setCoordinate(marker.nativeEvent.coordinate)
+    console.log(coordinate)
+    // console.log(marker.nativeEvent.coordinate)
   }
 
-  // const onMarkerSelected = (marker) => {
-  //   Alert.alert(marker.name);
-  // };
+const backHandler=()=>{
+    // onBackPressed() 
+    console.log(DraggableMarkerCoordinates)
+    navigation.navigate("CreatePost", {coordinate:DraggableMarkerCoordinates});
+}
+
 
   return (
   <View
   style={{
     flex: 1
   }}>
+  <View style={styles.PostDetailPage_back_container}>
+      <Image source ={require('../../assets/icons/back.png')}
+              style = {styles.PostDetailPage_back}    onPress={backHandler}  /> 
+    </View>
         <MapView
          style={styles.map}
         onRegionChange={onRegionChange}
@@ -51,20 +63,14 @@ const Maps = () => {
 // id='marker'
   draggable
   coordinate={DraggableMarkerCoordinates}
-  onDragEnd={(e)=> setDraggableMarkerCoordinates(e.nativeEvent.coordinate)}
-  pinColor='#009988'
+  onMarkerDragEnd={(e)=> setDraggableMarkerCoordinates(e.nativeEvent.coordinate)}
+  pinColor='#FF0000'
   // onPress={()=>onMarkerSelected(marker)}
-  onPress={onMarkerPressed}
+ onPress={onMarkerPressed}
 />
   </MapView>
   </View> 
   );
 };
 
-export default Maps;
-
-const styles = StyleSheet.create({
-  map: {
-    ...StyleSheet.absoluteFillObject,
-  },
-});
+export default LocationPicker;

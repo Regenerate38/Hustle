@@ -6,6 +6,8 @@ import MoreCategories from './MoreCategories';
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import CreatePost from './CreatePost';
 import styles from '../../Styles_holder';
+import LocationPicker from './LocationPicker';
+import CreatePostStack from './CreatePostStack';
 
 
 const PaidStackBar = createStackNavigator()
@@ -13,7 +15,7 @@ const PaidStackBar = createStackNavigator()
 const PaidStack = ({ navigation, route }) => {
     React.useLayoutEffect(() => {
         const routeName = getFocusedRouteNameFromRoute(route);
-        if (routeName === "PostDetail" || routeName === "MoreCategories" || routeName ==="CreatePost" ){
+        if (routeName === "PostDetail" || routeName === "MoreCategories" || routeName ==="CreatePost" || routeName ==="LocationPicker" ){
             navigation.setOptions({tabBarStyle: { display: 'none' }});
         }else {
             navigation.setOptions({tabBarStyle: styles.BottomTabBar});
@@ -25,6 +27,7 @@ const PaidStack = ({ navigation, route }) => {
     <PaidStackBar.Screen name="PostDetail" component={Postdetail} options={{headerShown:  false}} swipeEnabled={false} />
     <PaidStackBar.Screen name="MoreCategories" component={MoreCategories} options={{headerShown:  false}} swipeEnabled={false} />
     <PaidStackBar.Screen name="CreatePost" component={CreatePost} options={{headerShown:  false}} swipeEnabled={false} />
+    <PaidStackBar.Screen name="LocationPicker" component={LocationPicker} options={{headerShown:  false}} />             
 
    </PaidStackBar.Navigator>
   )
