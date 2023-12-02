@@ -2,12 +2,14 @@ import { StyleSheet, Text, View, Dimensions, ScrollView, TouchableOpacity, Switc
 import React from 'react';
 
 
+
 const Maps = () => {
   return (
   <View
   style={{
     flex: 1
   }}>
+
         
   </View> 
   );

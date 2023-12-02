@@ -1,14 +1,20 @@
-import React from 'react';
 import { Button, Image,ImageBackground, StyleSheet, Text, View, Platform ,StatusBar, Dimensions,TouchableOpacity, SafeAreaView } from 'react-native';
 import Login_screen from './login';
 const screenHeight = Dimensions.get('window').height;
 const screenWidth = Dimensions.get('window').width;
 import styles from '../../Styles_holder';
 import { useNavigation } from '@react-navigation/native';
+import AuthContext from '../../useContext/context';
+import { useContext } from 'react';
 
 function Login_selection(props){
-
     const navigation = useNavigation();
+    const auth = useContext(AuthContext);
+    const signUp = ()=> {
+        auth.signIn(); 
+        navigation.navigate('Home');
+    };
+
     return(
         <View style={styles.Message}>
         
@@ -26,21 +32,19 @@ function Login_selection(props){
                  </Text>
             </Text>
 
-            <TouchableOpacity onPress={()=> navigation.navigate('Login') }>
+            {/* <TouchableOpacity onPress={()=> navigation.navigate('Login') }>
             <View style={styles.Login_button}>
                 <Text style={styles.Button_text}>Login</Text>
             </View>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
 
-            <TouchableOpacity onPress={()=> navigation.navigate('SignUp')}>
+            <TouchableOpacity onPress={signUp}>
             <View style={styles.Signup_button}>
-                <Text style={styles.Button_text}>Sign Up</Text>
+                <Image style={styles.Logo1_signup} source={require("../../assets/Google_Logo.png")} />
+                <Text style={styles.Button_text}>Sign In with Google</Text>
             </View>
             </TouchableOpacity>
-
         </View>
-
-    
     );
 }
 
