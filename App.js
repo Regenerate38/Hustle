@@ -47,13 +47,12 @@ const App = () => {
   };
 
   return (
-    <NavigationContainer>
       <AuthContext.Provider value={{userInfo, signIn, logOut}}>
-        <AuthStack/>
+        <NavigationContainer>
+          <AuthStack/>
+        </NavigationContainer>
       </AuthContext.Provider>
-    </NavigationContainer>
-  );
-};
+  );};
 
 export default App;
 
