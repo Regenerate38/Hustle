@@ -4,12 +4,41 @@ const screenHeight = Dimensions.get('window').height;
 const screenWidth = Dimensions.get('window').width;
 import { useNavigation } from '@react-navigation/native';
 import styles from '../../Styles_holder';
+import axios from 'axios';
 
-function Login_screen(props) {
-    const navigation = useNavigation();
 
-    return(
-        <View style={styles.Message}>
+
+
+
+
+const Login_page = ({navigation}) => {
+
+
+
+  return (
+    
+    <SafeAreaView style={{
+        flex: 1,
+    }}>
+    <StatusBar barStyle="dark-content" translucent={true} backgroundColor="#fef9e3" />
+    <TouchableOpacity style={styles.Back_button} onPress={() => navigation.goBack()}>
+    
+
+    <Image style={styles.Back_button} source={require('../../assets/icons/back.png')} />
+    </TouchableOpacity>
+
+          <ImageBackground 
+     resizeMode='contain'
+    style={(styles.Bg_img)}
+    fadeDuration={1000}
+    source={require('../../assets/Landing_Page_Background.jpg')} >
+
+    
+
+    </ImageBackground>
+  
+
+  <View style={styles.Message}>
 
             <Text style={styles.Login_screen_text1} >
                 Hello Again{'\n'}{'\n'}
@@ -47,33 +76,6 @@ function Login_screen(props) {
             </TouchableOpacity>
             </View>
         </View>
-    );
-}
-
-
-function Login_page(props){
-  return (
-    
-    <SafeAreaView style={{
-        flex: 1,
-    }}>
-    <StatusBar barStyle="dark-content" translucent={true} backgroundColor="#fef9e3" />
-    <TouchableOpacity style={styles.Back_button} onPress={()=>navigation.back()}>
-    
-
-    <Image style={styles.Back_button} source={require('../../assets/icons/back.png')} />
-    </TouchableOpacity>
-
-          <ImageBackground 
-     resizeMode='contain'
-    style={(styles.Bg_img)}
-    fadeDuration={1000}
-    source={require('../../assets/Landing_Page_Background.jpg')} >
-
-    
-
-    </ImageBackground>
-    <Login_screen />
     </SafeAreaView>
 
    

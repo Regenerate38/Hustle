@@ -19,7 +19,7 @@ const VolunteersStack = ({ navigation, route }) => {
     }, [navigation, route]);
   return (
     <VolunteersStackBar.Navigator>
-    <VolunteersStackBar.Screen name="Paid" component={Volunteers} options={{headerShown:  false}} />             
+    <VolunteersStackBar.Screen name="Volunteer" component={Volunteers} options={{headerShown:  false}} />             
     <VolunteersStackBar.Screen name="VPostDetail" component={Postdetail} options={{headerShown:  false}} swipeEnabled={false}/>
    </VolunteersStackBar.Navigator>
   )

@@ -34,6 +34,23 @@ Message : {
     alignItems: 'center',
 },
 
+checkbox: {
+    alignSelf: 'flex-start',
+    
+  },
+
+checkboxContainer:{
+    top: verticalScale(50),
+    flex: 1,
+    flexDirection: 'row',   
+},
+
+label:{
+    marginLeft: horizontalScale(8),
+    color: '#fff',
+    textAlignVertical: 'center',
+},
+
 Title: { 
     fontSize: 60, 
     //fontWeight: '800',
@@ -83,12 +100,12 @@ Signup_button: {
     width: screenWidth/1.73,
     backgroundColor: "#7dad2f",
     height: verticalScale(55),
-    alignSelf:'center',
-    position: 'relative',
-    justifyContent: 'center',
-    alignItems: 'center',
-    top: verticalScale(60),
+    top: verticalScale(55),
     borderRadius: moderateScale(50),
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 10
 },
 
 Button_text: {
@@ -237,9 +254,35 @@ Login_Button: {
 
 /** Signup Screen Start */
 Align_boxes_signup: {
-    alignItems: 'center',
+    alignItems: 'flex-start',
     position: 'absolute',
-    top: verticalScale(98)
+    top: verticalScale(198)
+},
+
+SignupPage_stats_container:{
+    flexDirection: 'row',
+    alignSelf: 'flex-start',
+    alignItems: 'flex-start',
+    position: 'relative',
+    marginLeft: horizontalScale(35),
+    borderRadius: moderateScale(24),
+},
+
+SignupPage_psp_label:{
+    color:'#ffffff',
+    textAlign: 'left',
+    marginLeft: horizontalScale(20),
+    top: verticalScale(60),
+    fontSize: moderateScale(12),
+},
+
+SignupPage_pfp:{
+    height: 0.295*width,
+    width: 0.297*width,
+    borderRadius: moderateScale(2000),
+   
+    
+    top: verticalScale(68)
 },
 
 Email: {
@@ -285,12 +328,11 @@ Signup_with: {
 
 },
 Logo1_signup: { 
-    height: horizontalScale(screenHeight/16),
-    width: horizontalScale(screenWidth/10),
-    position: 'absolute',
-    right: horizontalScale(30), 
-    top: verticalScale(50)
-    
+    height: horizontalScale(screenHeight/32),
+    width: horizontalScale(screenWidth/16),   
+    padding: 15,
+    backgroundColor: "white",   
+    borderRadius: horizontalScale(screenWidth/32)
 },
 Logo2_signup: { 
     height: horizontalScale(screenHeight/16),
@@ -405,7 +447,7 @@ flatlist_heading:{
 },
 
 scrollview_heading:{
-    marginTop: verticalScale(15),
+    marginTop: verticalScale(45),
     color: '#fff',
     marginLeft: -0.56* width,
     fontSize: moderateScale(15),
@@ -447,6 +489,15 @@ PostDetail_location_text:{
     color: '#fff'
 },
 
+PostDetail_price_text:{
+    fontWeight: '600',
+    fontSize: moderateScale(12),
+    alignSelf: 'flex-end',
+    color: '#7DEF2F',
+    fontWeight: '100',
+    marginLeft: horizontalScale(15),
+   
+},
 PostDetail_location_icon:{
     width: horizontalScale(12),
     height: verticalScale(12),
@@ -837,13 +888,24 @@ ProfilePage_psp_value:{
 ProfilePage_milestone_rectangle:{
     backgroundColor:'#34363A',
     flexDirection: 'column',
-    alignItems:'flex-start',
     opacity: 0.96,
     zIndex:4,
     alignSelf: 'center',
     width: 0.84*width,
     // position: 'absolute',
     paddingBottom: 50,
+    marginBottom: 20,
+    borderRadius: 24,
+},
+
+ProfilePage_info_rectangle: {
+    flexDirection: 'column',
+    opacity: 0.96,
+    zIndex:4,
+    alignSelf: 'center',
+    width: 0.84*width,
+    // position: 'absolute',
+    paddingBottom: 40,
     marginTop: 0.715*width,
     borderRadius: 24,
 },
@@ -890,6 +952,15 @@ ProfilePage_milestone_item_value:{
     marginLeft: horizontalScale(45),
 },
 
+ProfilePage_location_value:{
+    color:'#7DAD2F',
+    textAlign: 'right',
+    marginTop: verticalScale(52),
+    paddingTop: verticalScale(25),
+    fontSize: moderateScale(16),
+    marginLeft: horizontalScale(10),
+},
+
 /**Profile Page End */
 
 
@@ -907,8 +978,8 @@ BottomTabBar:{
 },
 
 
-
 /**Bottom Tab Navigator End */
+
 
 /**Organization Posts Page Start */
 
@@ -960,6 +1031,22 @@ OrgProfilePage_history_item_value:{
     marginLeft: horizontalScale(15),
 },
 
+OrgProfilePage_location_icon:{
+    width: horizontalScale(12),
+    height: verticalScale(12),
+    
+    position: 'absolute',
+    tintColor: '#fff',
+},
+imageContainer: {
+    borderRadius: 28,
+    overflow: 'hidden',
+},
+image: {
+    width: '100%',
+    height: undefined,
+    aspectRatio: 277/193,
+},
 /**Organization Posts Page End */
 
   map: {

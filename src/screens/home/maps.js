@@ -1,3 +1,4 @@
+
 import { StyleSheet, Text, View, Dimensions, ScrollView, TouchableOpacity, Switch, Alert } from 'react-native';
 import React, { useState } from 'react';
 import { COLORS } from '../../constants';
@@ -8,6 +9,9 @@ import MapView, { Marker, Region } from 'react-native-maps';
 
 
 const { width, height } = Dimensions.get("window");
+
+
+
 
 
 const Maps = () => {
@@ -36,6 +40,7 @@ const Maps = () => {
   style={{
     flex: 1
   }}>
+
         <MapView
          style={styles.map}
         onRegionChange={onRegionChange}
@@ -57,14 +62,13 @@ const Maps = () => {
   onPress={onMarkerPressed}
 />
   </MapView>
+
+
+        
+
   </View> 
   );
 };
 
 export default Maps;
 
-const styles = StyleSheet.create({
-  map: {
-    ...StyleSheet.absoluteFillObject,
-  },
-});

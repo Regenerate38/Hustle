@@ -9,7 +9,7 @@ const ProfileStackBar = createStackNavigator()
 const ProfileStack = () => {
   return (
     <ProfileStackBar.Navigator>
-    <ProfileStackBar.Screen name="Profile" component={Profile} options={{headerShown:  false}} /> 
+    <ProfileStackBar.Screen name="Profile" component={Profile} options={{headerShown:  false}} />   
     <ProfileStackBar.Screen name="Settings" component={Settings} options={{headerShown:  false}} />             
    </ProfileStackBar.Navigator>
   )
