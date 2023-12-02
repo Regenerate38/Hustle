@@ -10,6 +10,8 @@ import { useNavigation } from '@react-navigation/native';
 import { Checkbox } from 'react-native-ui-lib';
 
 function Signup_Screen(props) {
+    const navigation = useNavigation();
+   
 
     const [user, setUser] = useState({})
     const [email, setEmail] = useState('')
@@ -28,10 +30,10 @@ function Signup_Screen(props) {
         setPassword(text);
     }
     const handleSubmit = async ()=>{
-       await register({email, password, username, isOrg: false})
-       
-       
-       
+       const status= await register({email, password, name:username, isOrg: isSelected})
+       console.log(status);
+       if(status) navigation.navigate("home")
+       else console.log("error in register")
     }
    
 

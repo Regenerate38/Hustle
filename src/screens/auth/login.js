@@ -27,8 +27,8 @@ function Login_screen(props) {
     const handleSubmit = async ()=>{
         console.log(email, password)
         const status= login(email, password)
-        navigation.navigate('Home')
-        console.log(status)
+        if(status) navigation.navigate('Home')
+        else console.log("error in login")
     }
 
 

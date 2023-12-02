@@ -1,6 +1,6 @@
 import axios from "axios";
 import { saveUser, saveToken } from "./hooks/asyncStorage";
-const baseUrl = 'http://http://10.0.2.2:5000';
+const baseUrl = 'http://10.0.2.2:5000';
 
 
 const getPaidJobs = async () => {
@@ -21,22 +21,23 @@ const getCommunityJob = async (id) => {
   const res = await axios.get(`${baseUrl}/community/${id}`);
   return res.data;
 };
-const login = async (email) => {
+const login = async (email, password) => {
     try{
         const res =await axios.post(`${baseUrl}/auth/login`, {email, password} )
         console.log(res.data)
        await saveToken(res.data.token)
        await saveUser(res.data)
-       return "successful"
+       return true
     }catch(err){console.log(err)}
 };
-const register = async ({email, name, phone, isOrg}) => {
+const register = async ({email,password, name,  isOrg}) => {
         try{
 
-            const res =await axios.post(`${baseUrl}/auth/register`, {email, name:username, password, isOrg:false} )
+            const res =await axios.post(`${baseUrl}/auth/register`, {email, name, password, isOrg} )
             console.log(res.data)
-            await setUser(res.data)
+            await saveUser(res.data)
             await saveToken(res.data.token)
+            return true
         }catch(err){console.log(err)}
 
 }
