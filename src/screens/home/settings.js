@@ -6,20 +6,66 @@ import ProgressBar from 'react-native-progress/Bar';
 import styles from '../../Styles_holder';
 import { TouchableOpacity } from 'react-native-ui-lib';
 import { TextInput } from 'react-native';
+import * as ImagePicker from 'expo-image-picker';
+import { useState } from 'react';
 
 
 const { width, height } = Dimensions.get("window");
 
 const Settings =({navigation}) => {
+
+const [imageCover, setImageCover] = useState(null);
+const [imageProfile, setImageProfile] = useState(null);
+
+const coverImagePicker = async () => {
+  try{
+ // await ImagePicker.requestMediaLibraryPermissionsAsync();  
+  resultCover = await ImagePicker.launchImageLibraryAsync({mediaTypes:ImagePicker.MediaTypeOptions.Images,
+    allowsEditing:true,
+    aspect:[4,3],
+    quality: 1,
+  });
+}
+
+catch(error){}
+
+  console.log(resultCover);
+  setImageCover(resultCover.assets[0].uri);
+}
+
+const profileImagePicker = async () => {
+try{
+  //await ImagePicker.requestMediaLibraryPermissionsAsync();  
+  resultProfile = await ImagePicker.launchImageLibraryAsync({mediaTypes:ImagePicker.MediaTypeOptions.Images,
+    allowsEditing:true,
+    aspect:[1,1],
+    quality: 1,
+  });
+}
+
+catch(error){}
+
+  console.log(resultProfile);
+  setImageProfile(resultProfile.assets[0].uri);
+}
+
+
   return (
     <View style={styles.PostDetailPage}>
       <View id={'imagecontainer'} style={styles.ProfilePage_coverimage_container}>
-          <Image source={require('../../../src/assets/coverpic.jpg')} style={styles.ProfilePage_image}/>
+      {
+
+        imageCover &&  <Image source={{uri:imageCover}} style={styles.ProfilePage_image}/>
+      }
           <View style={styles.ProfilePage_image_cover}/>
       </View> 
         
     <View style={styles.PostDetailPage_back_container}>     
-        <TouchableOpacity>
+        <TouchableOpacity
+        onPress = { () => {
+          coverImagePicker();
+        }}>
+        
             <Image  source ={require('../../assets/edit.png')}
                 style = {styles.ProfilePage_settings_icon}/>
         </TouchableOpacity>
@@ -34,9 +80,18 @@ const Settings =({navigation}) => {
 
       <View style={ styles.ProfilePage_info_container_layer1}>
             <View>
-                <Image source={require('../../../src/assets/fakeoda.png')} style={styles.ProfilePage_pfp}/>
-                <Icon name="md-edit" 
-                    style={{position: 'absolute', right: 5,top: 5, zIndex:20,}} />
+                {
+
+                imageProfile && <Image source={{uri : imageProfile}} style={styles.ProfilePage_pfp}/>
+                }
+                <TouchableOpacity
+                onPress={() => {
+                  profileImagePicker();
+                }}>
+                <Text >
+              +
+                </Text>
+                </TouchableOpacity>
             </View>
 
           <TextInput editable multiline={false} style={styles.ProfilePage_Username}>John Doe</TextInput>
@@ -69,4 +124,3 @@ const Settings =({navigation}) => {
 };
 
 export default Settings;
-
