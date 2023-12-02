@@ -4,12 +4,68 @@ const screenHeight = Dimensions.get('window').height;
 const screenWidth = Dimensions.get('window').width;
 import { useNavigation } from '@react-navigation/native';
 import styles from '../../Styles_holder';
+import axios from 'axios';
 
-function Login_screen(props) {
-    const navigation = useNavigation();
+
+
+
+
+
+const Login_page = ({navigation}) => {
+
 
     return(
         <View style={styles.Message}>
+    const [user, setUser] = useState({})
+    const [email, setEmail] = useState('')
+    
+    const [password, setPassword] = useState('')
+
+    const handleEmail =(text)=>{
+        setEmail(text);
+       
+    }
+
+    const handlePassword =(text)=>{
+        setPassword(text);
+       
+    }
+    const handleSubmit = async ()=>{
+        console.log(email, password)
+        setUser({email, password})
+        console.log(user)
+        const res =await axios.post("http://10.0.2.2:5000/auth/login", user )
+        console.log(res.data)
+        // setToken(res.data.token)
+        navigation.navigate('Home')
+
+    }
+
+
+  return (
+    
+    <SafeAreaView style={{
+        flex: 1,
+    }}>
+    <StatusBar barStyle="dark-content" translucent={true} backgroundColor="#fef9e3" />
+    <TouchableOpacity style={styles.Back_button} onPress={() => navigation.goBack()}>
+    
+
+    <Image style={styles.Back_button} source={require('../../assets/icons/back.png')} />
+    </TouchableOpacity>
+
+          <ImageBackground 
+     resizeMode='contain'
+    style={(styles.Bg_img)}
+    fadeDuration={1000}
+    source={require('../../assets/Landing_Page_Background.jpg')} >
+
+    
+
+    </ImageBackground>
+  
+
+  <View style={styles.Message}>
 
             <Text style={styles.Login_screen_text1} >
                 Hello Again{'\n'}{'\n'}
@@ -47,33 +103,6 @@ function Login_screen(props) {
             </TouchableOpacity>
             </View>
         </View>
-    );
-}
-
-
-function Login_page(props){
-  return (
-    
-    <SafeAreaView style={{
-        flex: 1,
-    }}>
-    <StatusBar barStyle="dark-content" translucent={true} backgroundColor="#fef9e3" />
-    <TouchableOpacity style={styles.Back_button} onPress={()=>navigation.back()}>
-    
-
-    <Image style={styles.Back_button} source={require('../../assets/icons/back.png')} />
-    </TouchableOpacity>
-
-          <ImageBackground 
-     resizeMode='contain'
-    style={(styles.Bg_img)}
-    fadeDuration={1000}
-    source={require('../../assets/Landing_Page_Background.jpg')} >
-
-    
-
-    </ImageBackground>
-    <Login_screen />
     </SafeAreaView>
 
    

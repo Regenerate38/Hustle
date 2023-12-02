@@ -107,7 +107,7 @@ const Volunteers = ({navigation}) => {
         <View style={styles.featured_container}>
             <Text style = {styles.featured_title}>Featured</Text>   
             <View style={styles.featured_carausel_container}>
-              <CustomImageCarausel data={data}/>
+              <CustomImageCarausel data={data} navigation={navigation}/>
             </View>
         </View>
             

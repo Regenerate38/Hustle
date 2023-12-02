@@ -404,7 +404,7 @@ flatlist_heading:{
 },
 
 scrollview_heading:{
-    marginTop: verticalScale(15),
+    marginTop: verticalScale(45),
     color: '#fff',
     marginLeft: -0.56* width,
     fontSize: moderateScale(15),
@@ -446,6 +446,15 @@ PostDetail_location_text:{
     color: '#fff'
 },
 
+PostDetail_price_text:{
+    fontWeight: '600',
+    fontSize: moderateScale(12),
+    alignSelf: 'flex-end',
+    color: '#7DEF2F',
+    fontWeight: '100',
+    marginLeft: horizontalScale(15),
+   
+},
 PostDetail_location_icon:{
     width: horizontalScale(12),
     height: verticalScale(12),
@@ -828,7 +837,18 @@ ProfilePage_psp_value:{
 ProfilePage_milestone_rectangle:{
     backgroundColor:'#34363A',
     flexDirection: 'column',
-    alignItems:'flex-start',
+    opacity: 0.96,
+    zIndex:4,
+    alignSelf: 'center',
+    width: 0.84*width,
+    // position: 'absolute',
+    paddingBottom: 50,
+    marginBottom: 20,
+    borderRadius: 24,
+},
+
+ProfilePage_info_rectangle: {
+    flexDirection: 'column',
     opacity: 0.96,
     zIndex:4,
     alignSelf: 'center',
@@ -881,6 +901,15 @@ ProfilePage_milestone_item_value:{
     marginLeft: horizontalScale(45),
 },
 
+ProfilePage_location_value:{
+    color:'#7DAD2F',
+    textAlign: 'right',
+    marginTop: verticalScale(52),
+    paddingTop: verticalScale(25),
+    fontSize: moderateScale(16),
+    marginLeft: horizontalScale(10),
+},
+
 /**Profile Page End */
 
 
@@ -899,6 +928,75 @@ BottomTabBar:{
 
 
 /**Bottom Tab Navigator End */
+
+
+/**Organization Posts Page Start */
+
+Organization__flatlist_container:{
+    marginTop: verticalScale(40),
+    height: 0.90*height - moderateScale(60),  
+
+},
+
+flatlist_heading:{
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: moderateScale(24),
+    marginLeft: horizontalScale(30),
+    marginBottom: verticalScale(2),
+},
+
+OrgProfilePage_milestone_rectangle:{
+    backgroundColor:'#34363A',
+    flexDirection: 'column',
+    alignItems:'flex-start',
+    opacity: 0.96,
+    zIndex:4,
+    alignSelf: 'center',
+    width: 0.84*width,
+    // position: 'absolute',
+    paddingBottom: 50,
+    marginTop: 0.75*width,
+    borderRadius: 24,
+},
+
+OrgProfilePage_history_item_label:{
+    color:'#ffffff',
+    textAlign: 'left',
+    width: 0.5*width,
+    marginTop: verticalScale(50),
+    marginLeft: horizontalScale(20),
+    paddingTop: verticalScale(25),
+    fontSize: moderateScale(15),
+},
+
+OrgProfilePage_history_item_value:{
+    color:'#7DAD2F',
+    textAlign: 'right',
+    
+    marginTop: verticalScale(52),
+    paddingTop: verticalScale(20),
+    fontSize: moderateScale(16),
+    marginLeft: horizontalScale(15),
+},
+
+OrgProfilePage_location_icon:{
+    width: horizontalScale(12),
+    height: verticalScale(12),
+    
+    position: 'absolute',
+    tintColor: '#fff',
+},
+imageContainer: {
+    borderRadius: 28,
+    overflow: 'hidden',
+},
+image: {
+    width: '100%',
+    height: undefined,
+    aspectRatio: 277/193,
+},
+/**Organization Posts Page End */
 
 });
 
