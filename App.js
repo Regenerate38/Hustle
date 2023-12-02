@@ -9,6 +9,7 @@ import {
 } from "@react-native-google-signin/google-signin";
 import { useEffect, useState } from "react";
 import axios from 'axios'
+import { saveUserInfo } from './src/hooks/asyncStorage';
 
 const App = () => {
   const [error, setError] = useState();
@@ -34,6 +35,8 @@ const App = () => {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
       setUserInfo(userInfo);
+    
+      saveUserInfo(JSON.stringify(userInfo.user))
       setError();
       console.log("Worked sign in");
       

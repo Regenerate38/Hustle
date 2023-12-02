@@ -6,15 +6,26 @@ import styles from '../../Styles_holder';
 import { useNavigation } from '@react-navigation/native';
 import AuthContext from '../../hooks/context';
 import { useContext } from 'react';
-import axios from 'axios';
+
+import { getUserInfo } from '../../hooks/asyncStorage';
+import { login } from '../../apiCalls';
 
 function Login_selection(props){
     const navigation = useNavigation();
     const auth = useContext(AuthContext);
     const signUp = async ()=> {
         auth.signIn();
-       
-        navigation.navigate('Home');
+        const user =  await getUserInfo()
+        
+        const {email}=  JSON.parse(user)
+        console.log(email);
+        const res= await login(email);
+        if(!res){
+            navigation.navigate('SignUp');
+        }else if(res){
+
+            navigation.navigate("Home")
+        }
     };
 
     return(
