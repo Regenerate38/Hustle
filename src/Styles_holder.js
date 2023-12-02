@@ -40,7 +40,7 @@ checkbox: {
   },
 
 checkboxContainer:{
-    top: verticalScale(50),
+    top: verticalScale(65),
     flex: 1,
     flexDirection: 'row',   
 },
@@ -351,7 +351,7 @@ Signup_button_signup: {
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: moderateScale(15),
-    top: verticalScale(360),
+    top: verticalScale(400),
 },
 
 
