@@ -7,7 +7,6 @@ import Login_page from '../auth/login';
 import BottomTabLoader from './BottomTabLoader';
 import Background_Img from '../auth/Landingpage';
 import Login_screen2 from '../auth/Login_Selection';
-import OrgNavBar from '../../navigations/orgnavbar';
 
 const AuthStackBar = createStackNavigator()
 
