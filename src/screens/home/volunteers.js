@@ -1,13 +1,21 @@
 import {Text, View, Platform, StatusBar, SafeAreaView, FlatList, Dimensions , TouchableOpacity} from 'react-native';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {COLORS} from '../../constants';
 import CustomImageCarausel from '../../components/CustomImageCarausel';
 import { Image, SearchBar } from 'react-native-elements';
 import styles from '../../Styles_holder';
-
+import { getCommunityJobs } from '../../apiCalls';
 const {width} = Dimensions.get("window");
 
 const Volunteers = ({navigation}) => {
+  const [communityJobs, setCommunityJobs] = useState(undefined);
+
+  useEffect(async () => {
+    const communityJobs = (await getCommunityJobs()).jobs;
+    setCommunityJobs(communityJobs);
+  }, []);
+
+  useEffect(()=>console.log(communityJobs), [communityJobs]);
 
   const data = [
         {
@@ -21,71 +29,12 @@ const Volunteers = ({navigation}) => {
       },
       {
         image:require('../../assets/img/carausel/image4.png'),
-      },
-    ]
-
-    const DATA = [
-      {
-        id: 1,
-        title: 'Tree Plantation in Sanepa',
-        image:require('../../assets/img/recyclerview/post-image.jpg'),
-        location: 'Patan Municipality',
-       },
-       {
-         id: 2,
-         title: 'Bagmati Cleaning Program',
-         image:require('../../assets/img/recyclerview/post-image.jpg'),
-         location: 'Patan Municipality',
-        },
-        {
-         id: 3,
-         title: 'Taking care of the Zoo',
-         image:require('../../assets/img/recyclerview/post-image.jpg'),
-         location: 'Patan Municipality',
-        },
-        {
-         id: 4,
-         title: 'Cleaning Program in Pulchowk',
-         image:require('../../assets/img/recyclerview/post-image.jpg'),
-         location: 'Patan Municipality',
-        },
-        {
-         id: 5,
-         title: 'Tree Plantation in Sanepa',
-         image:require('../../assets/img/recyclerview/post-image.jpg'),
-         location: 'Patan Municipality',
-        },
-        {
-          id: 6,
-          title: 'Bagmati Cleaning Program',
-          image:require('../../assets/img/recyclerview/post-image.jpg'),
-          location: 'Patan Municipality',
-         },
-         {
-          id: 7,
-          title: 'Bagmati Cleaning Program',
-          image:require('../../assets/img/recyclerview/post-image.jpg'),
-          location: 'Patan Municipality',
-         },
-         {
-          id: 8,
-          title: 'Bagmati Cleaning Program',
-          image:require('../../assets/img/recyclerview/post-image.jpg'),
-          location: 'Patan Municipality',
-         },
-         {
-          id: 9,
-          title: 'Bagmati Cleaning Program',
-          image:require('../../assets/img/recyclerview/post-image.jpg'),
-          location: 'Patan Municipality',
-         },
-         
+      },        
     ];
     
     const Item = ({title, image, location}) => (
       <TouchableOpacity   onPress={() => navigation.navigate('VPostDetail')}>
       <View style={styles.Volunteer_PostDetail_main}> 
-         
           <View style={{ height: 0.57 * 0.628*width, }}>
             <Image source={image} style={styles.Volunteer_PostDetail_image}/>
           </View>
@@ -140,7 +89,7 @@ const Volunteers = ({navigation}) => {
   return (
  
     <SafeAreaView style={styles.inner_page_parent_container}>
-      <StatusBar barStyle="dark-content" translucent={true} backgroundColor={COLORS.bgColor} barStyle = "light-content"  />
+      <StatusBar barStyle="dark-content" translucent={true} backgroundColor={COLORS.bgColor}  />
       
       
       <View style={styles.search_bar_container}>
@@ -165,13 +114,13 @@ const Volunteers = ({navigation}) => {
             <SafeAreaView style={styles.Volunteer_flatlist_container}>
 
               <Text style = {styles.flatlist_heading}>Posts</Text>
-              <FlatList
-                data={DATA}
-                renderItem={({item}) => <Item title={item.title} image={item.image} location={item.location} />}
-                keyExtractor={item => item.id}
+              {communityJobs && <FlatList
+                data={communityJobs}
+                renderItem={({item}) => <Item title={item.title} image={item.image || require('../../assets/img/carausel/image1.png')} location={item.location || "Default Location"} />}
+                keyExtractor={item => item._id}
                 ListEmptyComponent = {<Text>This is where post regarding various volunteering opportunities are kept</Text>} 
                 ItemSeperatorComponent = {postgaps}
-                style={{ zIndex: 5,}}  />
+                style={{ zIndex: 5}}  />}
             
             </SafeAreaView>
          

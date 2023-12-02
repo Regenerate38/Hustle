@@ -1,16 +1,25 @@
 import {StyleSheet, Text, View, Dimensions, ScrollView, TouchableOpacity} from 'react-native';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {Image} from 'react-native-elements';
 import styles from '../../Styles_holder';
+import { getPaidJob } from '../../apiCalls';
 
 const { width, height } = Dimensions.get("window");
 
-const Postdetail = ({navigation}) => {
+const Postdetail = ({route, navigation}) => {
+  const [jobDetail, setjobDetail] = useState(undefined);
+  useEffect(async () => {
+    const jobDetail = (await getPaidJob(route.params.id));
+    setjobDetail(jobDetail);
+  }, []);
+
+  useEffect(()=>console.log(jobDetail), [jobDetail]);
 
   return (
 <View style={styles.PostDetailPage}>
-    <View id={'imagecontainer'} style={styles.PostDetailPage_image_container}>
-      <Image  source={require('../../../src/assets/img/recyclerview/post-image.jpg')} style={{
+    {jobDetail && <View>
+     <View id={'imagecontainer'} style={styles.PostDetailPage_image_container}>
+      <Image  source={jobDetail.images[0] || require('../../../src/assets/img/recyclerview/post-image.jpg')} style={{
               height: 0.7589*width,
               objectFit: 'cover',
           }}/>
@@ -30,7 +39,7 @@ const Postdetail = ({navigation}) => {
         zIndex: 10,
       }}>
 
-      <Text style={styles.PostDetailPage_title_text}>{'Tree Plantation In Patan'}</Text>
+      <Text style={styles.PostDetailPage_title_text}>{jobDetail.title}</Text>
 
       <View style={{
         display:'flex',
@@ -38,7 +47,7 @@ const Postdetail = ({navigation}) => {
         marginTop: 10,
       }}>
 
-      <Text style={styles.PostDetailPage_location_text}>{'Patan Municipality'}</Text>
+      <Text style={styles.PostDetailPage_location_text}>{jobDetail.location || "Default Location"}</Text>
 
       <Image 
         source ={require('../../assets/icons/location.png')}
@@ -58,7 +67,7 @@ const Postdetail = ({navigation}) => {
             }}>
               <Text style={styles.PostDetailPage_date_label}>Date</Text>
 
-              <Text style={styles.PostDetailPage_date_value}>July 23</Text>
+              <Text style={styles.PostDetailPage_date_value}>{jobDetail.date || 'Default Date'}</Text>
           </View>
     
           <View style={{
@@ -70,7 +79,7 @@ const Postdetail = ({navigation}) => {
 
             <Text style={styles.PostDetailPage_number_label}>Number of Volunteers</Text>
 
-            <Text style={styles.PostDetailPage_number_value}>34</Text>
+            <Text style={styles.PostDetailPage_number_value}>{jobDetail.volunteerNo || 1}</Text>
       </View>
       </View>
 
@@ -81,7 +90,7 @@ const Postdetail = ({navigation}) => {
           fontWeight: '600',
           fontSize: 16,
           color: '#fff',
-         }}>{'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent auctor purus luctus enim egestas, ac scelerisque ante pulvinar. Donec ut rhoncus ex. Suspendisse ac rhoncus nisl, eu tempor urna. Curabitur vel bibendum lorem.   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent auctor purus luctus enim egestas, ac scelerisque ante pulvinar. Donec ut rhoncus ex. Suspendisse ac rhoncus nisl, eu tempor urna. Curabitur vel bibendum lorem.  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent auctor purus luctus enim egestas, ac scelerisque ante pulvinar. Donec ut rhoncus ex. Suspendisse ac rhoncus nisl, eu tempor urna. Curabitur vel bibendum lorem.  auctor purus luctus enim egestas, ac scelerisque ante pulvinar. Donec ut rhoncus ex. Suspendisse ac rhoncus nisl, eu tempor urna. Curabitur vel bibendum lorem. '}</Text>
+         }}>{jobDetail.desc}</Text>
       </ScrollView>
 
       <View styles={{
@@ -93,6 +102,7 @@ const Postdetail = ({navigation}) => {
             </TouchableOpacity>
       </View>
     </View>     
+    </View>}
   </View>
   );
 }
