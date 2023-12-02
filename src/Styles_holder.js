@@ -34,6 +34,23 @@ Message : {
     alignItems: 'center',
 },
 
+checkbox: {
+    alignSelf: 'flex-start',
+    
+  },
+
+checkboxContainer:{
+    top: verticalScale(50),
+    flex: 1,
+    flexDirection: 'row',   
+},
+
+label:{
+    marginLeft: horizontalScale(8),
+    color: '#fff',
+    textAlignVertical: 'center',
+},
+
 Title: { 
     fontSize: 60, 
     //fontWeight: '800',
