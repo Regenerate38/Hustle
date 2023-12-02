@@ -6,6 +6,7 @@ import MoreCategories from './MoreCategories';
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import CreatePost from './CreatePost';
 import styles from '../../Styles_holder';
+import LocationPicker from './LocationPicker';
 
 
 const PaidStackBar = createStackNavigator()
@@ -25,7 +26,7 @@ const PaidStack = ({ navigation, route }) => {
     <PaidStackBar.Screen name="PostDetail" component={Postdetail} options={{headerShown:  false}} swipeEnabled={false} />
     <PaidStackBar.Screen name="MoreCategories" component={MoreCategories} options={{headerShown:  false}} swipeEnabled={false} />
     <PaidStackBar.Screen name="CreatePost" component={CreatePost} options={{headerShown:  false}} swipeEnabled={false} />
-
+    <PaidStackBar.Screen name="LocationPicker" component={LocationPicker} options={{headerShown:  false}} />             
    </PaidStackBar.Navigator>
   )
 }

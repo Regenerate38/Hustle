@@ -174,7 +174,8 @@ const CreatePost = ({navigation}) => {
      
       marginTop: -60,
       borderRadius: 24,}}>
-    <Text style={{
+   <TouchableOpacity onPress={() => navigation.navigate('LocationPicker')}>
+        <Text style={{
         color:'#b4b4b4',
         textAlign: 'left',
         marginTop: 50,
@@ -183,6 +184,8 @@ const CreatePost = ({navigation}) => {
         fontSize: 15,
         fontWeight: '900',
       }}>Location</Text>
+      </TouchableOpacity>
+
 
 <Image 
             source ={require('../../assets/icons/location.png')}
