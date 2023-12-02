@@ -2,12 +2,13 @@ import React from 'react';
 import {StyleSheet, Text, SafeAreaView} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import AuthStack from './src/screens/home/AuthStack';
-import AuthContext from './src/useContext/context';
+import AuthContext from './src/hooks/context';
 import {
   GoogleSignin,
   statusCodes,
 } from "@react-native-google-signin/google-signin";
 import { useEffect, useState } from "react";
+import axios from 'axios'
 
 const App = () => {
   const [error, setError] = useState();
@@ -35,6 +36,7 @@ const App = () => {
       setUserInfo(userInfo);
       setError();
       console.log("Worked sign in");
+      
     } catch (e) {
       setError(e);
     }

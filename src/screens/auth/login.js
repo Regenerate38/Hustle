@@ -14,33 +14,6 @@ import axios from 'axios';
 const Login_page = ({navigation}) => {
 
 
-    return(
-        <View style={styles.Message}>
-    const [user, setUser] = useState({})
-    const [email, setEmail] = useState('')
-    
-    const [password, setPassword] = useState('')
-
-    const handleEmail =(text)=>{
-        setEmail(text);
-       
-    }
-
-    const handlePassword =(text)=>{
-        setPassword(text);
-       
-    }
-    const handleSubmit = async ()=>{
-        console.log(email, password)
-        setUser({email, password})
-        console.log(user)
-        const res =await axios.post("http://10.0.2.2:5000/auth/login", user )
-        console.log(res.data)
-        // setToken(res.data.token)
-        navigation.navigate('Home')
-
-    }
-
 
   return (
     

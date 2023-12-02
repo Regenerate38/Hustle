@@ -10,9 +10,12 @@ const {width} = Dimensions.get("window");
 const Volunteers = ({navigation}) => {
   const [communityJobs, setCommunityJobs] = useState(undefined);
 
-  useEffect(async () => {
+  useEffect( () => {
+    async function getJobs(){
     const communityJobs = (await getCommunityJobs()).jobs;
-    setCommunityJobs(communityJobs);
+    // console.log(communityJobs);
+    setCommunityJobs(communityJobs);}
+    getJobs();
   }, []);
 
   useEffect(()=>console.log(communityJobs), [communityJobs]);
@@ -32,8 +35,8 @@ const Volunteers = ({navigation}) => {
       },        
     ];
     
-    const Item = ({title, image, location}) => (
-      <TouchableOpacity   onPress={() => navigation.navigate('VPostDetail')}>
+    const Item = ({title, image, location, id}) => (
+      <TouchableOpacity onPress={() => { navigation.navigate('VPostDetail', {id: id});}} >
       <View style={styles.Volunteer_PostDetail_main}> 
           <View style={{ height: 0.57 * 0.628*width, }}>
             <Image source={image} style={styles.Volunteer_PostDetail_image}/>
@@ -57,7 +60,7 @@ const Volunteers = ({navigation}) => {
                       flexDirection:'row',
                 }}>
 
-        <TouchableOpacity style={styles.Volunteer_PostDetail_tags} onPress={() => navigation.navigate('Postdetail')}>
+        <TouchableOpacity style={styles.Volunteer_PostDetail_tags} onPress={() => navigation.navigate('VPostdetail')}>
             <Text style={styles.Volunteer_PostDetail_tags_text}>Social</Text>
         </TouchableOpacity>
 
@@ -107,7 +110,7 @@ const Volunteers = ({navigation}) => {
         <View style={styles.featured_container}>
             <Text style = {styles.featured_title}>Featured</Text>   
             <View style={styles.featured_carausel_container}>
-              <CustomImageCarausel data={data} navigation={navigation}/>
+            {communityJobs &&<CustomImageCarausel data={communityJobs} navigation={navigation}/>}
             </View>
         </View>
             
@@ -116,7 +119,7 @@ const Volunteers = ({navigation}) => {
               <Text style = {styles.flatlist_heading}>Posts</Text>
               {communityJobs && <FlatList
                 data={communityJobs}
-                renderItem={({item}) => <Item title={item.title} image={item.image || require('../../assets/img/carausel/image1.png')} location={item.location || "Default Location"} />}
+                renderItem={({item}) => <Item title={item.title} image={item.image || require('../../assets/img/carausel/image1.png')} location={item.location || "Default Location"} id = {item._id}/>}
                 keyExtractor={item => item._id}
                 ListEmptyComponent = {<Text>This is where post regarding various volunteering opportunities are kept</Text>} 
                 ItemSeperatorComponent = {postgaps}

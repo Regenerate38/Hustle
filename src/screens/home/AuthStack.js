@@ -8,13 +8,13 @@ import BottomTabLoader from './BottomTabLoader';
 import Background_Img from '../auth/Landingpage';
 import Login_screen2 from '../auth/Login_Selection';
 import Profile from './profile';
-import AuthContext from '../../useContext/context';
-import { useContext } from 'react';
+import AuthContext from '../../hooks/context';
+import {  } from 'react';
 
 const AuthStackBar = createStackNavigator()
 
 const AuthStack = ({ navigation }) => {
-  const auth = useContext(AuthContext);
+  const auth = (AuthContext);
   return (
     !auth.userInfo ?
       <AuthStackBar.Navigator>

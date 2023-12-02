@@ -1,11 +1,11 @@
 import { StyleSheet, Text, View, Dimensions, TouchableOpacity } from 'react-native';
-import React, { useContext } from 'react';
+import React, {  } from 'react';
 import { COLORS } from '../../constants';
 import { Image } from 'react-native-elements';
 import ProgressBar from 'react-native-progress/Bar';
 import styles from '../../Styles_holder';
 import { useNavigation } from '@react-navigation/native';
-import AuthContext from '../../useContext/context';
+import AuthContext from '../../hooks/context';
 
 import { ScrollView } from 'react-native';
 

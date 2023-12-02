@@ -2,15 +2,25 @@ import {StyleSheet, Text, View, Dimensions, ScrollView, TouchableOpacity} from '
 import React, { useEffect, useState } from 'react';
 import {Image} from 'react-native-elements';
 import styles from '../../Styles_holder';
-import { getPaidJob } from '../../apiCalls';
+import { getPaidJob, getCommunityJob } from '../../apiCalls';
 
 const { width, height } = Dimensions.get("window");
 
 const Postdetail = ({route, navigation}) => {
   const [jobDetail, setjobDetail] = useState(undefined);
+
   useEffect(async () => {
-    const jobDetail = (await getPaidJob(route.params.id));
-    setjobDetail(jobDetail);
+    const routes = navigation.getState()?.routes;
+    const prevRoute = routes[routes.length - 2]; 
+    let tempJobDetail; 
+    if (prevRoute.name === "Paid") {
+      tempJobDetail = (await getPaidJob(route.params.id));
+      setjobDetail(tempJobDetail);
+  }
+  else if (prevRoute.name === "Volunteer"){
+    tempJobDetail = (await getCommunityJob(route.params.id));
+    setjobDetail(tempJobDetail);
+  };
   }, []);
 
   useEffect(()=>console.log(jobDetail), [jobDetail]);
@@ -39,7 +49,7 @@ const Postdetail = ({route, navigation}) => {
         zIndex: 10,
       }}>
 
-      <Text style={styles.PostDetailPage_title_text}>{jobDetail.title}</Text>
+      <Text style={styles.PostDetailPage_title_text}>{jobDetail.title|| "Default"}</Text>
 
       <View style={{
         display:'flex',
@@ -90,7 +100,7 @@ const Postdetail = ({route, navigation}) => {
           fontWeight: '600',
           fontSize: 16,
           color: '#fff',
-         }}>{jobDetail.desc}</Text>
+         }}>{jobDetail.desc|| "BLah blah"}</Text>
       </ScrollView>
 
       <View styles={{

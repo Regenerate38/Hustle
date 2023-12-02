@@ -16,48 +16,24 @@ const Paid = ({ navigation }) => {
 
   useEffect(async () => {
     const paidJobs = (await getPaidJobs()).jobs;
+    console.log(paidJobs);
     setPaidJobs(paidJobs);
+    
   }, []);
 
-  const PostItem = ({ id, title, image, location }) => (
-    <TouchableOpacity onPress={() => { navigation.navigate('PostDetail', {id: id}); getPaidJobs(); }} >
-      <View
-        style={styles.PostDetail_main_view}>
-        <View style={{
-          height: 0.57 * POST_HEIGHT,
-        }}>
-          <Image source={image || require('../../assets/img/recyclerview/post-image.jpg')} style={styles.PostDetail_image} />
-        </View>
-        <View style={{
-          marginTop: 0.082 * POST_HEIGHT,
-          flexDirection: 'column',
-        }}>
-          <Text style={styles.PostDetail_title_text}>{title}</Text>
-          <View style={{
-            display: 'flex',
-            flexDirection: 'row',
-          }}>
-            <Text style={styles.PostDetail_location_text}>{location}</Text>
-            <Image source={require('../../assets/icons/location.png')}
-              resizeMode='contain'
-              style={styles.PostDetail_location_icon} />
-          </View>
-        </View>
-      </View>
-    </TouchableOpacity>
-  );
-
+   
   postgaps = () => {
     return <View style={{
       height: 8,
       width: '100%',
-    }} />
+    }}/>}
 const POST_HEIGHT = 0.5*width; 
 
  
   
-const PostItem = ({title, image, location}) => (
-  <TouchableOpacity onPress={() => navigation.navigate('PostDetail')} >
+const PostItem = ({title, image, location, id}) => (
+    <TouchableOpacity onPress={() => { navigation.navigate('PostDetail', {id: id}) }} >
+
   <View
   style={styles.PostDetail_main_view}> 
     <View style={{
@@ -355,5 +331,4 @@ postgaps  = () => {
 
   );
 };
-
 export default Paid;

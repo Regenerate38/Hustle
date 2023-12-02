@@ -4,14 +4,16 @@ const screenHeight = Dimensions.get('window').height;
 const screenWidth = Dimensions.get('window').width;
 import styles from '../../Styles_holder';
 import { useNavigation } from '@react-navigation/native';
-import AuthContext from '../../useContext/context';
+import AuthContext from '../../hooks/context';
 import { useContext } from 'react';
+import axios from 'axios';
 
 function Login_selection(props){
     const navigation = useNavigation();
     const auth = useContext(AuthContext);
-    const signUp = ()=> {
-        auth.signIn(); 
+    const signUp = async ()=> {
+        auth.signIn();
+       
         navigation.navigate('Home');
     };
 
