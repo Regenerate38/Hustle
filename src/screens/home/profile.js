@@ -1,16 +1,22 @@
 import {StyleSheet, Text, View, Dimensions, TouchableOpacity} from 'react-native';
-import React from 'react';
+import React, { useContext } from 'react';
 import {COLORS} from '../../constants';
 import {Image} from 'react-native-elements';
 import ProgressBar from 'react-native-progress/Bar';
 import styles from '../../Styles_holder';
 import { useNavigation } from '@react-navigation/native';
-
+import AuthContext from '../../useContext/context';
 
 const { width, height } = Dimensions.get("window");
 
 const Profile = () => {
   const navigation = useNavigation();
+  const auth = useContext(AuthContext);
+  const logOut = ()=> {
+    auth.logOut();
+    auth.user = undefined;
+    navigation.navigate('Landing');
+};
   return (
     <View style={styles.PostDetailPage}>
       <View id={'imagecontainer'} style={styles.ProfilePage_coverimage_container}>
@@ -80,7 +86,7 @@ const Profile = () => {
   </View> 
     
     <View style={{ alignSelf: 'stretch'}}>
-    <TouchableOpacity onPress={()=> navigation.navigate('Landing') }>
+    <TouchableOpacity onPress={logOut}>
             <View style={{...styles.Login_button}}>
                 <Text style={styles.Button_text}>Logout</Text>
             </View>

@@ -32,11 +32,11 @@ function Login_selection(props){
                  </Text>
             </Text>
 
-            <TouchableOpacity onPress={()=> navigation.navigate('Login') }>
+            {/* <TouchableOpacity onPress={()=> navigation.navigate('Login') }>
             <View style={styles.Login_button}>
                 <Text style={styles.Button_text}>Login</Text>
             </View>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
 
             <TouchableOpacity onPress={signUp}>
             <View style={styles.Signup_button}>

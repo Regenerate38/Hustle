@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 
 const App = () => {
   const [error, setError] = useState();
-  const [userInfo, setUserInfo] = useState();
+  const [userInfo, setUserInfo] = useState(undefined);
   const configureGoogleSignIn = () => {
     GoogleSignin.configure({
       webClientId:
@@ -40,7 +40,7 @@ const App = () => {
     }
   };
   
-  const logout = () => {
+  const logOut = () => {
     setUserInfo(undefined);
     GoogleSignin.revokeAccess();
     GoogleSignin.signOut();
@@ -48,7 +48,7 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      <AuthContext.Provider value={{userInfo, signIn, logout}}>
+      <AuthContext.Provider value={{userInfo, signIn, logOut}}>
         <AuthStack/>
       </AuthContext.Provider>
     </NavigationContainer>
