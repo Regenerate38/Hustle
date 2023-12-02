@@ -1,10 +1,21 @@
 import axios from "axios";
-import { saveUser, saveToken } from "./hooks/asyncStorage";
+import { saveUser, saveToken, getToken } from "./hooks/asyncStorage";
 const baseUrl = 'http://10.0.2.2:5000';
 
+const returnConfig=async()=>{
+    const token= await getToken();
+    console.log(token)
+    const headers = {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+    } 
+    return {headers}
+}
 
 const getPaidJobs = async () => {
-  const res = await axios.get(`${baseUrl}/paid`);
+    const config = returnConfig
+  const res = await axios.get(`${baseUrl}/paid`, config());
+  console.log(res.data)
   return res.data;
 };
 

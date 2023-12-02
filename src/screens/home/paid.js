@@ -4,14 +4,18 @@ import { COLORS } from '../../constants';
 import { Image, SearchBar, FAB } from 'react-native-elements';
 import { SafeAreaView } from 'react-native';
 import styles from '../../Styles_holder';
-
+import { getPaidJobs } from '../../apiCalls';
 const { width } = Dimensions.get("window");
 
 const POST_WIDTH = width * 0.825;
 const POST_HEIGHT = 0.5 * width;
 
 const Paid = ({ navigation }) => {
-
+  const [postData, setPostData]=useState([]);
+  useEffect(()=>{
+    let foundJobs = getPaidJobs();
+    setPostData(foundJobs);
+  },[])
   
 
    
@@ -22,62 +26,62 @@ const Paid = ({ navigation }) => {
     }}/>}
 const POST_HEIGHT = 0.5*width; 
 
-const postData = [
-    {
-      id: 1,
-      title: 'Tree Plantation in Sanepa',
-      image:require('../../assets/img/recyclerview/post-image.jpg'),
-      location: 'Patan Municipality',
-     },
-     {
-       id: 2,
-       title: 'Bagmati Cleaning Program',
-       image:require('../../assets/img/recyclerview/post-image.jpg'),
-       location: 'Patan Municipality',
-      },
-      {
-       id: 3,
-       title: 'Taking care of the Zoo',
-       image:require('../../assets/img/recyclerview/post-image.jpg'),
-       location: 'Patan Municipality',
-      },
-      {
-       id: 4,
-       title: 'Cleaning Program in Pulchowk',
-       image:require('../../assets/img/recyclerview/post-image.jpg'),
-       location: 'Patan Municipality',
-      },
-      {
-       id: 5,
-       title: 'Tree Plantation in Sanepa',
-       image:require('../../assets/img/recyclerview/post-image.jpg'),
-       location: 'Patan Municipality',
-      },
-      {
-        id: 6,
-        title: 'Bagmati Cleaning Program',
-        image:require('../../assets/img/recyclerview/post-image.jpg'),
-        location: 'Patan Municipality',
-       },
-       {
-        id: 7,
-        title: 'Bagmati Cleaning Program',
-        image:require('../../assets/img/recyclerview/post-image.jpg'),
-        location: 'Patan Municipality',
-       },
-       {
-        id: 8,
-        title: 'Bagmati Cleaning Program',
-        image:require('../../assets/img/recyclerview/post-image.jpg'),
-        location: 'Patan Municipality',
-       },
-       {
-        id: 9,
-        title: 'Bagmati Cleaning Program',
-        image:require('../../assets/img/recyclerview/post-image.jpg'),
-        location: 'Patan Municipality',
-       }
-  ];
+// const postData = [
+//     {
+//       id: 1,
+//       title: 'Tree Plantation in Sanepa',
+//       image:require('../../assets/img/recyclerview/post-image.jpg'),
+//       location: 'Patan Municipality',
+//      },
+//      {
+//        id: 2,
+//        title: 'Bagmati Cleaning Program',
+//        image:require('../../assets/img/recyclerview/post-image.jpg'),
+//        location: 'Patan Municipality',
+//       },
+//       {
+//        id: 3,
+//        title: 'Taking care of the Zoo',
+//        image:require('../../assets/img/recyclerview/post-image.jpg'),
+//        location: 'Patan Municipality',
+//       },
+//       {
+//        id: 4,
+//        title: 'Cleaning Program in Pulchowk',
+//        image:require('../../assets/img/recyclerview/post-image.jpg'),
+//        location: 'Patan Municipality',
+//       },
+//       {
+//        id: 5,
+//        title: 'Tree Plantation in Sanepa',
+//        image:require('../../assets/img/recyclerview/post-image.jpg'),
+//        location: 'Patan Municipality',
+//       },
+//       {
+//         id: 6,
+//         title: 'Bagmati Cleaning Program',
+//         image:require('../../assets/img/recyclerview/post-image.jpg'),
+//         location: 'Patan Municipality',
+//        },
+//        {
+//         id: 7,
+//         title: 'Bagmati Cleaning Program',
+//         image:require('../../assets/img/recyclerview/post-image.jpg'),
+//         location: 'Patan Municipality',
+//        },
+//        {
+//         id: 8,
+//         title: 'Bagmati Cleaning Program',
+//         image:require('../../assets/img/recyclerview/post-image.jpg'),
+//         location: 'Patan Municipality',
+//        },
+//        {
+//         id: 9,
+//         title: 'Bagmati Cleaning Program',
+//         image:require('../../assets/img/recyclerview/post-image.jpg'),
+//         location: 'Patan Municipality',
+//        }
+//   ];
 
  
   
