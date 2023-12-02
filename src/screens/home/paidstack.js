@@ -14,7 +14,7 @@ const PaidStackBar = createStackNavigator()
 const PaidStack = ({ navigation, route }) => {
     React.useLayoutEffect(() => {
         const routeName = getFocusedRouteNameFromRoute(route);
-        if (routeName === "PostDetail" || routeName === "MoreCategories" || routeName ==="CreatePost" ){
+        if (routeName === "PostDetail" || routeName === "MoreCategories" || routeName ==="CreatePost" | routeName ==="LocationPicker" ){
             navigation.setOptions({tabBarStyle: { display: 'none' }});
         }else {
             navigation.setOptions({tabBarStyle: styles.BottomTabBar});

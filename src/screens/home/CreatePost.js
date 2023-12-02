@@ -10,9 +10,10 @@ const { width, height } = Dimensions.get("window");
 
 const CreatePost = ({navigation}) => {
 
-  
+
   const [elementVisible, setElementVisible] = useState(true);
   const [image, setImage] = useState("../../assets/img/recyclerview/placeholder.jpg");
+  
   const imagePicker = async () => {
 
     try {
@@ -51,10 +52,10 @@ const CreatePost = ({navigation}) => {
         height: 0.5825*width,
         backgroundColor: '#34363A', 
        }}>
-        <Image source={require('../../../src/assets/img/recyclerview/placeholder.jpg')} style={{
-          height: 0.5825*width,
+         {image && < Image source={{ uri: image } ? { uri: image } : placeholder1} style={{
+          height: 0.5825 * width,
           objectFit: 'cover',
-        }}/>
+        }} />}
           <View style={{
         width: width,
         position: 'absolute',

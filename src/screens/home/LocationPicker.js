@@ -15,13 +15,13 @@ const { width, height } = Dimensions.get("window");
 const LocationPicker = ({ navigation }) => {
   const [coordinate, setCoordinate] = useState({})
 
-  const [DraggableMarkerCoordinates, setDraggableMarkerCoordinates] = useContext(LocationContext);
-  // const [DraggableMarkerCoordinates, setDraggableMarkerCoordinates] = useState({
-  //   latitudeDelta: 0.0922,
-  //   longitudeDelta: 0.0421,
-  //   latitude: 27.7215,
-  //   longitude: 85.3201,
-  // });
+  //const [DraggableMarkerCoordinates, setDraggableMarkerCoordinates] = useContext(LocationContext);
+  const [DraggableMarkerCoordinates, setDraggableMarkerCoordinates] = useState({
+    latitudeDelta: 0.0922,
+    longitudeDelta: 0.0421,
+    latitude: 27.7215,
+    longitude: 85.3201,
+  });
 
   const onMarkerPressed = (marker) => {
     setCoordinate(marker.nativeEvent.coordinate)
