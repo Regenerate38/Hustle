@@ -108,7 +108,7 @@ const Volunteers = ({navigation}) => {
                       flexDirection:'row',
                 }}>
 
-        <TouchableOpacity style={styles.Volunteer_PostDetail_tags} onPress={() => navigation.navigate('Postdetail')}>
+        <TouchableOpacity style={styles.Volunteer_PostDetail_tags} onPress={() => navigation.navigate('VPostdetail')}>
             <Text style={styles.Volunteer_PostDetail_tags_text}>Social</Text>
         </TouchableOpacity>
 
@@ -158,7 +158,7 @@ const Volunteers = ({navigation}) => {
         <View style={styles.featured_container}>
             <Text style = {styles.featured_title}>Featured</Text>   
             <View style={styles.featured_carausel_container}>
-              <CustomImageCarausel data={data}/>
+              <CustomImageCarausel data={data} navigation={navigation}/>
             </View>
         </View>
             

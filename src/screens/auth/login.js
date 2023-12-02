@@ -80,15 +80,14 @@ function Login_screen(props) {
 }
 
 
-function Login_page(props){
+const Login_page = ({navigation}) => {
   return (
     
     <SafeAreaView style={{
         flex: 1,
     }}>
     <StatusBar barStyle="dark-content" translucent={true} backgroundColor="#fef9e3" />
-    <TouchableOpacity style={styles.Back_button} onPress={()=>navigation.back()}>
-    
+    <TouchableOpacity style={styles.Back_button} onPress={() => navigation.goBack()}>    
 
     <Image style={styles.Back_button} source={require('../../assets/icons/back.png')} />
     </TouchableOpacity>

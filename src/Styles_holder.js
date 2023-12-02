@@ -256,7 +256,7 @@ Login_Button: {
 Align_boxes_signup: {
     alignItems: 'flex-start',
     position: 'absolute',
-    top: verticalScale(198)
+    top: verticalScale(98),
 },
 
 SignupPage_stats_container:{

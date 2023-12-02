@@ -1,97 +1,89 @@
-import {StyleSheet, Text, View, FlatList, Dimensions, TouchableOpacity, StatusBar,ScrollView} from 'react-native';
-import React from 'react';
-import {COLORS} from '../../constants';
-import { Image, SearchBar } from 'react-native-elements';
+import { StyleSheet, Text, View, FlatList, Dimensions, TouchableOpacity, StatusBar, ScrollView } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { COLORS } from '../../constants';
+import { Image, SearchBar, FAB } from 'react-native-elements';
 import { SafeAreaView } from 'react-native';
 import styles from '../../Styles_holder';
-import { useState, useEffect } from 'react';
-import axios from 'axios'
-import { getToken } from '../../components/asyncStorage';
 
+const { width } = Dimensions.get("window");
 
+const POST_WIDTH = width * 0.825;
+const POST_HEIGHT = 0.5 * width;
 
+const Paid = ({ navigation }) => {
 
-const { width} = Dimensions.get("window");
+  
 
+   
+  postgaps = () => {
+    return <View style={{
+      height: 8,
+      width: '100%',
+    }}/>}
 const POST_HEIGHT = 0.5*width; 
 
+const postData = [
+    {
+      id: 1,
+      title: 'Tree Plantation in Sanepa',
+      image:require('../../assets/img/recyclerview/post-image.jpg'),
+      location: 'Patan Municipality',
+     },
+     {
+       id: 2,
+       title: 'Bagmati Cleaning Program',
+       image:require('../../assets/img/recyclerview/post-image.jpg'),
+       location: 'Patan Municipality',
+      },
+      {
+       id: 3,
+       title: 'Taking care of the Zoo',
+       image:require('../../assets/img/recyclerview/post-image.jpg'),
+       location: 'Patan Municipality',
+      },
+      {
+       id: 4,
+       title: 'Cleaning Program in Pulchowk',
+       image:require('../../assets/img/recyclerview/post-image.jpg'),
+       location: 'Patan Municipality',
+      },
+      {
+       id: 5,
+       title: 'Tree Plantation in Sanepa',
+       image:require('../../assets/img/recyclerview/post-image.jpg'),
+       location: 'Patan Municipality',
+      },
+      {
+        id: 6,
+        title: 'Bagmati Cleaning Program',
+        image:require('../../assets/img/recyclerview/post-image.jpg'),
+        location: 'Patan Municipality',
+       },
+       {
+        id: 7,
+        title: 'Bagmati Cleaning Program',
+        image:require('../../assets/img/recyclerview/post-image.jpg'),
+        location: 'Patan Municipality',
+       },
+       {
+        id: 8,
+        title: 'Bagmati Cleaning Program',
+        image:require('../../assets/img/recyclerview/post-image.jpg'),
+        location: 'Patan Municipality',
+       },
+       {
+        id: 9,
+        title: 'Bagmati Cleaning Program',
+        image:require('../../assets/img/recyclerview/post-image.jpg'),
+        location: 'Patan Municipality',
+       }
+  ];
 
-const Paid = ({navigation}) => {
+ 
   
-  
-  const [postData, setPostData] = useState([])
+const PostItem = ({title, image, location, id}) => (
+    <TouchableOpacity onPress={() => { navigation.navigate('PostDetail', {id: id}) }} >
 
-
-  useEffect( () => {
-    async function fetchData(){
-
-      const res = await axios.get("http://10.0.2.2:5000/paid", {headers:{Authorization: `Bearer ${getToken()}`}} )
-      if(res.data.length){setPostData(res.data)}
-      console.log(res.data)
-    }
-    fetchData()
-  }, [])
-   
-
-  // const postData = [
-  //   {
-  //     id: 1,
-  //     title: 'Tree Plantation in Sanepa',
-  //     image:require('../../assets/img/recyclerview/post-image.jpg'),
-  //     location: 'Patan Municipality',
-  //    },
-  //    {
-  //      id: 2,
-  //      title: 'Bagmati Cleaning Program',
-  //      image:require('../../assets/img/recyclerview/post-image.jpg'),
-  //      location: 'Patan Municipality',
-  //     },
-  //     {
-  //      id: 3,
-  //      title: 'Taking care of the Zoo',
-  //      image:require('../../assets/img/recyclerview/post-image.jpg'),
-  //      location: 'Patan Municipality',
-  //     },
-  //     {
-  //      id: 4,
-  //      title: 'Cleaning Program in Pulchowk',
-  //      image:require('../../assets/img/recyclerview/post-image.jpg'),
-  //      location: 'Patan Municipality',
-  //     },
-  //     {
-  //      id: 5,
-  //      title: 'Tree Plantation in Sanepa',
-  //      image:require('../../assets/img/recyclerview/post-image.jpg'),
-  //      location: 'Patan Municipality',
-  //     },
-  //     {
-  //       id: 6,
-  //       title: 'Bagmati Cleaning Program',
-  //       image:require('../../assets/img/recyclerview/post-image.jpg'),
-  //       location: 'Patan Municipality',
-  //      },
-  //      {
-  //       id: 7,
-  //       title: 'Bagmati Cleaning Program',
-  //       image:require('../../assets/img/recyclerview/post-image.jpg'),
-  //       location: 'Patan Municipality',
-  //      },
-  //      {
-  //       id: 8,
-  //       title: 'Bagmati Cleaning Program',
-  //       image:require('../../assets/img/recyclerview/post-image.jpg'),
-  //       location: 'Patan Municipality',
-  //      },
-  //      {
-  //       id: 9,
-  //       title: 'Bagmati Cleaning Program',
-  //       image:require('../../assets/img/recyclerview/post-image.jpg'),
-  //       location: 'Patan Municipality',
-  //      }
-  // ];
-  
-const PostItem = ({title, image, location}) => (
-  <TouchableOpacity onPress={() => navigation.navigate('PostDetail')} >
   <View
   style={styles.PostDetail_main_view}> 
     <View style={{
@@ -115,6 +107,8 @@ const PostItem = ({title, image, location}) => (
  <Image source ={require('../../assets/icons/location.png')}
         resizeMode = 'contain'
         style = {styles.PostDetail_location_icon}/>
+
+<Text style={styles.PostDetail_price_text}>Rs 100</Text>
   </View>
 
   </View>
@@ -133,260 +127,258 @@ postgaps  = () => {
 
   return (
     <SafeAreaView style={styles.inner_page_parent_container}>
-      <StatusBar barStyle="dark-content" translucent={true} backgroundColor={COLORS.bgColor} barStyle = "light-content"  />
-      
-      
+      <StatusBar barStyle="dark-content" translucent={true} backgroundColor={COLORS.bgColor} />
+
+
       <View style={styles.search_bar_container}>
-        <SearchBar 
-            placeholder="Search..  "
-            inputStyle={{ backgroundColor: '#34363A',}}
-            inputContainerStyle ={{height: 38, }}
-            bgColor ={'#34363A'}    
-            containerStyle ={styles.search_bar} 
-            searchIcon = {null}
-            round
-           />
+        <SearchBar
+          placeholder="Search..  "
+          inputStyle={{ backgroundColor: '#34363A', }}
+          inputContainerStyle={{ height: 38, }}
+          bgColor={'#34363A'}
+          containerStyle={styles.search_bar}
+          searchIcon={null}
+          round
+        />
       </View>
-       
-       
-       
-      <View style={{ 
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-     }}>
 
-          <TouchableOpacity onPress={() => navigation.navigate('CreatePost')}>
-              <View style={styles.paidpage_button}> 
-                <Text style={styles.paidpage_button_text}>{'Post a Task'}</Text>
-              </View>
-          </TouchableOpacity>
-              <View style={styles.paidpage_button}> 
-                <Text style={styles.paidpage_button_text}>{'Placeholder'}</Text>
-              </View>       
-      
-      </View>
-       
+
+      <FAB
+        placement='right'
+        size='large'
+        icon={{ name: 'add', color: 'white' }}
+        color="green"
+        style={{
+            marginBottom: 90,
+            zIndex: 20,
+        }}
+        onPress={() => navigation.navigate('CreatePost')}
+        buttonStyle={{borderRadius:1000,}}
+      />
+
       <Text style= {styles.scrollview_heading}>Type of Tasks</Text>
-     
 
+ 
       <View style={{
-          flexDirection: 'row',
-          marginBottom: 8,}}> 
-               <ScrollView
-                  horizontal={true}
-                  alwaysBounceHorizontal={true}
-                  style={{
-                  marginHorizontal: 20,
-                  flex: 1, 
-                  }}>
+        flexDirection: 'row',
+        marginBottom: 8,
+      }}>
+        <ScrollView
+          horizontal={true}
+          alwaysBounceHorizontal={true}
+          style={{
+            marginHorizontal: 20,
+            flex: 1,
+          }}>
 
-                  <View
-                      style={{
-                      position: "relative",
-                      width: 105,
-                      height: 105,
-                      marginVertical: 10,
-                      marginBottom: 2,
-                      marginHorizontal: 10,
-                      backgroundColor: '#7DAD2F',
-                      borderRadius: 18,
-                      alignItems: 'center',
-                    }}> 
+          <View
+            style={{
+              position: "relative",
+              width: 105,
+              height: 105,
+              marginVertical: 10,
+              marginBottom: 2,
+              marginHorizontal: 10,
+              backgroundColor: '#7DAD2F',
+              borderRadius: 18,
+              alignItems: 'center',
+            }}>
 
-                    <Image source={require('../../assets/icons/walk.png')} style={{
-                      height: 50,
-                      width: 50,
-                    marginTop: 18 
-                    }}/>
-                    <Text style={{
-                      color:'#fff',
-                      fontSize: 12,
-                      justifyContent:'center',
-                      textAlign: 'center',
-                      alignContent: 'center',
-                      paddingLeft:13,
-                      paddingRight:13,
+            <Image source={require('../../assets/icons/walk.png')} style={{
+              height: 50,
+              width: 50,
+              marginTop: 18
+            }} />
+            <Text style={{
+              color: '#fff',
+              fontSize: 12,
+              justifyContent: 'center',
+              textAlign: 'center',
+              alignContent: 'center',
+              paddingLeft: 13,
+              paddingRight: 13,
 
-                    }}>{'Outdoor Active'}</Text>
-                  </View>
+            }}>{'Outdoor Active'}</Text>
+          </View>
 
-                  <View
-                      style={{
-                      position: "relative",
-                      width: 105,
-                      height: 105,
-                      marginVertical: 10,
-                      marginBottom: 2,
-                      marginHorizontal: 10,
-                      backgroundColor: '#2FAD97',
-                      borderRadius: 18,
-                      alignItems: 'center',
-                    }}> 
+          <View
+            style={{
+              position: "relative",
+              width: 105,
+              height: 105,
+              marginVertical: 10,
+              marginBottom: 2,
+              marginHorizontal: 10,
+              backgroundColor: '#2FAD97',
+              borderRadius: 18,
+              alignItems: 'center',
+            }}>
 
-                    <Image source={require('../../assets/icons/walk.png')} style={{
-                      height: 50,
-                      width: 50,
-                    marginTop: 18 
-                    }}/>
-                    <Text style={{
-                      color:'#fff',
-                      fontSize: 12,
-                      justifyContent:'center',
-                      textAlign: 'center',
-                      alignContent: 'center',
-                      paddingLeft:13,
-                      paddingRight:13,
+            <Image source={require('../../assets/icons/walk.png')} style={{
+              height: 50,
+              width: 50,
+              marginTop: 18
+            }} />
+            <Text style={{
+              color: '#fff',
+              fontSize: 12,
+              justifyContent: 'center',
+              textAlign: 'center',
+              alignContent: 'center',
+              paddingLeft: 13,
+              paddingRight: 13,
 
-                    }}>{'Outdoor Mundane'}</Text>
-                  </View>
+            }}>{'Outdoor Mundane'}</Text>
+          </View>
 
-                  <View
-                      style={{
-                      position: "relative",
-                      width: 105,
-                      height: 105,
-                      marginVertical: 10,
-                      marginBottom: 2,
-                      marginHorizontal: 10,
-                      backgroundColor: '#2F80AD',
-                      borderRadius: 18,
-                      alignItems: 'center',
-                    }}> 
+          <View
+            style={{
+              position: "relative",
+              width: 105,
+              height: 105,
+              marginVertical: 10,
+              marginBottom: 2,
+              marginHorizontal: 10,
+              backgroundColor: '#2F80AD',
+              borderRadius: 18,
+              alignItems: 'center',
+            }}>
 
-                    <Image source={require('../../assets/icons/walk.png')} style={{
-                      height: 50,
-                      width: 50,
-                    marginTop: 18 
-                    }}/>
-                    <Text style={{
-                      color:'#fff',
-                      fontSize: 12,
-                      justifyContent:'center',
-                      textAlign: 'center',
-                      alignContent: 'center',
-                      marginTop: 10,
-                      paddingLeft:13,
-                      paddingRight:13,
+            <Image source={require('../../assets/icons/walk.png')} style={{
+              height: 50,
+              width: 50,
+              marginTop: 18
+            }} />
+            <Text style={{
+              color: '#fff',
+              fontSize: 12,
+              justifyContent: 'center',
+              textAlign: 'center',
+              alignContent: 'center',
+              marginTop: 10,
+              paddingLeft: 13,
+              paddingRight: 13,
 
-                    }}>{'Babysitting'}</Text>
-                  </View>
+            }}>{'Babysitting'}</Text>
+          </View>
 
-                  <View
-                      style={{
-                      position: "relative",
-                      width: 105,
-                      height: 105,
-                      marginVertical: 10,
-                      marginBottom: 2,
-                      marginHorizontal: 10,
-                      backgroundColor: '#ADA82F',
-                      borderRadius: 18,
-                      alignItems: 'center',
-                    }}> 
+          <View
+            style={{
+              position: "relative",
+              width: 105,
+              height: 105,
+              marginVertical: 10,
+              marginBottom: 2,
+              marginHorizontal: 10,
+              backgroundColor: '#ADA82F',
+              borderRadius: 18,
+              alignItems: 'center',
+            }}>
 
-                    <Image source={require('../../assets/icons/walk.png')} style={{
-                      height: 50,
-                      width: 50,
-                    marginTop: 18 
-                    }}/>
-                    <Text style={{
-                      color:'#fff',
-                      fontSize: 12,
-                      justifyContent:'center',
-                      textAlign: 'center',
-                      alignContent: 'center',
-                      paddingLeft:13,
-                      paddingRight:13,
+            <Image source={require('../../assets/icons/walk.png')} style={{
+              height: 50,
+              width: 50,
+              marginTop: 18
+            }} />
+            <Text style={{
+              color: '#fff',
+              fontSize: 12,
+              justifyContent: 'center',
+              textAlign: 'center',
+              alignContent: 'center',
+              paddingLeft: 13,
+              paddingRight: 13,
 
-                    }}>{'Maintenance Skills'}</Text>
-                  </View>
+            }}>{'Maintenance Skills'}</Text>
+          </View>
 
-                  <View
-                      style={{
-                      position: "relative",
-                      width: 105,
-                      height: 105,
-                      marginVertical: 10,
-                      marginBottom: 2,
-                      marginHorizontal: 10,
-                      backgroundColor: '#2F52AD',
-                      borderRadius: 18,
-                      alignItems: 'center',
-                    }}> 
+          <View
+            style={{
+              position: "relative",
+              width: 105,
+              height: 105,
+              marginVertical: 10,
+              marginBottom: 2,
+              marginHorizontal: 10,
+              backgroundColor: '#2F52AD',
+              borderRadius: 18,
+              alignItems: 'center',
+            }}>
 
-                    <Image source={require('../../assets/icons/walk.png')} style={{
-                      height: 50,
-                      width: 50,
-                    marginTop: 18 
-                    }}/>
-                    <Text style={{
-                      color:'#fff',
-                      fontSize: 12,
-                      justifyContent:'center',
-                      textAlign: 'center',
-                      alignContent: 'center',
-                      paddingLeft:13,
-                      paddingRight:13,
+            <Image source={require('../../assets/icons/walk.png')} style={{
+              height: 50,
+              width: 50,
+              marginTop: 18
+            }} />
+            <Text style={{
+              color: '#fff',
+              fontSize: 12,
+              justifyContent: 'center',
+              textAlign: 'center',
+              alignContent: 'center',
+              paddingLeft: 13,
+              paddingRight: 13,
 
-                    }}>{'Photoshop Skills'}</Text>
-                  </View>
+            }}>{'Photoshop Skills'}</Text>
+          </View>
 
-                  <View
-                      style={{
-                      position: "relative",
-                      width: 105,
-                      height: 105,
-                      marginVertical: 10,
-                      marginBottom: 2,
-                      marginHorizontal: 10,
-                      backgroundColor: '#A659CA',
-                      borderRadius: 18,
-                      alignItems: 'center',
-                    }}> 
-                  <TouchableOpacity onPress={() => navigation.navigate('MoreCategories')}>
-                
-                    <Image source={require('../../assets/icons/walk.png')} style={{
-                      marginLeft:18,
-                      height: 50,
-                      width: 50,
-                    marginTop: 18 
-                    }}/>
+          <View
+            style={{
+              position: "relative",
+              width: 105,
+              height: 105,
+              marginVertical: 10,
+              marginBottom: 2,
+              marginHorizontal: 10,
+              backgroundColor: '#A659CA',
+              borderRadius: 18,
+              alignItems: 'center',
+            }}>
+            <TouchableOpacity onPress={() => navigation.navigate('MoreCategories')}>
 
-                    <Text style={{
-                      color:'#fff',
-                      fontSize: 12,
-                      justifyContent:'center',
-                      textAlign: 'center',
-                      alignContent: 'center',
-                      paddingLeft:13,
-                      paddingRight:13,
+              <Image source={require('../../assets/icons/walk.png')} style={{
+                marginLeft: 18,
+                height: 50,
+                width: 50,
+                marginTop: 18
+              }} />
 
-                    }}>{'More Categories'}</Text>
-                       </TouchableOpacity>
-                  </View>
-                  
+              <Text style={{
+                color: '#fff',
+                fontSize: 12,
+                justifyContent: 'center',
+                textAlign: 'center',
+                alignContent: 'center',
+                paddingLeft: 13,
+                paddingRight: 13,
 
-              </ScrollView>
+              }}>{'More Categories'}</Text>
+            </TouchableOpacity>
+          </View>
+
+
+        </ScrollView>
       </View>
 
       <View style={{
+
           marginTop: 5,
-          height: width *1.05,
+          height: width *1.18,
       }}>
 
-          <Text style = {styles.flatlist_heading}>Posts</Text>
+        <Text style={styles.flatlist_heading}>Posts</Text>
+        
           <FlatList
-                data={postData}
-                        renderItem={({item}) => <PostItem title={item.title} image={item.image} location={item.location} />}
-                        keyExtractor={item => item.id}
-                ListEmptyComponent = {<Text>This is where post regarding various volunteering opportunities are kept</Text>} 
-                ItemSeperatorComponent = {postgaps}    
+            data={postData}
+            renderItem={({ item }) => <PostItem title={item.title} image={item.image} location={item.location} id={item._id}/>}
+            keyExtractor={item => item.id}
+            ListEmptyComponent={<Text>This is where post regarding various volunteering opportunities are kept</Text>}
+            ItemSeperatorComponent={postgaps}
           />
-         
-        </View>
+        
+      </View>
     </SafeAreaView>
-    
+
   );
 };
-
 export default Paid;

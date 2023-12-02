@@ -56,17 +56,7 @@ function Signup_Screen(props) {
                 <Text style={styles.Button_text}>Sign Up</Text>
             </View>
             </TouchableOpacity>
-        <View style={styles.Signup_with}>
-            <Text style={styles.Signup_screen_text2}>Continue with:</Text>
-            <TouchableOpacity onPress={()=>console.log("Signup through google")}>
-            <Image style={styles.Logo1_signup} source={require("../../assets/Google_Logo.png")} />
-
-            </TouchableOpacity>
-            <TouchableOpacity onPress={()=>console.log("Signup through facebook")}>
-            <Image style={styles.Logo2_signup} source={require('../../assets/Facebook_Logo.jpg')} />           
-
-            </TouchableOpacity>
-            </View>
+       
 
 
         </View>
@@ -74,12 +64,12 @@ function Signup_Screen(props) {
 }
 
 
-function Signup_page(props){
+const Signup_page = ({navigation}) => {
   return (
     <SafeAreaView>
 
     <StatusBar barStyle="dark-content" translucent={true} backgroundColor="#fef9e3" />
-    <TouchableOpacity style={styles.Back_button} onPress={()=>navigation.navigate.back()}>  
+    <TouchableOpacity style={styles.Back_button} onPress={() => navigation.goBack()}>    
 
     <Image  style={styles.Back_button} source={require('../../assets/icons/back.png')} />
     </TouchableOpacity>
