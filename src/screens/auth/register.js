@@ -25,12 +25,9 @@ function Signup_Screen(props) {
         setPassword(text);
     }
     const handleSubmit = async ()=>{
-        
+       await register({email, password, username, isOrg: false})
        
-        const res =await axios.post("http://10.0.2.2:5000/auth/register", {email, name:username, password, isOrg:false} )
-        console.log(res.data)
-        setUser(res.data)
-        setToken(res.data.token)
+       
     }
    
 

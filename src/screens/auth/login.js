@@ -4,9 +4,8 @@ import { ImageBackground, Image, StyleSheet, Text, View, Platform ,StatusBar, Di
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native'
 import styles from '../../Styles_holder';
-import {saveToken} from "../../components/asyncStorage"
-import {saveUser} from "../../components/asyncStorage"
-
+import { saveToken, saveUser } from '../../hooks/asyncStorage';
+import { login } from '../../apiCalls';
 
 function Login_screen(props) {
     const navigation = useNavigation();
@@ -27,13 +26,9 @@ function Login_screen(props) {
     }
     const handleSubmit = async ()=>{
         console.log(email, password)
-        
-        const res =await axios.post("http://10.0.2.2:5000/auth/login", {email, password} )
-        console.log(res.data)
-        saveToken(res.data.token)
-        saveUser(res.data)
+        const status= login(email, password)
         navigation.navigate('Home')
-
+        console.log(status)
     }
 
 
