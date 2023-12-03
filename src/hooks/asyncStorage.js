@@ -29,15 +29,15 @@ const deleteToken =async ()=>{
 
 const saveUser=async(user)=>{
     try{
-        await AsyncStorage.setItem("user", user)
+        await AsyncStorage.setItem("user", JSON.stringify(user))
     }catch(err){
         console.log(err)
     }
 }
-const getUser=async(user)=>{
+const getUser=async()=>{
     try{
       const user=  await AsyncStorage.getItem("user")
-      return user
+      return JSON.parse(user)
     }catch(err){
         console.log(err)
         return null

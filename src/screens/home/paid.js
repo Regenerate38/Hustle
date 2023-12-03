@@ -111,7 +111,7 @@ const Paid = ({ navigation }) => {
           }}
         >
           <Image
-            source={image || require("../../assets/img/carausel/image4.png")}
+            source={image ? {uri: `data:image/jpeg;base64,${image}`} : require("../../assets/img/carausel/image4.png")}
             style={styles.PostDetail_image}
           />
         </View>

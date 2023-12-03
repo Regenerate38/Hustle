@@ -1,14 +1,13 @@
 import { StyleSheet, Text, View, Dimensions, ScrollView, TouchableOpacity, Switch } from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { COLORS } from '../../constants';
 import { Image } from 'react-native-elements';
 import * as ImagePicker from 'expo-image-picker';
 import { useState } from 'react';
-import placeholder1 from "../../assets/img/recyclerview/placeholder.jpg";
+import placeholder1 from "../../assets/Landing_Page_Background.jpg";
 import { TextInput } from 'react-native-gesture-handler';
 import { getUser } from '../../hooks/asyncStorage';
 import { createPost } from '../../apiCalls';
-import toBase64 from '../../components/toBase64';
 
 
 const { width, height } = Dimensions.get("window");
@@ -17,8 +16,8 @@ const { width, height } = Dimensions.get("window");
 const CreatePost = ({ navigation }) => {
 
   const [elementVisible, setElementVisible] = useState(true);
-  const [image, setImage] = useState("../../assets/img/recyclerview/placeholder.jpg");
-  const [title, setTitle] = useState("");
+  const [image, setImage] = useState(undefined);
+  const [title, setTitle] = useState(undefined);
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
 
@@ -26,7 +25,11 @@ const CreatePost = ({ navigation }) => {
 
   const handlePost = async () => {
     const user = await getUser();
-    if(user) {createPost(title, description, user); console.log(user);}
+    if(user) {
+      createPost(title, description, user, image);
+      navigation.navigate("Paid");
+    }
+    else console.log("No user");
   }
   const imagePicker = async () => {
 
@@ -36,13 +39,14 @@ const CreatePost = ({ navigation }) => {
         mediaTypes: ImagePicker.MediaTypeOptions.Images,
         allowsEditing: true,
         aspect: [4, 3],
-        quality: 1,
+        quality: 0.05,
+        base64: true,
+
       });
+    setImage(result.assets[0].base64);
     }
 
-    catch (error) { }
-
-    setImage(toBase64(result.assets[0].uri));
+    catch (error) { console.log(error) }
   };
 
   const openMap = () => {
@@ -64,10 +68,11 @@ const CreatePost = ({ navigation }) => {
         height: 0.5825 * width,
         backgroundColor: '#34363A',
       }}>
-        {image && < Image source={{ uri: image } ? { uri: image } : placeholder1} style={{
+        {image && < Image source={image ? {uri: `data:image/jpeg;base64,${image}`} : placeholder1} style={{
           height: 0.5825 * width,
           objectFit: 'cover',
         }} />}
+
         <View style={{
           width: width,
           position: 'absolute',

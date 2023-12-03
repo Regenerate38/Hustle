@@ -519,7 +519,6 @@ PostDetailPage:{
 },
 
 PostDetailPage_image_container:{
-    width: 1.16*width,
     height: 0.7589*width,
     backgroundColor: '#34363A', 
 },

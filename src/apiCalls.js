@@ -1,6 +1,6 @@
 import axios from "axios";
-import { saveUser, saveToken, getToken } from "./hooks/asyncStorage";
-const baseUrl = "http://10.0.2.2:5000";
+import { saveUser, saveToken, getToken, getUser } from "./hooks/asyncStorage";
+const baseUrl = "http://192.168.1.69:5000";
 
 const returnConfig = async () => {
   const token = await getToken();
@@ -41,6 +41,8 @@ const login = async (email, password) => {
     console.log(res.data);
     await saveToken(res.data.token);
     await saveUser(res.data);
+    const temp = await getUser();
+    console.log(temp);
     if (res.data.token) return true;
     else return false;
   } catch (err) {
@@ -65,11 +67,12 @@ const register = async ({ email, password, name, isOrg }) => {
   }
 };
 
-const createPost = async (title, description, user) => {
-  console.log(user);
+const createPost = async (title, description, user, image) => {
+  const config = await returnConfig();
+  console.log(`${baseUrl}/${user.isOrg ? `community` : `paid`}`);
   const res = await axios.post(
     `${baseUrl}/${user.isOrg ? `community` : `paid`}`,
-    { title, description, user }
+    { title, desc: description, user, image }, config
   );
   console.log(res);
 };

@@ -21,7 +21,7 @@ const Postdetail = ({ route, navigation }) => {
     const prevRoute = routes[routes.length - 2];
     let tempJobDetail;
     if (prevRoute.name === "Paid") {
-      tempJobDetail = await getPaidJob(route.params.id, );
+      tempJobDetail = await getPaidJob(route.params.id);
       setjobDetail(tempJobDetail);
     } else if (prevRoute.name === "Volunteer") {
       tempJobDetail = await getCommunityJob(route.params.id);
@@ -41,12 +41,11 @@ const Postdetail = ({ route, navigation }) => {
           >
             <Image
               source={
-                jobDetail.images[0] ||
-                require("../../../src/assets/img/recyclerview/post-image.jpg")
+                jobDetail.image ? {uri: `data:image/jpeg;base64,${jobDetail.image}`} : require("../../../src/assets/img/recyclerview/post-image.jpg")
               }
               style={{
                 height: 0.7589 * width,
-                objectFit: "cover",
+                contain: "cover"
               }}
             />
           </View>

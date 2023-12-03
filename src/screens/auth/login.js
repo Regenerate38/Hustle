@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
-import { ImageBackground, Image, StyleSheet, Text, View, Platform, StatusBar, Dimensions, TouchableOpacity, SafeAreaView, TextInput } from 'react-native';
-import axios from 'axios';
-import { useNavigation } from '@react-navigation/native'
-import styles from '../../Styles_holder';
-import { saveToken } from "../../components/asyncStorage"
-import { saveUser } from "../../components/asyncStorage"
+// import { ImageBackground, Image, StyleSheet, Text, View, Platform, StatusBar, Dimensions, TouchableOpacity, SafeAreaView, TextInput } from 'react-native';
+// import axios from 'axios';
+// import { useNavigation } from '@react-navigation/native'
+// import styles from '../../Styles_holder';
+// import { saveToken } from "../../components/asyncStorage"
+// import { saveUser } from "../../components/asyncStorage"
 
 import {
   ImageBackground,
