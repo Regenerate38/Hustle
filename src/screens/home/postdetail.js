@@ -5,6 +5,7 @@ import {
   Dimensions,
   ScrollView,
   TouchableOpacity,
+  ActivityIndicator
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Image } from "react-native-elements";
@@ -159,6 +160,9 @@ const Postdetail = ({ route, navigation }) => {
           </View>
         </View>
       )}
+      {!jobDetail &&             <View>
+              <ActivityIndicator style={{ height: height }} color="white" size={70} />
+            </View>}
     </View>
   );
 };

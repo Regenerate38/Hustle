@@ -19,14 +19,14 @@ const CreatePost = ({ navigation }) => {
   const [image, setImage] = useState(undefined);
   const [title, setTitle] = useState(undefined);
   const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
+  const [pay, setPay] = useState("");
 
 
 
   const handlePost = async () => {
     const user = await getUser();
     if(user) {
-      createPost(title, description, user, image);
+      createPost(title, description, user, image, pay);
       navigation.navigate("Paid");
     }
     else console.log("No user");
@@ -242,7 +242,7 @@ const CreatePost = ({ navigation }) => {
             width: 0.250 * width,
             textAlign: 'center',
           }} > */}
-            <TextInput multiline={false} placeholder='Add Price' onChangeText={e => setPrice(e)} placeholderTextColor="#808080" style={{
+            <TextInput multiline={false} placeholder='Add Price' onChangeText={e => setPay(e)} placeholderTextColor="#808080" style={{
               alignSelf: 'left',
               marginLeft: 20,
               marginTop: 20,

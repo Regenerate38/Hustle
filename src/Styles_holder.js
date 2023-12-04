@@ -678,7 +678,7 @@ Volunteer_flatlist_container:{
 Volunteer_PostDetail_main:{
     position: "relative",
     width: width * 0.825,
-    height: 0.650*width,
+    height: 0.550*width,
     marginVertical: verticalScale(10),
     marginBottom: verticalScale(2),
     marginHorizontal: width * 0.05,

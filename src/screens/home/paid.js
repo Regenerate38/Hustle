@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   StatusBar,
   ScrollView,
+  ActivityIndicator
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { COLORS } from "../../constants";
@@ -14,20 +15,28 @@ import { Image, SearchBar, FAB } from "react-native-elements";
 import { SafeAreaView } from "react-native";
 import styles from "../../Styles_holder";
 import { getPaidJobs } from "../../apiCalls";
-const { width } = Dimensions.get("window");
+import { useIsFocused } from "@react-navigation/native";
+// import AnimatedLoader from "react-native-animated-loader";
+// import {createShimmerPlaceholder} from "react-native-shimmer-placeholder";
+// import LinearGradient from "react-native-linear-gradient";
 
+const { width } = Dimensions.get("window");
 const POST_WIDTH = width * 0.825;
 const POST_HEIGHT = 0.5 * width;
 
 const Paid = ({ navigation }) => {
+  const isFocused = useIsFocused();
+
   const [postData, setPostData] = useState([]);
   useEffect(() => {
     async function myFunc() {
-      let foundJobs = await getPaidJobs();
-      setPostData(foundJobs.jobs);
+      if (isFocused) {
+        let foundJobs = await getPaidJobs();
+        setPostData(foundJobs.jobs);
+      };
     }
     myFunc();
-  }, []);
+  }, [isFocused]);
 
   postgaps = () => {
     return (
@@ -98,7 +107,7 @@ const Paid = ({ navigation }) => {
   //        }
   //   ];
 
-  const PostItem = ({ title, image, location, id }) => (
+  const PostItem = ({ title, image, location, id, pay }) => (
     <TouchableOpacity
       onPress={() => {
         navigation.navigate("PostDetail", { id: id });
@@ -111,7 +120,7 @@ const Paid = ({ navigation }) => {
           }}
         >
           <Image
-            source={image ? {uri: `data:image/jpeg;base64,${image}`} : require("../../assets/img/carausel/image4.png")}
+            source={image ? { uri: `data:image/jpeg;base64,${image}` } : require("../../assets/img/carausel/image4.png")}
             style={styles.PostDetail_image}
           />
         </View>
@@ -137,7 +146,7 @@ const Paid = ({ navigation }) => {
               style={styles.PostDetail_location_icon}
             />
 
-            <Text style={styles.PostDetail_price_text}>Rs 100</Text>
+            <Text style={styles.PostDetail_price_text}>{`Rs ${pay}` || "Rs 100"}</Text>
           </View>
         </View>
       </View>
@@ -445,17 +454,19 @@ const Paid = ({ navigation }) => {
               image={item.image}
               location={item.location}
               id={item._id}
+              pay={item.pay}
             />
           )}
           keyExtractor={(item) => item.id}
           ListEmptyComponent={
-            <Text>
-              This is where post regarding various volunteering opportunities
-              are kept
-            </Text>
+            <View>
+              <ActivityIndicator style={{ height: width }} color="white" size={70} />
+            </View>
           }
           ItemSeperatorComponent={postgaps}
         />
+
+
       </View>
     </SafeAreaView>
   );

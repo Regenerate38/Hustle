@@ -6,6 +6,7 @@ import ProgressBar from 'react-native-progress/Bar';
 import styles from '../../Styles_holder';
 import { useNavigation } from '@react-navigation/native';
 import { AuthContext } from '../../hooks/context';
+import { saveToken, saveUser } from '../../hooks/asyncStorage';
 
 import { ScrollView } from 'react-native';
 
@@ -15,9 +16,9 @@ const { width, height } = Dimensions.get("window");
 const Profile = () => {
   const navigation = useNavigation();
   const auth = useContext(AuthContext);
-  const logOut = () => {
-    auth.logOut();
-    auth.user = undefined;
+  const logOut = async() => {
+    await saveUser("");
+    await saveToken("");
     navigation.navigate('Landing');
   };
   return (

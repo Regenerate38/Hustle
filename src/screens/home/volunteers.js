@@ -57,7 +57,7 @@ const Volunteers = ({ navigation }) => {
             />
           </View>
 
-          <View
+          {/* <View
             style={{
               flex: 1,
               flexDirection: "row",
@@ -81,7 +81,7 @@ const Volunteers = ({ navigation }) => {
                 Certificates
               </Text>
             </TouchableOpacity>
-          </View>
+          </View> */}
         </View>
       </View>
     </TouchableOpacity>
