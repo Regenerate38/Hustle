@@ -1,6 +1,6 @@
 import axios from "axios";
 import { saveUser, saveToken, getToken, getUser } from "./hooks/asyncStorage";
-const baseUrl = "http://192.168.196.67:5000";
+const baseUrl = "http://10.0.2.2:5000";
 
 const returnConfig = async () => {
   const token = await getToken();
