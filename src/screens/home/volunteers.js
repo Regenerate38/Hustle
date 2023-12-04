@@ -130,7 +130,6 @@ const Volunteers = ({ navigation }) => {
 
       <SafeAreaView style={styles.Volunteer_flatlist_container}>
         <Text style={styles.flatlist_heading}>Posts</Text>
-        {communityJobs && (
           <FlatList
             data={communityJobs}
             renderItem={({ item }) => (
@@ -152,7 +151,6 @@ const Volunteers = ({ navigation }) => {
             ItemSeperatorComponent={postgaps}
             style={{ zIndex: 5 }}
           />
-        )}
       </SafeAreaView>
     </SafeAreaView>
   );
