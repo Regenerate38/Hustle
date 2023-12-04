@@ -7,6 +7,7 @@ import {
   FlatList,
   Dimensions,
   TouchableOpacity,
+  ActivityIndicator
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import { COLORS } from "../../constants";
@@ -37,7 +38,7 @@ const Volunteers = ({ navigation }) => {
     >
       <View style={styles.Volunteer_PostDetail_main}>
         <View style={{ height: 0.57 * 0.628 * width }}>
-          <Image source={image} style={styles.Volunteer_PostDetail_image} />
+          <Image source={image ? { uri: `data:image/jpeg;base64,${image}` } : require("../../assets/img/carausel/image4.png")} style={styles.Volunteer_PostDetail_image} />
         </View>
 
         <View style={styles.Volunteer_PostDetail_content}>
@@ -144,10 +145,9 @@ const Volunteers = ({ navigation }) => {
             )}
             keyExtractor={(item) => item._id}
             ListEmptyComponent={
-              <Text>
-                This is where post regarding various volunteering opportunities
-                are kept
-              </Text>
+              <View>
+              <ActivityIndicator style={{ height: width }} color="white" size={70} />
+            </View>
             }
             ItemSeperatorComponent={postgaps}
             style={{ zIndex: 5 }}

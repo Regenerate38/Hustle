@@ -41,10 +41,14 @@ function Login_screen(props) {
     setPassword(text);
   };
   const handleSubmit = async () => {
-    console.log(email, password);
-    const status = await login(email, password);
-    if (status) navigation.navigate("Home");
-    else console.log("error in login");
+    if(!email || !password){
+      console.log("required")
+    }else{
+      console.log(email, password);
+      const status = await login(email, password);
+      if (status) navigation.navigate("Home");
+      else console.log("error in login");
+    };
   };
 
   return (

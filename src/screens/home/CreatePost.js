@@ -242,7 +242,7 @@ const CreatePost = ({ navigation }) => {
             width: 0.250 * width,
             textAlign: 'center',
           }} > */}
-            <TextInput multiline={false} placeholder='Add Price' onChangeText={e => setPay(e)} placeholderTextColor="#808080" style={{
+             <TextInput multiline={false} placeholder='Add Price' onChangeText={e => setPay(e)} placeholderTextColor="#808080" style={{
               alignSelf: 'left',
               marginLeft: 20,
               marginTop: 20,

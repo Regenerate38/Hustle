@@ -30,10 +30,14 @@ function Signup_Screen(props) {
         setPassword(text);
     }
     const handleSubmit = async ()=>{
+        if(!email || !password || !username ){
+            console.log("required")
+          }else{
        const status= await register({email, password, name:username, isOrg: isSelected})
        console.log(status);
        if(status) navigation.navigate("home")
        else console.log("error in register")
+          }
     }
    
 

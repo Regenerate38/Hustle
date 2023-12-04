@@ -1,6 +1,6 @@
 import axios from "axios";
 import { saveUser, saveToken, getToken, getUser } from "./hooks/asyncStorage";
-const baseUrl = "http://192.168.1.69:5000";
+const baseUrl = "http://192.168.196.67:5000";
 
 const returnConfig = async () => {
   const token = await getToken();
@@ -15,7 +15,6 @@ const returnConfig = async () => {
 const getPaidJobs = async () => {
   const config = await returnConfig();
   const res = await axios.get(`${baseUrl}/paid`, config);
-  console.log(res.data);
   return res.data;
 };
 

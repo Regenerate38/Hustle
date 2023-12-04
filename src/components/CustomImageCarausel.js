@@ -77,7 +77,7 @@ const CustomImageCarausel = ({ data, navigation }) => {
               >
                 <ImageBackground
                   source={
-                    item.image || require("../assets/img/carausel/image1.png")
+                    item.image ? { uri: `data:image/jpeg;base64,${item.image}` } : require("../assets/img/carausel/image4.png")
                   }
                   style={styles.image}
                 >
