@@ -66,12 +66,12 @@ const register = async ({ email, password, name, isOrg }) => {
   }
 };
 
-const createPost = async (title, description, user, image, pay) => {
+const createPost = async (title, description, user, image, pay, location) => {
   const config = await returnConfig();
   console.log(`${baseUrl}/${user.isOrg ? `community` : `paid`}`);
   const res = await axios.post(
     `${baseUrl}/${user.isOrg ? `community` : `paid`}`,
-    { title, desc: description, user, image, pay }, config
+    { title, desc: description, user, image, pay , location}, config
   );
   console.log(res);
 };

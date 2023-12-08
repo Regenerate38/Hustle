@@ -16,9 +16,11 @@ import { Image, SearchBar } from "react-native-elements";
 import styles from "../../Styles_holder";
 import { getCommunityJobs } from "../../apiCalls";
 const { width } = Dimensions.get("window");
+import { useIsFocused } from "@react-navigation/native";
 
 const Volunteers = ({ navigation }) => {
   const [communityJobs, setCommunityJobs] = useState(undefined);
+  const isFocused = useIsFocused()
 
   useEffect(() => {
     async function getJobs() {
@@ -26,7 +28,7 @@ const Volunteers = ({ navigation }) => {
       setCommunityJobs(communityJobs.jobs);
     }
     getJobs();
-  }, []);
+  }, [isFocused]);
 
   useEffect(() => console.log(communityJobs), [communityJobs]);
 

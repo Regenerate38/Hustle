@@ -19,9 +19,15 @@ import { ImageBackground } from "react-native";
 import styles from "../Styles_holder";
 
 const CustomImageCarausel = ({ data, navigation }) => {
+  const reversedArray = []
+
+for(let i = data.length - 1; i >= 0; i--) {
+  const valueAtIndex = data[i]
+  reversedArray.push(valueAtIndex)
+}
   const [NewData] = useState([
     { key: "spacer-left" },
-    ...data,
+    ...reversedArray,
     { key: "spacer-right" },
   ]);
   const { width } = useWindowDimensions();

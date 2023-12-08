@@ -227,11 +227,13 @@ const Paid = ({ navigation }) => {
             }}
           >
             <Image
-              source={require("../../assets/icons/walk.png")}
+              source={require("../../assets/icons/delivery.png")}
               style={{
                 height: 50,
                 width: 50,
                 marginTop: 18,
+                tintColor: '#ffffff',
+                marginBottom: 5
               }}
             />
             <Text
@@ -245,7 +247,7 @@ const Paid = ({ navigation }) => {
                 paddingRight: 13,
               }}
             >
-              {"Outdoor Active"}
+              {"Delivery"}
             </Text>
           </View>
 
@@ -263,11 +265,13 @@ const Paid = ({ navigation }) => {
             }}
           >
             <Image
-              source={require("../../assets/icons/walk.png")}
+              source={require("../../assets/icons/queuing.png")}
               style={{
                 height: 50,
                 width: 50,
                 marginTop: 18,
+                marginBottom: 5,
+                tintColor: "#ffffff"
               }}
             />
             <Text
@@ -281,44 +285,7 @@ const Paid = ({ navigation }) => {
                 paddingRight: 13,
               }}
             >
-              {"Outdoor Mundane"}
-            </Text>
-          </View>
-
-          <View
-            style={{
-              position: "relative",
-              width: 105,
-              height: 105,
-              marginVertical: 10,
-              marginBottom: 2,
-              marginHorizontal: 10,
-              backgroundColor: "#2F80AD",
-              borderRadius: 18,
-              alignItems: "center",
-            }}
-          >
-            <Image
-              source={require("../../assets/icons/walk.png")}
-              style={{
-                height: 50,
-                width: 50,
-                marginTop: 18,
-              }}
-            />
-            <Text
-              style={{
-                color: "#fff",
-                fontSize: 12,
-                justifyContent: "center",
-                textAlign: "center",
-                alignContent: "center",
-                marginTop: 10,
-                paddingLeft: 13,
-                paddingRight: 13,
-              }}
-            >
-              {"Babysitting"}
+              {"Queuing"}
             </Text>
           </View>
 
@@ -336,11 +303,13 @@ const Paid = ({ navigation }) => {
             }}
           >
             <Image
-              source={require("../../assets/icons/walk.png")}
+              source={require("../../assets/icons/digital.png")}
               style={{
                 height: 50,
                 width: 50,
                 marginTop: 18,
+                marginBottom: 5,
+                tintColor: "#ffffff"
               }}
             />
             <Text
@@ -354,7 +323,7 @@ const Paid = ({ navigation }) => {
                 paddingRight: 13,
               }}
             >
-              {"Maintenance Skills"}
+              {"Digital"}
             </Text>
           </View>
 
@@ -377,6 +346,7 @@ const Paid = ({ navigation }) => {
                 height: 50,
                 width: 50,
                 marginTop: 18,
+                marginBottom: 5
               }}
             />
             <Text
@@ -390,51 +360,11 @@ const Paid = ({ navigation }) => {
                 paddingRight: 13,
               }}
             >
-              {"Photoshop Skills"}
+              {"Service"}
             </Text>
           </View>
 
-          <View
-            style={{
-              position: "relative",
-              width: 105,
-              height: 105,
-              marginVertical: 10,
-              marginBottom: 2,
-              marginHorizontal: 10,
-              backgroundColor: "#A659CA",
-              borderRadius: 18,
-              alignItems: "center",
-            }}
-          >
-            <TouchableOpacity
-              onPress={() => navigation.navigate("MoreCategories")}
-            >
-              <Image
-                source={require("../../assets/icons/walk.png")}
-                style={{
-                  marginLeft: 18,
-                  height: 50,
-                  width: 50,
-                  marginTop: 18,
-                }}
-              />
-
-              <Text
-                style={{
-                  color: "#fff",
-                  fontSize: 12,
-                  justifyContent: "center",
-                  textAlign: "center",
-                  alignContent: "center",
-                  paddingLeft: 13,
-                  paddingRight: 13,
-                }}
-              >
-                {"More Categories"}
-              </Text>
-            </TouchableOpacity>
-          </View>
+          
         </ScrollView>
       </View>
 

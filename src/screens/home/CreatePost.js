@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Dimensions, ScrollView, TouchableOpacity, Switch } from 'react-native';
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { COLORS } from '../../constants';
 import { Image } from 'react-native-elements';
 import * as ImagePicker from 'expo-image-picker';
@@ -8,6 +8,7 @@ import placeholder1 from "../../assets/Landing_Page_Background.jpg";
 import { TextInput } from 'react-native-gesture-handler';
 import { getUser } from '../../hooks/asyncStorage';
 import { createPost } from '../../apiCalls';
+import { LocationContext } from '../../hooks/context';
 
 
 const { width, height } = Dimensions.get("window");
@@ -20,6 +21,7 @@ const CreatePost = ({ navigation }) => {
   const [title, setTitle] = useState(undefined);
   const [description, setDescription] = useState("");
   const [pay, setPay] = useState("");
+  const [location, setLocation]= useContext(LocationContext);
   const [user, setUser] = useState({});
 
   useEffect(()=> {
@@ -34,7 +36,7 @@ const CreatePost = ({ navigation }) => {
   const handlePost = async () => {
     // const user = await getUser();
     if(user) {
-      createPost(title, description, user, image, pay);
+      createPost(title, description, user, image, pay, location);
       navigation.navigate("Paid");
     }
     else console.log("No user");
@@ -280,7 +282,9 @@ borderRadius: 24,
         fontSize: 15,
         fontWeight: '900',
       }}>Location</Text>
-      <Image
+      
+    </TouchableOpacity>
+    <Image
         source={require('../../assets/icons/location.png')}
         resizeMode='contain'
         style={{
@@ -290,7 +294,6 @@ borderRadius: 24,
           marginLeft: 3,
           tintColor: '#b4b4b4'
         }} />
-    </TouchableOpacity>
   </View>
   {/* <View style={{
     flexDirection: 'row',

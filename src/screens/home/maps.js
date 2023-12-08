@@ -1,19 +1,34 @@
+
 import { StyleSheet, Text, View, Dimensions, ScrollView, TouchableOpacity, Switch, Alert } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { COLORS } from '../../constants';
 
 import MapView, { Marker, Region } from 'react-native-maps';
 import styles from '../../Styles_holder'
+import { getPaidJobs, getCommunityJobs } from '../../apiCalls';
+import { useIsFocused } from '@react-navigation/native';
 
 const { width, height } = Dimensions.get("window");
 
 const Maps = () => {
+  const isFocused = useIsFocused();
 
   const onRegionChange = (region) => {
-    console.log(region)
+   // console.log(region)
   }
+  const [allJobs, setAllJobs] = useState([])
+  useEffect(()=>{
+   async function getLocations(){
+      const jobs = await getPaidJobs();
+      const community = await getCommunityJobs();
+      const allJobs= [...jobs, ...community]
+      let found =allJobs.map((job)=>job.location)
+      setAllJobs(found)
+    }
+   if(isFocused) getLocations();
+  },[isFocused])
 
-  const [DraggableMarkerCoordinates, setDraggableMarkerCoordinates] = useState([{
+  const [markerPoints, setmarkerPoints] = useState([{
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
     latitude: 27.7815,
@@ -48,7 +63,7 @@ const Maps = () => {
     longitudeDelta: 0.0421,
     latitude: 27.7115,
     longitude: 85.3251,
-  },
+  }, ...allJobs
 ]
   );
   
@@ -79,8 +94,8 @@ const Maps = () => {
         <Marker
           // id='marker'
           // draggable
-          coordinate={DraggableMarkerCoordinates[0]}
-          // onDragEnd={(e) => setDraggableMarkerCoordinates(prev => [e.nativeEvent.coordinate, ...prev])}
+          coordinate={markerPoints[0]}
+          // onDragEnd={(e) => setmarkerPoints(prev => [e.nativeEvent.coordinate, ...prev])}
           pinColor='#112233'
           // onPress={()=>onMarkerSelected(marker)}
           onPress={onMarkerPressed}
@@ -88,8 +103,8 @@ const Maps = () => {
         <Marker
           // id='marker'
           // draggable
-          coordinate={DraggableMarkerCoordinates[1]}
-          //onDragEnd={(e) => setDraggableMarkerCoordinates(e.nativeEvent.coordinate)}
+          coordinate={markerPoints[1]}
+          //onDragEnd={(e) => setmarkerPoints(e.nativeEvent.coordinate)}
           pinColor='#112233'
           // onPress={()=>onMarkerSelected(marker)}
           onPress={onMarkerPressed}
@@ -97,8 +112,8 @@ const Maps = () => {
         <Marker
           // id='marker'
           // draggable
-          coordinate={DraggableMarkerCoordinates[2]}
-          //onDragEnd={(e) => setDraggableMarkerCoordinates(e.nativeEvent.coordinate)}
+          coordinate={markerPoints[2]}
+          //onDragEnd={(e) => setmarkerPoints(e.nativeEvent.coordinate)}
           pinColor='#112233'
           // onPress={()=>onMarkerSelected(marker)}
           onPress={onMarkerPressed}
@@ -106,24 +121,24 @@ const Maps = () => {
         <Marker
         // id='marker'
         // draggable
-        coordinate={DraggableMarkerCoordinates[3]}
-        //onDragEnd={(e) => setDraggableMarkerCoordinates(e.nativeEvent.coordinate)}
+        coordinate={markerPoints[3]}
+        //onDragEnd={(e) => setmarkerPoints(e.nativeEvent.coordinate)}
         pinColor='#112233'
         // onPress={()=>onMarkerSelected(marker)}
         onPress={onMarkerPressed}
       /><Marker
       // id='marker'
       // draggable
-      coordinate={DraggableMarkerCoordinates[4]}
-      //onDragEnd={(e) => setDraggableMarkerCoordinates(e.nativeEvent.coordinate)}
+      coordinate={markerPoints[4]}
+      //onDragEnd={(e) => setmarkerPoints(e.nativeEvent.coordinate)}
       pinColor='#112233'
       // onPress={()=>onMarkerSelected(marker)}
       onPress={onMarkerPressed}
     /><Marker
     // id='marker'
     // draggable
-    coordinate={DraggableMarkerCoordinates[5]}
-    //onDragEnd={(e) => setDraggableMarkerCoordinates(e.nativeEvent.coordinate)}
+    coordinate={markerPoints[5]}
+    //onDragEnd={(e) => setmarkerPoints(e.nativeEvent.coordinate)}
     pinColor='#112233'
     // onPress={()=>onMarkerSelected(marker)}
     onPress={onMarkerPressed}

@@ -15,13 +15,7 @@ const { width, height } = Dimensions.get("window");
 const LocationPicker = ({ navigation }) => {
   const [coordinate, setCoordinate] = useState({})
 
-  //const [DraggableMarkerCoordinates, setDraggableMarkerCoordinates] = useContext(LocationContext);
-  const [DraggableMarkerCoordinates, setDraggableMarkerCoordinates] = useState({
-    latitudeDelta: 0.0922,
-    longitudeDelta: 0.0421,
-    latitude: 27.7215,
-    longitude: 85.3201,
-  });
+  const[location, setLocation] = useContext(LocationContext);
 
   const onMarkerPressed = (marker) => {
     setCoordinate(marker.nativeEvent.coordinate)
@@ -29,8 +23,8 @@ const LocationPicker = ({ navigation }) => {
   }
 
   const backHandler = () => {
-    console.log(DraggableMarkerCoordinates)
-    navigation.navigate("CreatePost", { coordinate: DraggableMarkerCoordinates });
+    console.log(location)
+    navigation.navigate("CreatePost", { coordinate: setLocation });
   }
 
 
@@ -40,7 +34,7 @@ const LocationPicker = ({ navigation }) => {
         flex: 1
       }}>
       <View style={styles.PostDetailPage_back_container}>
-        <Image source={require('../../assets/icons/back.png')}
+        <Image source={require('../../assets/icons/tick-outline.png')}
           style={styles.PostDetailPage_back} onPress={backHandler} />
       </View>
       <MapView
@@ -55,8 +49,8 @@ const LocationPicker = ({ navigation }) => {
       >
         <Marker
           draggable
-          coordinate={DraggableMarkerCoordinates}
-          onMarkerDragEnd={(e) => setDraggableMarkerCoordinates(e.nativeEvent.coordinate)}
+          coordinate={location}
+          onMarkerDragEnd={(e) => setLocation(e.nativeEvent.coordinate)}
           pinColor='#FF0000'
           onPress={onMarkerPressed}
         />
