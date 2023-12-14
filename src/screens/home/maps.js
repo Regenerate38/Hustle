@@ -12,22 +12,6 @@ const { width, height } = Dimensions.get("window");
 
 const Maps = () => {
   const isFocused = useIsFocused();
-
-  const onRegionChange = (region) => {
-   // console.log(region)
-  }
-  const [allJobs, setAllJobs] = useState([])
-  useEffect(()=>{
-   async function getLocations(){
-      const jobs = await getPaidJobs();
-      const community = await getCommunityJobs();
-      const allJobs= [...jobs, ...community]
-      let found =allJobs.map((job)=>job.location)
-      setAllJobs(found)
-    }
-   if(isFocused) getLocations();
-  },[isFocused])
-
   const [markerPoints, setmarkerPoints] = useState([{
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
@@ -63,9 +47,26 @@ const Maps = () => {
     longitudeDelta: 0.0421,
     latitude: 27.7115,
     longitude: 85.3251,
-  }, ...allJobs
-]
+  }
+  ]
   );
+
+  const onRegionChange = (region) => {
+   // console.log(region)
+  }
+  useEffect(()=>{
+   async function getLocations(){
+      const jobs = await getPaidJobs();
+      const community = await getCommunityJobs();
+      const allJobs= [...jobs, ...community]
+      console.log(allJobs)
+      let found =allJobs.map((job)=>job.location)
+      console.log(found)
+      setmarkerPoints([...markerPoints, ...found])      
+    }
+   if(isFocused) getLocations();
+  },[isFocused])
+
   
 
   const onMarkerPressed = (ev) => {
@@ -91,7 +92,15 @@ const Maps = () => {
         }}
 
       >
-        <Marker
+        {markerPoints.map((location)=>{
+          return (<Marker
+           
+            coordinate={location}
+            pinColor="#112233"
+            onPress={onMarkerPressed}
+          />)
+        })}
+        {/* <Marker
           // id='marker'
           // draggable
           coordinate={markerPoints[0]}
@@ -142,7 +151,7 @@ const Maps = () => {
     pinColor='#112233'
     // onPress={()=>onMarkerSelected(marker)}
     onPress={onMarkerPressed}
-  />
+  /> */}
       </MapView>
 
 

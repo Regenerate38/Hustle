@@ -36,6 +36,7 @@ const getCommunityJob = async (id) => {
 };
 const login = async (email, password) => {
   try {
+    console.log("Pressed log in")
     const res = await axios.post(`${baseUrl}/auth/login`, { email, password });
     console.log(res.data);
     await saveToken(res.data.token);
@@ -73,7 +74,8 @@ const createPost = async (title, description, user, image, pay, location) => {
     `${baseUrl}/${user.isOrg ? `community` : `paid`}`,
     { title, desc: description, user, image, pay , location}, config
   );
-  console.log(res);
+  console.log(res.location)
+  // console.log(res);
 };
 
 export {
