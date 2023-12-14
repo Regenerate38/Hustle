@@ -30,8 +30,7 @@ const Volunteers = ({ navigation }) => {
     getJobs();
   }, [isFocused]);
 
-  useEffect(() => console.log(communityJobs), [communityJobs]);
-
+ 
   const Item = ({ title, image, location, id }) => (
     <TouchableOpacity
       onPress={() => {

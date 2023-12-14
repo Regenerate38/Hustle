@@ -14,14 +14,14 @@ import { LocationContext } from '../../hooks/context';
 const { width, height } = Dimensions.get("window");
 
 
-const CreatePost = ({ navigation }) => {
+const CreatePost = ({ navigation , route}) => {
 
   const [elementVisible, setElementVisible] = useState(true);
   const [image, setImage] = useState(undefined);
   const [title, setTitle] = useState(undefined);
   const [description, setDescription] = useState("");
   const [pay, setPay] = useState("");
-  const [location, setLocation]= useContext(LocationContext);
+  const [location, setLocation]= useState(null)
   const [user, setUser] = useState({});
 
   useEffect(()=> {
@@ -36,7 +36,11 @@ const CreatePost = ({ navigation }) => {
   const handlePost = async () => {
     // const user = await getUser();
     if(user) {
+      const {coordinate: location} = route.params
+
       createPost(title, description, user, image, pay, location);
+      
+     
       navigation.navigate("Paid");
     }
     else console.log("No user");
@@ -44,6 +48,7 @@ const CreatePost = ({ navigation }) => {
   const imagePicker = async () => {
 
     try {
+  
       await ImagePicker.requestMediaLibraryPermissionsAsync();
       result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.Images,
@@ -281,7 +286,7 @@ borderRadius: 24,
         paddingTop: 25,
         fontSize: 15,
         fontWeight: '900',
-      }}>Location</Text>
+      }}>Location: {route.params&&   `latitude: ${Math.floor(route.params.coordinate.latitude*1000)/1000}, longitude: ${Math.floor(route.params.coordinate.longitude*1000)/1000}`}</Text>
       
     </TouchableOpacity>
     <Image

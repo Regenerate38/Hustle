@@ -14,6 +14,7 @@ const returnConfig = async () => {
 
 const getPaidJobs = async () => {
   const config = await returnConfig();
+  console.log("paid called")
   const res = await axios.get(`${baseUrl}/paid`, config);
   return res.data;
 };

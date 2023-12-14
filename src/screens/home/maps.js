@@ -56,14 +56,18 @@ const Maps = () => {
   }
   useEffect(()=>{
    async function getLocations(){
-      const jobs = await getPaidJobs();
+    if(isFocused){
+
+      const paid = await getPaidJobs();
+
+      
       const community = await getCommunityJobs();
-      const allJobs= [...jobs, ...community]
-    
+      const allJobs = [...paid.jobs, ...community.jobs]
       let found =allJobs.map((job)=>job.location)
       console.log(found)
-      setmarkerPoints([...markerPoints, ...found])      
+      setmarkerPoints(found)      
     }
+  }
     getLocations();
   },  [isFocused])
 
