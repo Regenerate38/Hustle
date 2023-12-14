@@ -7,51 +7,58 @@ import MapView, { Marker, Region } from 'react-native-maps';
 import styles from '../../Styles_holder'
 import { getPaidJobs, getCommunityJobs } from '../../apiCalls';
 import { useIsFocused } from '@react-navigation/native';
+import Postdetail from './postdetail';
 
 const { width, height } = Dimensions.get("window");
 
-const Maps = () => {
+const Maps = ({navigation}) => {
   const isFocused = useIsFocused();
   const [paidMarkerPoints, setPMarkerpoints] = useState([
-    {
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421,
-      latitude: 27.7815,
-      longitude: 85.351,
-    },
-    {
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421,
-      latitude: 27.7265,
-      longitude: 85.3691,
-    },
-    {
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421,
-      latitude: 27.7495,
-      longitude: 85.3201,
-    },
-    {
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421,
-      latitude: 27.7215,
-      longitude: 85.3201,
-    },
-    {
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421,
-      latitude: 27.7295,
-      longitude: 85.3291,
-    },
-    {
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421,
-      latitude: 27.7115,
-      longitude: 85.3251,
-    },
+    // {
+    //   latitudeDelta: 0.0922,
+    //   longitudeDelta: 0.0421,
+    //   latitude: 27.7815,
+    //   longitude: 85.351,
+    // },
+    // {
+    //   latitudeDelta: 0.0922,
+    //   longitudeDelta: 0.0421,
+    //   latitude: 27.7265,
+    //   longitude: 85.3691,
+    // },
+    // {
+    //   latitudeDelta: 0.0922,
+    //   longitudeDelta: 0.0421,
+    //   latitude: 27.7495,
+    //   longitude: 85.3201,
+    // },
+    // {
+    //   latitudeDelta: 0.0922,
+    //   longitudeDelta: 0.0421,
+    //   latitude: 27.7215,
+    //   longitude: 85.3201,
+    // },
+    // {
+    //   latitudeDelta: 0.0922,
+    //   longitudeDelta: 0.0421,
+    //   latitude: 27.7295,
+    //   longitude: 85.3291,
+    // },
+    // {
+    //   latitudeDelta: 0.0922,
+    //   longitudeDelta: 0.0421,
+    //   latitude: 27.7115,
+    //   longitude: 85.3251,
+    // },
   ]);
   const [communityMarkerPoints, setCMarkerpoints] = useState([
-  ] );
+    // {
+    //   latitudeDelta: 0.0922,
+    //   longitudeDelta: 0.0421,
+    //   latitude: 27.7815,
+    //   longitude: 85.351,
+    // },
+  ]);
 
   const onRegionChange = (region) => {
   //  console.log(region)
@@ -64,10 +71,10 @@ const Maps = () => {
       const community = await getCommunityJobs();
      
       
-      let paidLocations = paid.jobs.map((job) => job.location);
+      let paidLocations = paid.jobs.map((job) => ({id:job._id, location:job.location}));
     
       setPMarkerpoints([...paidMarkerPoints, ...paidLocations]);
-      let communityLocations = community.jobs.map((job)=> job.location)
+      let communityLocations = community.jobs.map((job)=> ({id:job._id, location: job.location}))
     
       console.log(communityLocations)
       setCMarkerpoints([... communityMarkerPoints, ...communityLocations])
@@ -101,20 +108,20 @@ const Maps = () => {
         }}
 
       >
-        {paidMarkerPoints.map((location)=>{
+        {paidMarkerPoints.map(({location, id})=>{
           return (<Marker
            
             coordinate={location}
             pinColor="#ADA82F"
-            onPress={onMarkerPressed}
+            onPress={()=>{navigation.navigate("PostDetail", { id: id }); console.log("paid")}}
           />)
         })}
-        {communityMarkerPoints.map((location)=>{
+        {communityMarkerPoints.map(({location, id})=>{
           return (<Marker
            
             coordinate={location}
             pinColor="#2FAD97"
-            onPress={onMarkerPressed}
+            onPress={()=>{navigation.navigate("PostDetail", { id: id }); console.log("community")}}
           />)
         })}
         {/* <Marker

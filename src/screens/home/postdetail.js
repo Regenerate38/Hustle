@@ -16,19 +16,24 @@ const { width, height } = Dimensions.get("window");
 
 const Postdetail = ({ route, navigation }) => {
   const [jobDetail, setjobDetail] = useState(undefined);
-
-  useEffect(async () => {
-    const routes = navigation.getState()?.routes;
-    const prevRoute = routes[routes.length - 2];
-    let tempJobDetail;
-    if (prevRoute.name === "Paid") {
-      tempJobDetail = await getPaidJob(route.params.id);
-      setjobDetail(tempJobDetail);
-    } else if (prevRoute.name === "Volunteer") {
-      tempJobDetail = await getCommunityJob(route.params.id);
-      setjobDetail(tempJobDetail);
+  console.log(route.params.id);
+  useEffect( () => {
+    const calling =async()=>{
+      const routes = navigation.getState()?.routes;
+      const prevRoute = routes[routes.length - 2];
+      let tempJobDetail;
+      // if (prevRoute.name === "Paid") {
+      //   tempJobDetail = await getPaidJob(route.params.id);
+      //   setjobDetail(tempJobDetail);
+      // } else if (prevRoute.name === "Volunteer") {
+      //   tempJobDetail = await getCommunityJob(route.params.id);
+      //   setjobDetail(tempJobDetail);
+      tempJobDetail = await getPaidJob(route.params.id) || await getCommunityJob(route.params.id);
+      setjobDetail(tempJobDetail)
     }
-  }, []);
+    calling()
+  }
+  , []);
 
   useEffect(() => console.log(jobDetail), [jobDetail]);
 
