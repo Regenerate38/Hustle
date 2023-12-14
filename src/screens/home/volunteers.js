@@ -25,6 +25,7 @@ const Volunteers = ({ navigation }) => {
   useEffect(() => {
     async function getJobs() {
       const cj = await getCommunityJobs();
+      // console.log(cj.jobs)
       setCommunityJobs(cj.jobs);
     }
     getJobs();

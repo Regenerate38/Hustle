@@ -12,44 +12,46 @@ const { width, height } = Dimensions.get("window");
 
 const Maps = () => {
   const isFocused = useIsFocused();
-  const [markerPoints, setmarkerPoints] = useState([{
-    latitudeDelta: 0.0922,
-    longitudeDelta: 0.0421,
-    latitude: 27.7815,
-    longitude: 85.351,
-  },
-  {
-    latitudeDelta: 0.0922,
-    longitudeDelta: 0.0421,
-    latitude: 27.7265,
-    longitude: 85.3691,
-  },
-  {
-    latitudeDelta: 0.0922,
-    longitudeDelta: 0.0421,
-    latitude: 27.7495,
-    longitude: 85.3201,
-  },
-  {
-    latitudeDelta: 0.0922,
-    longitudeDelta: 0.0421,
-    latitude: 27.7215,
-    longitude: 85.3201,
-  },
-  {
-    latitudeDelta: 0.0922,
-    longitudeDelta: 0.0421,
-    latitude: 27.7295,
-    longitude: 85.3291,
-  },
-  {
-    latitudeDelta: 0.0922,
-    longitudeDelta: 0.0421,
-    latitude: 27.7115,
-    longitude: 85.3251,
-  }
-  ]
-  );
+  const [paidMarkerPoints, setPMarkerpoints] = useState([
+    {
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421,
+      latitude: 27.7815,
+      longitude: 85.351,
+    },
+    {
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421,
+      latitude: 27.7265,
+      longitude: 85.3691,
+    },
+    {
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421,
+      latitude: 27.7495,
+      longitude: 85.3201,
+    },
+    {
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421,
+      latitude: 27.7215,
+      longitude: 85.3201,
+    },
+    {
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421,
+      latitude: 27.7295,
+      longitude: 85.3291,
+    },
+    {
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421,
+      latitude: 27.7115,
+      longitude: 85.3251,
+    },
+  ]);
+  const [communityMarkerPoints, setCMarkerpoints] = useState([
+  ] );
 
   const onRegionChange = (region) => {
   //  console.log(region)
@@ -57,15 +59,18 @@ const Maps = () => {
   useEffect(()=>{
    async function getLocations(){
     if(isFocused){
-
       const paid = await getPaidJobs();
 
-      
       const community = await getCommunityJobs();
-      const allJobs = [...paid.jobs, ...community.jobs]
-      let found =allJobs.map((job)=>job.location)
-      console.log(found)
-      setmarkerPoints(found)      
+     
+      
+      let paidLocations = paid.jobs.map((job) => job.location);
+    
+      setPMarkerpoints([...paidMarkerPoints, ...paidLocations]);
+      let communityLocations = community.jobs.map((job)=> job.location)
+    
+      console.log(communityLocations)
+      setCMarkerpoints([... communityMarkerPoints, ...communityLocations])
     }
   }
     getLocations();
@@ -96,11 +101,19 @@ const Maps = () => {
         }}
 
       >
-        {markerPoints.map((location)=>{
+        {paidMarkerPoints.map((location)=>{
           return (<Marker
            
             coordinate={location}
-            pinColor="#112233"
+            pinColor="#ADA82F"
+            onPress={onMarkerPressed}
+          />)
+        })}
+        {communityMarkerPoints.map((location)=>{
+          return (<Marker
+           
+            coordinate={location}
+            pinColor="#2FAD97"
             onPress={onMarkerPressed}
           />)
         })}
@@ -108,7 +121,8 @@ const Maps = () => {
           // id='marker'
           // draggable
           coordinate={markerPoints[0]}
-          // onDragEnd={(e) => setmarkerPoints(prev => [e.nativeEvent.coordinate, ...prev])}
+          // onDragEnd={(e) => setmarkerPoint const allJobs = [...paid.jobs, ...community.jobs]
+      let found =allJobs.map((job)=>job.location)s(prev => [e.nativeEvent.coordinate, ...prev])}
           pinColor='#112233'
           // onPress={()=>onMarkerSelected(marker)}
           onPress={onMarkerPressed}
