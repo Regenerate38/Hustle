@@ -79,9 +79,9 @@ const Postdetail = ({ route, navigation }) => {
                 marginTop: 10,
               }}
             >
-              <Text style={styles.PostDetailPage_location_text}>
+              {/* <Text style={styles.PostDetailPage_location_text}>
                 {jobDetail.location || "Default Location"}
-              </Text>
+              </Text> */}
 
               <Image
                 source={require("../../assets/icons/location.png")}

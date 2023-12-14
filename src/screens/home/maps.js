@@ -52,20 +52,20 @@ const Maps = () => {
   );
 
   const onRegionChange = (region) => {
-   // console.log(region)
+  //  console.log(region)
   }
   useEffect(()=>{
    async function getLocations(){
       const jobs = await getPaidJobs();
       const community = await getCommunityJobs();
       const allJobs= [...jobs, ...community]
-      console.log(allJobs)
+    
       let found =allJobs.map((job)=>job.location)
       console.log(found)
       setmarkerPoints([...markerPoints, ...found])      
     }
-   if(isFocused) getLocations();
-  },[isFocused])
+    getLocations();
+  },  [isFocused])
 
   
 

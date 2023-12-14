@@ -19,13 +19,13 @@ const { width } = Dimensions.get("window");
 import { useIsFocused } from "@react-navigation/native";
 
 const Volunteers = ({ navigation }) => {
-  const [communityJobs, setCommunityJobs] = useState(undefined);
+  const [communityJobs, setCommunityJobs] = useState([]);
   const isFocused = useIsFocused()
 
   useEffect(() => {
     async function getJobs() {
-      const communityJobs = await getCommunityJobs();
-      setCommunityJobs(communityJobs.jobs);
+      const cj = await getCommunityJobs();
+      setCommunityJobs(cj.jobs);
     }
     getJobs();
   }, [isFocused]);
@@ -52,7 +52,7 @@ const Volunteers = ({ navigation }) => {
               flexDirection: "row",
             }}
           >
-            <Text style={styles.PostDetail_location_text}>{location}</Text>
+            {/* <Text style={styles.PostDetail_location_text}>{location}</Text> */}
             <Image
               source={require("../../assets/icons/location.png")}
               resizeMode="contain"
@@ -140,7 +140,7 @@ const Volunteers = ({ navigation }) => {
                 image={
                   item.image || require("../../assets/img/carausel/image1.png")
                 }
-                location={item.location || "Default Location"}
+                // location={item.location || "Default Location"}
                 id={item._id}
               />
             )}
