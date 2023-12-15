@@ -32,14 +32,6 @@ const CreatePost = ({ navigation , route}) => {
     };
     runOnce();
   }, []);
-  function ImageViewer({ placeholderImageSource, selectedImage }) {
-    const imageSource = selectedImage ? { uri: selectedImage } : placeholderImageSource;
-
-    return <Image source={imageSource} style={{
-      height: 0.5825 * width,
-      objectFit: 'cover',
-    }} />;
-  };
 
   const handlePost = async () => {
     if (user) {
@@ -52,8 +44,8 @@ const CreatePost = ({ navigation , route}) => {
   }
 
   useEffect(() => {
-    const {coordinate: location} = route.params
     if (image) {
+      const {coordinate: location} = route.params
       createPost(title, description, user, image, pay, location);
       navigation.navigate("Paid");
     };

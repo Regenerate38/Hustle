@@ -40,7 +40,7 @@ checkbox: {
   },
 
 checkboxContainer:{
-    top: verticalScale(65),
+    top: verticalScale(75),
     flex: 1,
     flexDirection: 'row',   
 },
@@ -213,7 +213,6 @@ Username: {
     justifyContent: 'center',
     backgroundColor: "#34363AFA",
     borderRadius: moderateScale(15),
-
 },
 Password: {
     width: horizontalScale(310),
@@ -289,15 +288,16 @@ SignupPage_pfp:{
 
 Email: {
     width: horizontalScale(310),
-    height: verticalScale(60),
+    height: verticalScale(75),
+    justifyContent: 'center',
     backgroundColor: "#34363AFA",
     borderRadius: moderateScale(15),
-    justifyContent: 'center',
 },
 
 Username_signup: {
     width: horizontalScale(310),
-    height: verticalScale(60),
+    height: verticalScale(75),
+    justifyContent: 'center',
     backgroundColor: "#34363AFA",
     borderRadius: moderateScale(15),
     top: verticalScale(22),
@@ -307,7 +307,7 @@ Username_signup: {
 
 Password_signup: {
     width: horizontalScale(310),
-    height: verticalScale(60),
+    height: verticalScale(75),
     justifyContent: 'center',
     backgroundColor: "#34363AFA",
     borderRadius: moderateScale(15),
@@ -353,7 +353,7 @@ Signup_button_signup: {
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: moderateScale(15),
-    top: verticalScale(400),
+    top: verticalScale(450),
 },
 
 
