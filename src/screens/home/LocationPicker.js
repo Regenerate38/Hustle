@@ -13,36 +13,43 @@ const { width, height } = Dimensions.get("window");
 
 
 const LocationPicker = ({ navigation }) => {
-  const [coordinate, setCoordinate] = useState({})
+  const [location, setLocation] = useContext(LocationContext);
+  const [confirmed, setConfirmed]= useState(false)
 
-  const[location, setLocation] = useContext(LocationContext);
+  const onMarkerPressed = (event) => {
+    const { coordinate } = event.nativeEvent;
+    setConfirmed(true);
+    setLocation(coordinate);
+  };
 
-  const onMarkerPressed = (marker) => {
-    setCoordinate(marker.nativeEvent.coordinate)
-    // console.log(coordinate)
-  }
+  const backHandler = (event) => {
+    // Assuming you want to call onMarkerPressed before navigating
 
-  const backHandler = () => {
-    // console.log(location)
-    navigation.navigate("CreatePost", { coordinate: setLocation });
-  }
-
-
+     const { coordinate } = event.nativeEvent;
+     setLocation(coordinate);
+     console.log(location)
+    // Now, navigate to "CreatePost" with the correct coordinate
+    navigation.navigate("CreatePost", { coordinate: location });
+  };
   return (
     <View
       style={{
-        flex: 1
-      }}>
-      <View style={styles.PostDetailPage_back_container}>
-        <Image source={require('../../assets/icons/tick-outline.png')}
-          style={styles.PostDetailPage_back} onPress={backHandler} />
-      </View>
+        flex: 1,
+      }}
+    >
+     {confirmed&& <View style={styles.PostDetailPage_back_container}>
+        <Image
+          source={require("../../assets/icons/tick-outline.png")}
+          style={styles.PostDetailPage_back}
+          onPress={backHandler}
+        />
+      </View>}
       <MapView
         style={styles.Map_View}
         //onRegionChange={onRegionChange}
         initialRegion={{
           latitude: 27.700769,
-          longitude: 85.300140,
+          longitude: 85.30014,
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}
@@ -51,10 +58,10 @@ const LocationPicker = ({ navigation }) => {
           draggable
           coordinate={location}
           onMarkerDragEnd={(e) => setLocation(e.nativeEvent.coordinate)}
-          pinColor='#FF0000'
+          pinColor="#FF0000"
           onPress={onMarkerPressed}
         />
-      </MapView> 
+      </MapView>
     </View>
   );
 };

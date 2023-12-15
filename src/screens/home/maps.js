@@ -59,9 +59,9 @@ const Maps = () => {
       const jobs = await getPaidJobs();
       const community = await getCommunityJobs();
       const allJobs= [...jobs, ...community]
-      // console.log(allJobs)
+      console.log(allJobs)
       let found =allJobs.map((job)=>job.location)
-      // console.log(found)
+      console.log(found)
       setmarkerPoints([...markerPoints, ...found])      
     }
    if(isFocused) getLocations();
