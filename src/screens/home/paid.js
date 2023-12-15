@@ -26,7 +26,6 @@ const POST_HEIGHT = 0.5 * width;
 
 const Paid = ({ navigation }) => {
   const isFocused = useIsFocused();
-
   const [postData, setPostData] = useState([]);
   useEffect(() => {
     async function myFunc() {
@@ -395,8 +394,6 @@ const Paid = ({ navigation }) => {
           }
           ItemSeperatorComponent={postgaps}
         />
-
-
       </View>
     </SafeAreaView>
   );

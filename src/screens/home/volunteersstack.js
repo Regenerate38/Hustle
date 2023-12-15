@@ -13,7 +13,7 @@ const VolunteersStack = ({ navigation, route }) => {
         const routeName = getFocusedRouteNameFromRoute(route);
         if (routeName === "VPostDetail"){
             navigation.setOptions({tabBarStyle: { display: 'none' }});
-        }else {
+        } else {
             navigation.setOptions({tabBarStyle: styles.BottomTabBar});
         }
     }, [navigation, route]);

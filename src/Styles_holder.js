@@ -685,19 +685,16 @@ Volunteer_PostDetail_main:{
     backgroundColor: '#333333',
     borderRadius: moderateScale(25)
   },
-
 Volunteer_PostDetail_image:{
     height: 0.58*0.628*width,
     borderRadius: moderateScale(25),
     margin: moderateScale(12),
     aspectRatio: 'auto',
 },
-
 Volunteer_PostDetail_content:{
     marginTop: 0.082*0.628*width,
     flexDirection: 'column',
 },
-
 Volunteer_PostDetail_tags:{
     paddingHorizontal: horizontalScale(12),
    

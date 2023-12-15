@@ -84,9 +84,9 @@ const Postdetail = ({ route, navigation }) => {
                 marginTop: 10,
               }}
             >
-              {/* <Text style={styles.PostDetailPage_location_text}>
-                {jobDetail.location || "Default Location"}
-              </Text> */}
+              <Text style={styles.PostDetailPage_location_text}>
+                {"Jawalakhel"}
+              </Text>
 
               <Image
                 source={require("../../assets/icons/location.png")}

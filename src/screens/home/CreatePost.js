@@ -22,7 +22,7 @@ const CreatePost = ({ navigation , route}) => {
   const [title, setTitle] = useState(undefined);
   const [description, setDescription] = useState("");
   const [pay, setPay] = useState("");
-  const [location, setLocation]= useState(null)
+  const [location, setLocation]= useContext(LocationContext);
   const [user, setUser] = useState({});
 
   useEffect(() => {

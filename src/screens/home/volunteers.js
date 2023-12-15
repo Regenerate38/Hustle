@@ -19,7 +19,7 @@ const { width } = Dimensions.get("window");
 import { useIsFocused } from "@react-navigation/native";
 
 const Volunteers = ({ navigation }) => {
-  const [communityJobs, setCommunityJobs] = useState([]);
+  const [communityJobs, setCommunityJobs] = useState(undefined);
   const isFocused = useIsFocused()
 
   useEffect(() => {
@@ -51,7 +51,7 @@ const Volunteers = ({ navigation }) => {
               flexDirection: "row",
             }}
           >
-            {/* <Text style={styles.PostDetail_location_text}>{location}</Text> */}
+            <Text style={styles.PostDetail_location_text}>{location || 'Jawlakhel'}</Text>
             <Image
               source={require("../../assets/icons/location.png")}
               resizeMode="contain"
@@ -139,7 +139,7 @@ const Volunteers = ({ navigation }) => {
                 image={
                   item.image || require("../../assets/img/carausel/image1.png")
                 }
-                // location={item.location || "Default Location"}
+                // location={item.location || "Jawalakhel"}
                 id={item._id}
               />
             )}

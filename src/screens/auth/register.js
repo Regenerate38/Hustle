@@ -30,7 +30,7 @@ function Signup_Screen(props) {
         } else {
             const status = await register({ email, password, name: username, isOrg: isSelected })
             console.log(status);
-            if (status) navigation.navigate("home")
+            if (status) navigation.navigate("Home")
             else console.log("error in register")
         }
     }

@@ -6,7 +6,6 @@ import ProgressBar from 'react-native-progress/Bar';
 import styles from '../../Styles_holder';
 import { TouchableOpacity } from 'react-native-ui-lib';
 
-
 const { width, height } = Dimensions.get("window");
 
 const Orgprofile = ({navigation}) => {

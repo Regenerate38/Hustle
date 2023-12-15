@@ -12,19 +12,9 @@ function Background_Img(props){
   return (
     <View>
     <TouchableOpacity style={styles.Back_button} onPress={()=>navigation.goBack()}>
-    
-
     <Image  source={require('../../assets/icons/back.png')} />
     </TouchableOpacity>
-
-          <ImageBackground 
-     resizeMode='center'
-    style={(styles.Bg_img)}
-    fadeDuration={1000}
-    source={require('../../assets/Landing_Page_Background.jpg')} >
-
-    
-
+    <ImageBackground resizeMode='center' style={(styles.Bg_img)} fadeDuration={1000} source={require('../../assets/Landing_Page_Background.jpg')} >
     </ImageBackground>
     <Login_screen/>
     </View>
