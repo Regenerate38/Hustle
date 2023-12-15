@@ -26,6 +26,7 @@ const Volunteers = ({ navigation }) => {
     async function getJobs() {
       const cj = await getCommunityJobs();
       setCommunityJobs(cj.jobs);
+      console.log(cj);
     }
     getJobs();
   }, [isFocused]);
