@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   StatusBar,
   ScrollView,
-  ActivityIndicator
+  ActivityIndicator,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { COLORS } from "../../constants";
@@ -15,6 +15,8 @@ import { Image, SearchBar, FAB } from "react-native-elements";
 import { SafeAreaView } from "react-native";
 import styles from "../../Styles_holder";
 import { getPaidJobs } from "../../apiCalls";
+import { getUser } from "../../hooks/asyncStorage";
+
 import { useIsFocused } from "@react-navigation/native";
 // import AnimatedLoader from "react-native-animated-loader";
 // import {createShimmerPlaceholder} from "react-native-shimmer-placeholder";
@@ -27,12 +29,16 @@ const POST_HEIGHT = 0.5 * width;
 const Paid = ({ navigation }) => {
   const isFocused = useIsFocused();
   const [postData, setPostData] = useState([]);
+  const [user, setUser] = useState(undefined);
   useEffect(() => {
     async function myFunc() {
       if (isFocused) {
         let foundJobs = await getPaidJobs();
+        let u = await getUser();
+        console.log(u);
+        if (u) setUser(user);
         setPostData(foundJobs.jobs);
-      };
+      }
     }
     myFunc();
   }, [isFocused]);
@@ -119,7 +125,11 @@ const Paid = ({ navigation }) => {
           }}
         >
           <Image
-            source={image ? {uri: image} : require("../../assets/img/carausel/image4.png")}
+            source={
+              image
+                ? { uri: image }
+                : require("../../assets/img/carausel/image4.png")
+            }
             style={styles.PostDetail_image}
           />
         </View>
@@ -137,7 +147,9 @@ const Paid = ({ navigation }) => {
               flexDirection: "row",
             }}
           >
-            <Text style={styles.PostDetail_location_text}>{location || 'Jawlakhel'}</Text>
+            <Text style={styles.PostDetail_location_text}>
+              {location || "Jawlakhel"}
+            </Text>
 
             <Image
               source={require("../../assets/icons/location.png")}
@@ -145,7 +157,9 @@ const Paid = ({ navigation }) => {
               style={styles.PostDetail_location_icon}
             />
 
-            <Text style={styles.PostDetail_price_text}>{`Rs ${pay}` || "Rs 100"}</Text>
+            <Text style={styles.PostDetail_price_text}>
+              {`Rs ${pay}` || "Rs 100"}
+            </Text>
           </View>
         </View>
       </View>
@@ -183,18 +197,20 @@ const Paid = ({ navigation }) => {
         />
       </View>
 
-      <FAB
-        placement="right"
-        size="large"
-        icon={{ name: "add", color: "white" }}
-        color="green"
-        style={{
-          marginBottom: 90,
-          zIndex: 20,
-        }}
-        onPress={() => navigation.navigate("CreatePost")}
-        buttonStyle={{ borderRadius: 1000 }}
-      />
+      {user && !user.isOrg && (
+        <FAB
+          placement="right"
+          size="large"
+          icon={{ name: "add", color: "white" }}
+          color="#ADA82F"
+          style={{
+            marginBottom: 90,
+            zIndex: 20,
+          }}
+          onPress={() => navigation.navigate("CreatePost")}
+          buttonStyle={{ borderRadius: 1000 }}
+        />
+      )}
 
       <Text style={styles.scrollview_heading}>Type of Tasks</Text>
 
@@ -231,8 +247,8 @@ const Paid = ({ navigation }) => {
                 height: 50,
                 width: 50,
                 marginTop: 18,
-                tintColor: '#ffffff',
-                marginBottom: 5
+                tintColor: "#ffffff",
+                marginBottom: 5,
               }}
             />
             <Text
@@ -270,7 +286,7 @@ const Paid = ({ navigation }) => {
                 width: 50,
                 marginTop: 18,
                 marginBottom: 5,
-                tintColor: "#ffffff"
+                tintColor: "#ffffff",
               }}
             />
             <Text
@@ -308,7 +324,7 @@ const Paid = ({ navigation }) => {
                 width: 50,
                 marginTop: 18,
                 marginBottom: 5,
-                tintColor: "#ffffff"
+                tintColor: "#ffffff",
               }}
             />
             <Text
@@ -345,7 +361,7 @@ const Paid = ({ navigation }) => {
                 height: 50,
                 width: 50,
                 marginTop: 18,
-                marginBottom: 5
+                marginBottom: 5,
               }}
             />
             <Text
@@ -362,8 +378,6 @@ const Paid = ({ navigation }) => {
               {"Service"}
             </Text>
           </View>
-
-          
         </ScrollView>
       </View>
 
@@ -389,7 +403,11 @@ const Paid = ({ navigation }) => {
           keyExtractor={(item) => item.id}
           ListEmptyComponent={
             <View>
-              <ActivityIndicator style={{ height: width }} color="white" size={70} />
+              <ActivityIndicator
+                style={{ height: width }}
+                color="white"
+                size={70}
+              />
             </View>
           }
           ItemSeperatorComponent={postgaps}
