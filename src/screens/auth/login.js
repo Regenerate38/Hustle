@@ -29,9 +29,9 @@ import { login } from "../../apiCalls";
 function Login_screen(props) {
   const navigation = useNavigation();
 
-  const [email, setEmail] = useState("mukundadeva440@gmail.com");
+  const [email, setEmail] = useState("praharsha101@gmail.com");
 
-  const [password, setPassword] = useState("mukundamukunda");
+  const [password, setPassword] = useState("praharsha101");
 
   const handleEmail = (text) => {
     setEmail(text);

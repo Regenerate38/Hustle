@@ -7,30 +7,33 @@ import {
   FlatList,
   Dimensions,
   TouchableOpacity,
-  ActivityIndicator
+  ActivityIndicator,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import { COLORS } from "../../constants";
 import CustomImageCarausel from "../../components/CustomImageCarausel";
-import { Image, SearchBar } from "react-native-elements";
+import { Image, SearchBar, FAB } from "react-native-elements";
 import styles from "../../Styles_holder";
-import { getCommunityJobs } from "../../apiCalls";
+import { getCommunityJobs, getPaidJob } from "../../apiCalls";
+import { getUser } from "../../hooks/asyncStorage";
 const { width } = Dimensions.get("window");
 import { useIsFocused } from "@react-navigation/native";
 
 const Volunteers = ({ navigation }) => {
   const [communityJobs, setCommunityJobs] = useState(undefined);
-  const isFocused = useIsFocused()
+  const [user, setUser] = useState(undefined);
+  const isFocused = useIsFocused();
 
   useEffect(() => {
     async function getJobs() {
       const cj = await getCommunityJobs();
       setCommunityJobs(cj.jobs);
+      let u = await getUser();
+      if (u) setUser(u);
     }
     getJobs();
   }, [isFocused]);
 
- 
   const Item = ({ title, image, location, id }) => (
     <TouchableOpacity
       onPress={() => {
@@ -39,7 +42,14 @@ const Volunteers = ({ navigation }) => {
     >
       <View style={styles.Volunteer_PostDetail_main}>
         <View style={{ height: 0.57 * 0.628 * width }}>
-          <Image source={image ? { uri: `${image}` } : require("../../assets/img/carausel/image4.png")} style={styles.Volunteer_PostDetail_image} />
+          <Image
+            source={
+              image
+                ? { uri: `${image}` }
+                : require("../../assets/img/carausel/image4.png")
+            }
+            style={styles.Volunteer_PostDetail_image}
+          />
         </View>
 
         <View style={styles.Volunteer_PostDetail_content}>
@@ -51,7 +61,9 @@ const Volunteers = ({ navigation }) => {
               flexDirection: "row",
             }}
           >
-            <Text style={styles.PostDetail_location_text}>{location || 'Jawlakhel'}</Text>
+            <Text style={styles.PostDetail_location_text}>
+              {location || "Jawlakhel"}
+            </Text>
             <Image
               source={require("../../assets/icons/location.png")}
               resizeMode="contain"
@@ -128,30 +140,48 @@ const Volunteers = ({ navigation }) => {
           )}
         </View>
       </View>
+      {user && user.isOrg && (
+        <FAB
+          placement="right"
+          size="large"
+          icon={{ name: "add", color: "white" }}
+          color="#2FAD97"
+          style={{
+            marginBottom: 90,
+            zIndex: 20,
+          }}
+          onPress={() => navigation.navigate("CreatePost")}
+          buttonStyle={{ borderRadius: 1000 }}
+        />
+      )}
 
       <SafeAreaView style={styles.Volunteer_flatlist_container}>
         <Text style={styles.flatlist_heading}>Posts</Text>
-          <FlatList
-            data={communityJobs}
-            renderItem={({ item }) => (
-              <Item
-                title={item.title}
-                image={
-                  item.image || require("../../assets/img/carausel/image1.png")
-                }
-                // location={item.location || "Jawalakhel"}
-                id={item._id}
+        <FlatList
+          data={communityJobs}
+          renderItem={({ item }) => (
+            <Item
+              title={item.title}
+              image={
+                item.image || require("../../assets/img/carausel/image1.png")
+              }
+              // location={item.location || "Jawalakhel"}
+              id={item._id}
+            />
+          )}
+          keyExtractor={(item) => item._id}
+          ListEmptyComponent={
+            <View>
+              <ActivityIndicator
+                style={{ height: width }}
+                color="white"
+                size={70}
               />
-            )}
-            keyExtractor={(item) => item._id}
-            ListEmptyComponent={
-              <View>
-              <ActivityIndicator style={{ height: width }} color="white" size={70} />
             </View>
-            }
-            ItemSeperatorComponent={postgaps}
-            style={{ zIndex: 5 }}
-          />
+          }
+          ItemSeperatorComponent={postgaps}
+          style={{ zIndex: 5 }}
+        />
       </SafeAreaView>
     </SafeAreaView>
   );
