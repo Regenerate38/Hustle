@@ -1,10 +1,10 @@
 import axios from "axios";
 import { saveUser, saveToken, getToken, getUser } from "./hooks/asyncStorage";
-const baseUrl = "http://10.0.2.2:5000";
+const baseUrl = "http://192.168.1.69:5000";
 
 const returnConfig = async () => {
   const token = await getToken();
-  console.log(token);
+  // console.log(token);
   const headers = {
     "Content-Type": "application/json",
     Authorization: `Bearer ${token}`,
@@ -21,7 +21,7 @@ const getPaidJobs = async () => {
 const getPaidJob = async (id) => {
   const config = await returnConfig();
   const res = await axios.get(`${baseUrl}/paid/${id}`, config);
-  console.log(res.data);
+  // console.log(res.data);
   return res.data;
 };
 
@@ -38,11 +38,11 @@ const login = async (email, password) => {
   try {
     console.log("Pressed log in")
     const res = await axios.post(`${baseUrl}/auth/login`, { email, password });
-    console.log(res.data);
+    // console.log(res.data);
     await saveToken(res.data.token);
     await saveUser(res.data);
     const temp = await getUser();
-    console.log(temp);
+    // console.log(temp);
     if (res.data.token) return true;
     else return false;
   } catch (err) {
@@ -57,7 +57,7 @@ const register = async ({ email, password, name, isOrg }) => {
       password,
       isOrg,
     });
-    console.log(res.data);
+    // console.log(res.data);
     await saveUser(res.data);
     await saveToken(res.data.token);
     if (res.data.token) return true;
@@ -69,13 +69,18 @@ const register = async ({ email, password, name, isOrg }) => {
 
 const createPost = async (title, description, user, image, pay, location) => {
   const config = await returnConfig();
-  console.log(`${baseUrl}/${user.isOrg ? `community` : `paid`}`);
+  // console.log(`${baseUrl}/${user.isOrg ? `community` : `paid`}`);
   const res = await axios.post(
     `${baseUrl}/${user.isOrg ? `community` : `paid`}`,
     { title, desc: description, user, image, pay , location}, config
   );
-  console.log(res.location)
-  // console.log(res);
+  // console.log(res.location)
+};
+
+const getImageSignature = async () => {
+  const config = await returnConfig();
+  const res = await axios.get(`${baseUrl}/pictureSignatureResponse`, config);
+  return res.data;
 };
 
 export {
@@ -86,4 +91,5 @@ export {
   login,
   register,
   createPost,
+  getImageSignature
 };

@@ -19,11 +19,11 @@ const LocationPicker = ({ navigation }) => {
 
   const onMarkerPressed = (marker) => {
     setCoordinate(marker.nativeEvent.coordinate)
-    console.log(coordinate)
+    // console.log(coordinate)
   }
 
   const backHandler = () => {
-    console.log(location)
+    // console.log(location)
     navigation.navigate("CreatePost", { coordinate: setLocation });
   }
 

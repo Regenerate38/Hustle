@@ -44,7 +44,7 @@ function Login_screen(props) {
     if(!email || !password){
       console.log("required")
     }else{
-      console.log(email, password);
+      // console.log(email, password);
       const status = await login(email, password);
       if (status) navigation.navigate("Home");
       else console.log("error in login");
@@ -79,7 +79,7 @@ function Login_screen(props) {
             placeholder="Enter Password"
             secureTextEntry={true}
             value={password}
-            onChangeText={handlePassword}
+            onChangeText={handlePassword}c
             placeholderTextColor="#808080"
             keyboardType="default"
           ></TextInput>

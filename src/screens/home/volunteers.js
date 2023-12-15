@@ -30,8 +30,6 @@ const Volunteers = ({ navigation }) => {
     getJobs();
   }, [isFocused]);
 
-  useEffect(() => console.log(communityJobs), [communityJobs]);
-
   const Item = ({ title, image, location, id }) => (
     <TouchableOpacity
       onPress={() => {
@@ -40,7 +38,7 @@ const Volunteers = ({ navigation }) => {
     >
       <View style={styles.Volunteer_PostDetail_main}>
         <View style={{ height: 0.57 * 0.628 * width }}>
-          <Image source={image ? { uri: `data:image/jpeg;base64,${image}` } : require("../../assets/img/carausel/image4.png")} style={styles.Volunteer_PostDetail_image} />
+          <Image source={image ? { uri: `${image}` } : require("../../assets/img/carausel/image4.png")} style={styles.Volunteer_PostDetail_image} />
         </View>
 
         <View style={styles.Volunteer_PostDetail_content}>
@@ -52,7 +50,7 @@ const Volunteers = ({ navigation }) => {
               flexDirection: "row",
             }}
           >
-            <Text style={styles.PostDetail_location_text}>{location}</Text>
+            <Text style={styles.PostDetail_location_text}>{location || "Jawalakhel"}</Text>
             <Image
               source={require("../../assets/icons/location.png")}
               resizeMode="contain"
@@ -140,7 +138,7 @@ const Volunteers = ({ navigation }) => {
                 image={
                   item.image || require("../../assets/img/carausel/image1.png")
                 }
-                location={item.location || "Default Location"}
+                // location={item.location || "Jawalakhel"}
                 id={item._id}
               />
             )}

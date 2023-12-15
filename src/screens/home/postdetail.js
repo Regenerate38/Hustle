@@ -30,7 +30,7 @@ const Postdetail = ({ route, navigation }) => {
     }
   }, []);
 
-  useEffect(() => console.log(jobDetail), [jobDetail]);
+  // useEffect(() => console.log(jobDetail), [jobDetail]);
 
   return (
     <View style={styles.PostDetailPage}>
@@ -42,7 +42,7 @@ const Postdetail = ({ route, navigation }) => {
           >
             <Image
               source={
-                jobDetail.image ? {uri: `data:image/jpeg;base64,${jobDetail.image}`} : require("../../../src/assets/img/recyclerview/post-image.jpg")
+                jobDetail.image ? {uri: jobDetail.image} : require("../../../src/assets/img/recyclerview/post-image.jpg")
               }
               style={{
                 height: 0.7589 * width,
@@ -80,7 +80,7 @@ const Postdetail = ({ route, navigation }) => {
               }}
             >
               <Text style={styles.PostDetailPage_location_text}>
-                {jobDetail.location || "Default Location"}
+                {"Default Location"}
               </Text>
 
               <Image

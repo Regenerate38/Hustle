@@ -120,7 +120,7 @@ const Paid = ({ navigation }) => {
           }}
         >
           <Image
-            source={image ? { uri: `data:image/jpeg;base64,${image}` } : require("../../assets/img/carausel/image4.png")}
+            source={image ? {uri: image} : require("../../assets/img/carausel/image4.png")}
             style={styles.PostDetail_image}
           />
         </View>
@@ -138,7 +138,7 @@ const Paid = ({ navigation }) => {
               flexDirection: "row",
             }}
           >
-            <Text style={styles.PostDetail_location_text}>{location}</Text>
+            <Text style={styles.PostDetail_location_text}>{location || 'Jawlakhel'}</Text>
 
             <Image
               source={require("../../assets/icons/location.png")}
@@ -382,7 +382,7 @@ const Paid = ({ navigation }) => {
             <PostItem
               title={item.title}
               image={item.image}
-              location={item.location}
+              // location={item.location || 'Jawlakhel'}
               id={item._id}
               pay={item.pay}
             />
