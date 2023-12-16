@@ -93,7 +93,7 @@ Login_button: {
     justifyContent:'center',
     borderRadius: moderateScale(50),
     position: 'relative',
-    marginTop: verticalScale(10),
+    marginTop: verticalScale(50),
  },
 
 
@@ -833,7 +833,8 @@ ProfilePage_progressbar:{
 ProfilePage_stats_container:{
     flexDirection: 'row',
     alignSelf: 'left',
-    alignItems: 'left',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     borderRadius: moderateScale(24),
 },
 
@@ -871,7 +872,7 @@ ProfilePage_psp_container:{
 ProfilePage_psp_label:{
     color:'#ffffff',
     textAlign: 'left',
-    marginLeft: horizontalScale(20),
+    marginRight: horizontalScale(20),
     paddingTop: verticalScale(25),
     fontSize: moderateScale(12),
 },

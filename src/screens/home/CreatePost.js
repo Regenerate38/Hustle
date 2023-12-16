@@ -297,7 +297,7 @@ const CreatePost = ({ navigation , route}) => {
         paddingTop: 25,
         fontSize: 15,
         fontWeight: '900',
-      }}>Location: {route.params&&   `latitude: ${Math.floor(route.params.coordinate.latitude*1000)/1000}, longitude: ${Math.floor(route.params.coordinate.longitude*1000)/1000}`}</Text>
+      }}>Location: {route.params && `latitude: ${Math.floor(route.params.coordinate.latitude*1000)/1000}, longitude: ${Math.floor(route.params.coordinate.longitude*1000)/1000}`}</Text>
       
     </TouchableOpacity>
     <Image

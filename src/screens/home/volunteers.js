@@ -28,7 +28,7 @@ const Volunteers = ({ navigation }) => {
     async function getJobs() {
       const cj = await getCommunityJobs();
       setCommunityJobs(cj.jobs);
-      let u = await getUser();
+      const u = await getUser();
       if (u) setUser(u);
     }
     getJobs();
@@ -154,7 +154,6 @@ const Volunteers = ({ navigation }) => {
           buttonStyle={{ borderRadius: 1000 }}
         />
       )}
-
       <SafeAreaView style={styles.Volunteer_flatlist_container}>
         <Text style={styles.flatlist_heading}>Posts</Text>
         <FlatList

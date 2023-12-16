@@ -40,7 +40,6 @@ const Profile = () => {
       <View style={styles.ProfilePage_info_container}>
 
         <View style={styles.ProfilePage_info_container_layer1}>
-
           <Image source={require('../../../src/assets/fakeoda.png')} style={styles.ProfilePage_pfp} />
 
           <Text style={styles.ProfilePage_Username}>John Doe</Text>
@@ -90,7 +89,6 @@ const Profile = () => {
                   Participate in Patan Forestation </Text>
                 <Text style={styles.ProfilePage_location_value}>Patan</Text>
               </View>
-
               <View style={styles.ProfilePage_milestone_item}>
                 <Text style={styles.ProfilePage_milestone_item_label}>
                   Staying in Line for Mr Sharma </Text>
