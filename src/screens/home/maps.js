@@ -60,36 +60,19 @@ const Maps = ({navigation}) => {
     // },
   ]);
 
-  const onRegionChange = (region) => {
-  //  console.log(region)
-  }
   useEffect(()=>{
    async function getLocations(){
     if(isFocused){
       const paid = await getPaidJobs();
-
-      const community = await getCommunityJobs();
-     
-      
+      const community = await getCommunityJobs();     
       let paidLocations = paid.jobs.map((job) => ({id:job._id, location:job.location}));
-    
       setPMarkerpoints([...paidMarkerPoints, ...paidLocations]);
       let communityLocations = community.jobs.map((job)=> ({id:job._id, location: job.location}))
-    
-      console.log(communityLocations)
       setCMarkerpoints([... communityMarkerPoints, ...communityLocations])
     }
   }
     getLocations();
   },  [isFocused])
-
-  
-
-  const onMarkerPressed = (ev) => {
-    console.log(ev);
-  }
-
-
 
   return (
     <View
@@ -99,7 +82,6 @@ const Maps = ({navigation}) => {
 
       <MapView
         style={styles.Map_View}
-        onRegionChange={onRegionChange}
         initialRegion={{
           latitude: 27.700769,
           longitude: 85.300140,
@@ -178,10 +160,6 @@ const Maps = ({navigation}) => {
     onPress={onMarkerPressed}
   /> */}
       </MapView>
-
-
-
-
     </View>
   );
 };
