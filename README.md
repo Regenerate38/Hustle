@@ -16,11 +16,10 @@ clone the repo `git clone https://github.com/5ujan/Hustle.git`
 in another terminal `cd server && npm install && npm run dev`
 
 ## App in action
-<p class = "display: flex; width: auto; height: 60vh; gap: 10px;">
-    <img src = "https://raw.githubusercontent.com/5ujan/Hustle/master/assets/readmeMaps">  
-  <img src = "https://raw.githubusercontent.com/5ujan/Hustle/master/assets/readmeJobs.svg">
-  <img src = "https://raw.githubusercontent.com/5ujan/Hustle/master/assets/readmeVolunteer.svg">
-  <img src = "https://raw.githubusercontent.com/5ujan/Hustle/master/assets/readmeProfile.svg">
+![Readme Profile Image](https://github.com/5ujan/Hustle/raw/master/assets/readmeMaps.png)
+![Readme Profile Image](https://github.com/5ujan/Hustle/raw/master/assets/readmeJobs.png)
+![Readme Profile Image](https://github.com/5ujan/Hustle/raw/master/assets/readmeVolunteer.png)
+![Readme Profile Image](https://github.com/5ujan/Hustle/raw/master/assets/readmeProfile.png)
 
 
-</p>
+
