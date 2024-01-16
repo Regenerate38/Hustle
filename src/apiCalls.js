@@ -1,10 +1,15 @@
 import axios from "axios";
 import { saveUser, saveToken, getToken, getUser } from "./hooks/asyncStorage";
-const baseUrl = "http://192.168.1.69:5000";
+//ip = your laptop's ip address here https://10.0.2.2 if running in expo go
+//port = the port in which server is running or 
+// const baseUrl = "http://192.168.1.25:5000";
+const ip = "http://192.168.1.25";
+const port = "5000"
+
+const baseUrl = ip + ":"+ port
 
 const returnConfig = async () => {
   const token = await getToken();
-  // console.log(token);
   const headers = {
     "Content-Type": "application/json",
     Authorization: `Bearer ${token}`,
@@ -14,7 +19,7 @@ const returnConfig = async () => {
 
 const getPaidJobs = async () => {
   const config = await returnConfig();
-  console.log("paid called")
+  console.log("paid called");
   const res = await axios.get(`${baseUrl}/paid`, config);
   return res.data;
 };
@@ -37,7 +42,7 @@ const getCommunityJob = async (id) => {
 };
 const login = async (email, password) => {
   try {
-    console.log("Pressed log in")
+    console.log("Pressed log in");
     const res = await axios.post(`${baseUrl}/auth/login`, { email, password });
     // console.log(res.data);
     await saveToken(res.data.token);
@@ -73,7 +78,8 @@ const createPost = async (title, description, user, image, pay, location) => {
   // console.log(`${baseUrl}/${user.isOrg ? `community` : `paid`}`);
   const res = await axios.post(
     `${baseUrl}/${user.isOrg ? `community` : `paid`}`,
-    { title, desc: description, user, image, pay , location}, config
+    { title, desc: description, user, image, pay, location },
+    config
   );
   // console.log(res.location)
 };
@@ -92,5 +98,5 @@ export {
   login,
   register,
   createPost,
-  getImageSignature
+  getImageSignature,
 };
